@@ -180,6 +180,90 @@
       </categories>
   </entry>
   <entry>
+    <title>使用FModel提取《黑神话:悟空》的资产</title>
+    <url>/2024/08/21/UE-fmodel-blackmyth-wukong/</url>
+    <content><![CDATA[<p><a href="%E4%BD%BF%E7%94%A8FModel%E6%8F%90%E5%8F%96%E9%BB%91%E7%A5%9E%E8%AF%9D%E6%82%9F%E7%A9%BA%E7%9A%84%E8%B5%84%E4%BA%A7">TOC</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>黑神话悟空昨天上线了，解个包looklook。</p>
+<ul>
+<li>本文内容比较简洁，仅介绍解包黑神话所需的专项配置，关于FModel的基础使用流程，请见<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18304354" >《使用FModel提取UE4&#x2F;5游戏资产》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li>本文仅演示steam平台下的解包过程</li>
+</ul>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>在FModel的setting中修改以下选项：</p>
+<ul>
+<li>Archive Directory：<code>*\steamapps\common\BlackMythWukong（改成你游戏所在的路径）</code></li>
+<li>UE Version: <code>GAME_BlackMythWukong (UE 5.0)</code></li>
+<li>勾选Local Mapping File选项，并选择映射文件路径（映射文件的生成参考<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18304354" >《使用FModel提取UE4&#x2F;5游戏资产》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>）</li>
+</ul>
+<p>在Directory中添加AES：</p>
+<ul>
+<li>AES Key : <code>0xA896068444F496956900542A215367688B49B19C2537FCD2743D8585BA1EB128</code></li>
+</ul>
+<p>设置好之后重启软件，然后参照<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18304354" >《使用FModel提取UE4&#x2F;5游戏资产》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的步骤查看或导出所需资产。</p>
+<h1 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h1><p>我主要是简单看一下角色的建模，因此下面的图片展示基本都是角色建模。</p>
+<p>先看下咱猴哥的英俊面庞：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/1_wukong_face.png"
+                     
+                ></p>
+<p>然后看下四大天王</p>
+<p>持国天王：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/2_chiguo.png"
+                     
+                ></p>
+<p>多闻天王<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/3_duowen.png"
+                     
+                ></p>
+<p>广目天王<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/4_guangmu.png"
+                     
+                ></p>
+<p>增长天王<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/5_zengzhang.png"
+                     
+                ></p>
+<p>最后再看个小狗：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/6_dog.png"
+                     
+                ></p>
+<h1 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h1><p>通过解包可以发现，黑神话里面的资源命名都是使用汉语拼音而非英文单词，不知道这是不是国内行业普遍使用的规矩。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/7_name.png"
+                     
+                ></p>
+<p>至于为啥不使用英文，我猜一是有些中文词汇很难用英语翻译，强行翻译可能会词不达意；二是有些翻译会导致命名长度太长。</p>
+<p>但是哥们儿，下面这个首字母简写我个人认为确实有一点点抽象了，能全部猜出来的也算是神人了。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/8_name_hard.png"
+                     
+                ></p>
+<p>由于一周目才刚开始打，我现在只能猜出来一部分：GYCY（观音禅院），HFM（黑风庙？），HGS（花果山），HYS（火焰山），LSH（流沙河？），LYS（雷音寺），MGD（埋骨地？），PSD（盘丝洞）。</p>
+<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><h2 id="没有相应的UE引擎版本选项"><a href="#没有相应的UE引擎版本选项" class="headerlink" title="没有相应的UE引擎版本选项"></a>没有相应的UE引擎版本选项</h2><p><strong>问题描述：</strong>在设置UE引擎版本时，下拉菜单中可能会没有<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项。<br><strong>解决方法：</strong>在settings的update mode选项中选择<code>QA Testing</code>，然后软件会提示你更新，然后一路确定。待更新完成后重新打开软件，即可在<code>UE Version</code>中看到<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/9_version_solution.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>随便玩玩</category>
+        <category>UE</category>
+      </categories>
+  </entry>
+  <entry>
     <title>使用FModel提取UE4/5游戏资产</title>
     <url>/2024/07/16/UE-fmodel-usage/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章仅记录我作为初学者使用FModel工具提取某款游戏模型的过程。</p>
@@ -1034,32 +1118,6 @@
       </categories>
   </entry>
   <entry>
-    <title>共享库链接和加载时的路径搜索优先级</title>
-    <url>/2024/07/15/cpp-shared-lib-search-priority/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在开发一个新项目时遇到了共享库冲突的问题，因此在这里记录一下共享库的链接和加载过程中库路径的搜索优先级的相关知识。</p>
-<h1 id="共享库的链接"><a href="#共享库的链接" class="headerlink" title="共享库的链接"></a>共享库的链接</h1><p>现在有一个<code>main.o</code>可重定位目标文件，其中需要用到开源库log4cpp。在链接的时候，我们可以这样链接：</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">g++ main.o -o a.out -L/path/to/libs -llog4cpp</span><br></pre></td></tr></table></figure></div>
-<p>其中：<br><code>-L/path/to/libs</code>表示链接器去哪个目录下查找库文件。<br>注意：通过-L指定的路径的搜索优先级是要高于系统默认的库文件路径的。</p>
-<p>使用g++编译时库搜索优先级：<br><code>-L指定的路径</code>&gt;<code>默认库路径</code>&gt;<code>LIBRARY_PATH指定路径</code><br>(我看网上都说优先级为：<code>-L指定的路径</code>&gt;<code>LIBRARY_PATH指定路径</code>&gt;<code>默认库路径</code>，但是我做了个实验发现使用g++时不是这样的，实验过程见<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18330701" >《编译期链接时共享库搜索路径优先级实验》
- <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)</p>
-<p><code>-llog4cpp</code>表示要链接的库，在链接阶段，链接器一般会按照搜索优先级，从库路径中查找名为<code>liblog4cpp.so</code>或<code>liblog4cpp.a</code>的文件进行链接。若不特殊说明，默认优先链接共享库。</p>
-<h1 id="共享库的加载"><a href="#共享库的加载" class="headerlink" title="共享库的加载"></a>共享库的加载</h1><p>在程序开始运行前的加载阶段，动态链接器会读取可执行文件，查找并加载所有必须的共享库。注意此时的搜索路径并不包含上述的<code>/path/to/libs</code>，因为它只作用于编译时的链接阶段。动态链接器搜索的路径有：LD_LIBRARY_PATH环境变量，<code>/etc/ld.so.cache</code>文件，默认库路径（<code>/usr/lib</code>,<code>/lib</code>等），RPATH（需编译时设置），RUNPATH（需编译时设置）。</p>
-<p>如果需要从指定的路径加载共享库，则可以使用下述方法：</p>
-<ul>
-<li>手动设置LD_LIBRARY_PATH环境变量：在程序运行前设置环境变量，指定共享库的搜索路径：  <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=/path/to/runtime_libs:$LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure></div>
-  注意，此方法设置环境变量是临时的，一旦终端关闭设置就会失效。若想使其持久化，需要特殊设置，方法包括但不限于：修改.bashrc文件，修改rc.loacl文件。</li>
-<li>修改<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>配置：<br>  这些文件提供了系统级别的库搜索路径。系统管理员可以在这些文件中定义默认的库搜索路径，这些设置对所有用户和应用程序都有效。</li>
-<li>在编译期的链接阶段使用<code>-rpath</code>:<br>  在编译期的链接阶段，设置RPATH或RUNPATH，将库路径硬编码到可执行文件中  <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">g++ main.o -o a.out -L/path/to/libs -llog4cpp -Wl,-rpath,/path/to/runtime_libs</span><br></pre></td></tr></table></figure></div>
-  注意若可执行文件中同时包含RPATH和RUNPATH，那么RPATH将会被动态链接器忽略。</li>
-</ul>
-<p>共享库的搜索优先级为：<br>    <code>RPATH</code>&gt;<code>LD_LIBRARY_PATH</code>&gt;<code>RUNPATH</code>&gt;<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>&gt;<code>默认库路径</code><br>我做了个实验验证上述优先级，详见：<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18337485" >《运行期加载时共享库路径搜索优先级实验》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-      <categories>
-        <category>C++</category>
-        <category>编译链接</category>
-      </categories>
-  </entry>
-  <entry>
     <title>运行期加载时共享库路径搜索优先级实验</title>
     <url>/2024/08/01/cpp-shared-lib-search-priority-test-loading/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a class="link"   href="https://www.cnblogs.com/paw5zx/p/18302745" >《共享库链接和加载时的路径搜索优先级》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中提到，共享库在运行期加载时的路径搜索优先级为：<br><code>RPATH</code>&gt;<code>LD_LIBRARY_PATH</code>&gt;<code>RUNPATH</code>&gt;<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>&gt;<code>默认库路径</code></p>
@@ -1146,6 +1204,32 @@
 <h3 id="run-ld-library-path"><a href="#run-ld-library-path" class="headerlink" title="run_ld_library_path"></a>run_ld_library_path</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /opt/hellolib_runtime</span><br><span class="line"><span class="built_in">cp</span> ./lib/libhello.so.1.1.0 /opt/hellolib_runtime</span><br><span class="line"><span class="built_in">ln</span> -sf /opt/hellolib_runtime/libhello.so.1.1.0 /opt/hellolib_runtime/libhello.so.1</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/hellolib_runtime:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"></span><br><span class="line">LD_DEBUG=libs ./hello</span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -rf /opt/hellolib_runtime*</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure></div>
 <h3 id="run-rpath"><a href="#run-rpath" class="headerlink" title="run_rpath"></a>run_rpath</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make hello_rpath</span><br><span class="line"></span><br><span class="line">LD_DEBUG=libs ./hello_rpath</span><br><span class="line"></span><br><span class="line">make clean</span><br></pre></td></tr></table></figure></div>
 <h3 id="run-cmp-all"><a href="#run-cmp-all" class="headerlink" title="run_cmp_all"></a>run_cmp_all</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make hello_rpath</span><br><span class="line"><span class="built_in">rm</span> -rf /opt/hellolib_runtime/*</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /opt/hellolib_runtime1</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/hellolib_runtime1:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /opt/hellolib_runtime2</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/opt/hellolib_runtime2&quot;</span> &gt; /etc/ld.so.conf.d/libhello.conf</span><br><span class="line">ldconfig</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> ./lib/libhello.so.1.1.0 /usr/lib</span><br><span class="line"><span class="built_in">ln</span> -sf /usr/lib/libhello.so.1.1.0 /usr/lib/libhello.so.1</span><br><span class="line"></span><br><span class="line">LD_DEBUG=libs ./hello_rpath</span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -f /usr/lib/libhello.so*</span><br><span class="line"><span class="built_in">rm</span> -f /etc/ld.so.conf.d/libhello.conf</span><br><span class="line">ldconfig</span><br><span class="line"><span class="built_in">rm</span> -rf /opt/hellolib_runtime*</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure></div>]]></content>
+      <categories>
+        <category>C++</category>
+        <category>编译链接</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>共享库链接和加载时的路径搜索优先级</title>
+    <url>/2024/07/15/cpp-shared-lib-search-priority/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在开发一个新项目时遇到了共享库冲突的问题，因此在这里记录一下共享库的链接和加载过程中库路径的搜索优先级的相关知识。</p>
+<h1 id="共享库的链接"><a href="#共享库的链接" class="headerlink" title="共享库的链接"></a>共享库的链接</h1><p>现在有一个<code>main.o</code>可重定位目标文件，其中需要用到开源库log4cpp。在链接的时候，我们可以这样链接：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">g++ main.o -o a.out -L/path/to/libs -llog4cpp</span><br></pre></td></tr></table></figure></div>
+<p>其中：<br><code>-L/path/to/libs</code>表示链接器去哪个目录下查找库文件。<br>注意：通过-L指定的路径的搜索优先级是要高于系统默认的库文件路径的。</p>
+<p>使用g++编译时库搜索优先级：<br><code>-L指定的路径</code>&gt;<code>默认库路径</code>&gt;<code>LIBRARY_PATH指定路径</code><br>(我看网上都说优先级为：<code>-L指定的路径</code>&gt;<code>LIBRARY_PATH指定路径</code>&gt;<code>默认库路径</code>，但是我做了个实验发现使用g++时不是这样的，实验过程见<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18330701" >《编译期链接时共享库搜索路径优先级实验》
+ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)</p>
+<p><code>-llog4cpp</code>表示要链接的库，在链接阶段，链接器一般会按照搜索优先级，从库路径中查找名为<code>liblog4cpp.so</code>或<code>liblog4cpp.a</code>的文件进行链接。若不特殊说明，默认优先链接共享库。</p>
+<h1 id="共享库的加载"><a href="#共享库的加载" class="headerlink" title="共享库的加载"></a>共享库的加载</h1><p>在程序开始运行前的加载阶段，动态链接器会读取可执行文件，查找并加载所有必须的共享库。注意此时的搜索路径并不包含上述的<code>/path/to/libs</code>，因为它只作用于编译时的链接阶段。动态链接器搜索的路径有：LD_LIBRARY_PATH环境变量，<code>/etc/ld.so.cache</code>文件，默认库路径（<code>/usr/lib</code>,<code>/lib</code>等），RPATH（需编译时设置），RUNPATH（需编译时设置）。</p>
+<p>如果需要从指定的路径加载共享库，则可以使用下述方法：</p>
+<ul>
+<li>手动设置LD_LIBRARY_PATH环境变量：在程序运行前设置环境变量，指定共享库的搜索路径：  <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">export LD_LIBRARY_PATH=/path/to/runtime_libs:$LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure></div>
+  注意，此方法设置环境变量是临时的，一旦终端关闭设置就会失效。若想使其持久化，需要特殊设置，方法包括但不限于：修改.bashrc文件，修改rc.loacl文件。</li>
+<li>修改<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>配置：<br>  这些文件提供了系统级别的库搜索路径。系统管理员可以在这些文件中定义默认的库搜索路径，这些设置对所有用户和应用程序都有效。</li>
+<li>在编译期的链接阶段使用<code>-rpath</code>:<br>  在编译期的链接阶段，设置RPATH或RUNPATH，将库路径硬编码到可执行文件中  <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">g++ main.o -o a.out -L/path/to/libs -llog4cpp -Wl,-rpath,/path/to/runtime_libs</span><br></pre></td></tr></table></figure></div>
+  注意若可执行文件中同时包含RPATH和RUNPATH，那么RPATH将会被动态链接器忽略。</li>
+</ul>
+<p>共享库的搜索优先级为：<br>    <code>RPATH</code>&gt;<code>LD_LIBRARY_PATH</code>&gt;<code>RUNPATH</code>&gt;<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>&gt;<code>默认库路径</code><br>我做了个实验验证上述优先级，详见：<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18337485" >《运行期加载时共享库路径搜索优先级实验》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
       <categories>
         <category>C++</category>
         <category>编译链接</category>
