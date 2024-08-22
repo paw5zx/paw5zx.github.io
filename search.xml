@@ -182,8 +182,7 @@
   <entry>
     <title>使用FModel提取《黑神话:悟空》的资产</title>
     <url>/2024/08/21/UE-fmodel-blackmyth-wukong/</url>
-    <content><![CDATA[<p><a href="%E4%BD%BF%E7%94%A8FModel%E6%8F%90%E5%8F%96%E9%BB%91%E7%A5%9E%E8%AF%9D%E6%82%9F%E7%A9%BA%E7%9A%84%E8%B5%84%E4%BA%A7">TOC</a></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>黑神话悟空昨天上线了，解个包looklook。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>黑神话悟空昨天上线了，解个包looklook。</p>
 <ul>
 <li>本文内容比较简洁，仅介绍解包黑神话所需的专项配置，关于FModel的基础使用流程，请见<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18304354" >《使用FModel提取UE4&#x2F;5游戏资产》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
 <li>本文仅演示steam平台下的解包过程</li>
@@ -251,13 +250,31 @@
                      
                 ></p>
 <p>由于一周目才刚开始打，我现在只能猜出来一部分：GYCY（观音禅院），HFM（黑风庙？），HGS（花果山），HYS（火焰山），LSH（流沙河？），LYS（雷音寺），MGD（埋骨地？），PSD（盘丝洞）。</p>
+<p>另外，通过解包我们还可以看见项目中有刘备，孙权，太史慈的人物建模，难道是《黑神话2：三国群英传》？😂<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/11_sanguo.png"
+                     
+                ></p>
+<p>项目里甚至还有一个电饭煲的模型hhh。讲道理，我孙悟空用电饭煲封印个比克大魔王，也是很合理的好吧。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/10_rice_cooker.png"
+                     
+                ><br>不过上述资源的存在让我想到了一张梗图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/12_coconut.png"
+                     
+                ></p>
 <h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><h2 id="没有相应的UE引擎版本选项"><a href="#没有相应的UE引擎版本选项" class="headerlink" title="没有相应的UE引擎版本选项"></a>没有相应的UE引擎版本选项</h2><p><strong>问题描述：</strong>在设置UE引擎版本时，下拉菜单中可能会没有<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项。<br><strong>解决方法：</strong>在settings的update mode选项中选择<code>QA Testing</code>，然后软件会提示你更新，然后一路确定。待更新完成后重新打开软件，即可在<code>UE Version</code>中看到<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项<br><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/9_version_solution.png"
                      
                 ></p>
-]]></content>
+<h2 id="映射文件生成失败"><a href="#映射文件生成失败" class="headerlink" title="映射文件生成失败"></a>映射文件生成失败</h2><p>由于映射文件生成比较复杂，在此提供现成的映射文件(伴随游戏更新映射文件可能失效，失效请联系我更换)：</p>
+<a class="button  regular" href='/downloads/Wukong_Release.usmap' title='点击下载映射文件'><i class='fa-solid fa-download'></i> 点击下载映射文件</a>]]></content>
       <categories>
         <category>随便玩玩</category>
         <category>UE</category>
@@ -420,10 +437,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（六）——camera-features</title>
@@ -462,10 +475,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（七）——chunk-parser</title>
@@ -510,10 +519,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis学习——安装</title>
@@ -611,10 +616,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（三）——注册回调multiple-acquisition-callback</title>
@@ -657,10 +658,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread</title>
@@ -720,10 +717,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（四）——multiple-acquisition-signal</title>
@@ -782,10 +775,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis学习——PixelFormat编码规则</title>
@@ -821,10 +810,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（一）——单帧采集single-acquisition</title>
@@ -875,10 +860,6 @@
         <category>工业相机</category>
         <category>Aravis</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>C++自用小轮子——单例模板</title>
@@ -1319,10 +1300,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——抽象工厂模式</title>
@@ -1376,10 +1353,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——工厂方法模式+注册表</title>
@@ -1409,10 +1382,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——工厂方法模式</title>
@@ -1450,10 +1419,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——简单工厂模式</title>
@@ -1504,10 +1469,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>C++多态学习（二）菱形继承</title>
@@ -1530,10 +1491,6 @@
         <category>C++</category>
         <category>C++语法</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>Git学习——迁移单一仓库至其他代码托管平台</title>
@@ -1823,10 +1780,6 @@
         <category>C++</category>
         <category>C++语法</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>C++多态学习（一）单继承与多重继承</title>
@@ -1908,10 +1861,6 @@
         <category>C++</category>
         <category>C++语法</category>
       </categories>
-      <tags>
-        <tag>Linux,lll</tag>
-        <tag>Tools,xxx</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式补充——单例模式析构</title>
@@ -1949,10 +1898,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式补充——指令重排</title>
@@ -1990,10 +1935,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式的几种实现方式</title>
@@ -2076,10 +2017,6 @@
         <category>C++</category>
         <category>C++设计模式</category>
       </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>jsoncpp的安装及使用</title>
