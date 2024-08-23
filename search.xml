@@ -2019,20 +2019,6 @@
       </categories>
   </entry>
   <entry>
-    <title>设计模式学习（一）单例模式的几种实现方式</title>
-    <url>/2024/08/23/test/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>单例模式，其核心目标是确保在程序运行的过程中，有且只有存在一个实例才能保证他们的逻辑正确性以及良好的效率。因此单例模式的实现思路就是确保一个类有且只有一个实例，并提供一个该实例的全局访问点。<br>单例模式设计要点：</p>
-<ul>
-<li>私有构造、析构</li>
-<li>禁止赋值、拷贝</li>
-<li>静态私有成员：全局唯一实例</li>
-<li>提供一个用于获取全局唯一实例的接口，若实例不存在则创建。</li>
-</ul>
-<p>除了上面提到的四点还要注意线程安全以及资源释放的问题。</p>
-<p>本文从最基本的懒汉式和饿汉式单例模式开始，循序渐进地讨论单例模式形式的特点及变化过程</p>
-]]></content>
-  </entry>
-  <entry>
     <title>jsoncpp的安装及使用</title>
     <url>/2024/06/13/thirdlib-jsoncpp/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文操作均在ubuntu20.04下进行。</p>
