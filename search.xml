@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>CentOS8系统换源安装（带GUI）</title>
-    <url>/2023/10/09/Centos8-install/</url>
+    <url>/Centos8-install/</url>
     <content><![CDATA[<p>最近在制作系统盘时发现使用ISO镜像文件安装CentOS 8系统时，在选择安装源时总是报错，显示错误的安装源。</p>
 <p>后来查了一下资料，了解到CentOS 8操作系统已经结束了生命周期，社区已不再维护该操作系统版本。按照社区规则，CentOS 8的源地址内容已移除，目前第三方的镜像站中均已移除CentOS 8的源。但由于个人业务需要，仍需使用CentOS 8系统，因此我们需要换源在线安装。</p>
 <h1 id="系统安装方法"><a href="#系统安装方法" class="headerlink" title="系统安装方法"></a>系统安装方法</h1><h2 id="确保网络连接"><a href="#确保网络连接" class="headerlink" title="确保网络连接"></a>确保网络连接</h2><p>由于安装过程是在线安装，因此需要确保设备连接了互联网，可使用ping操作验证:</p>
@@ -40,7 +40,7 @@
   </entry>
   <entry>
     <title>GObject学习笔记（一）类和实例</title>
-    <url>/2024/11/02/GObject-tutorial-beginner-01/</url>
+    <url>/GObject-tutorial-beginner-01/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近阅读<a class="link"   href="https://github.com/AravisProject/aravis" >Aravis <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>源码，其中大量运用了GObject，于是打算学习一下。</p>
 <p>此系列笔记仅主要面向初学者，不会很深入探讨源码的细节，专注于介绍GObject的基本用法。</p>
 <p>此系列笔记参考<a class="link"   href="https://toshiocp.github.io/Gobject-tutorial/" >GObject Tutorial for beginners <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
@@ -111,7 +111,7 @@
   </entry>
   <entry>
     <title>GObject学习笔记（二）类型创建与注册</title>
-    <url>/2024/11/05/GObject-tutorial-beginner-02/</url>
+    <url>/GObject-tutorial-beginner-02/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<a href="/GObject-tutorial-beginner-01">上一节</a>中我们介绍了GObject类型的类和实例变量的创建和使用。GObject是一个基本的可实例化类类型，是所有使用GObject系统的类型的基类，提供了继承、封装、多态等面向对象的核心特性。不过我们一般不直接使用GObject本身，而是通过继承GObject来创建新的类型。</p>
 
   <div class="note p-4 mb-4 rounded-small blue icon-padding">
@@ -298,12 +298,12 @@
   </entry>
   <entry>
     <title>I/O多路复用学习（二）do_select分析</title>
-    <url>/2024/03/08/IO-Multiplexing-do-select/</url>
+    <url>/IO-Multiplexing-do-select/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前一篇笔记：<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18081811" >I&#x2F;O多路复用学习（一）select <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，梳理了一下select的调用过程，这一篇笔记对其中的do_select函数的细节做一下简单的讨论。<br>本文中涉及的源码均出自Linux内核5.4.0版本</p>
 <h1 id="相关结构体"><a href="#相关结构体" class="headerlink" title="相关结构体"></a>相关结构体</h1><p>了解相关的结构体可以帮助我们更好地理解select内部的实现<br>相关结构体关系示意图：<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/08/IO-Multiplexing-do-select/struct.png"
+                     data-src="/IO-Multiplexing-do-select/struct.png"
                       alt="结构体关系图"
                 ><figcaption>结构体关系图</figcaption></figure></p>
 <h2 id="struct-poll-wqueues"><a href="#struct-poll-wqueues" class="headerlink" title="struct poll_wqueues"></a>struct poll_wqueues</h2><p><code>poll_wqueues</code>结构体（轮询等待队列）用于维护若干特定于文件描述符的设备驱动等待队列。但是它并不直接存储设备驱动等待队列本身；它通过<code>inline_entries[]</code>管理一个或多个<code>poll_table_entry</code>项，每个项与一个特定的文件描述符和其等待事件相关联。</p>
@@ -323,7 +323,7 @@
 <h1 id="do-select"><a href="#do-select" class="headerlink" title="do_select"></a>do_select</h1><p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/08/IO-Multiplexing-do-select/do_select.png"
+                     data-src="/IO-Multiplexing-do-select/do_select.png"
                       alt="do_select流程图"
                 ><figcaption>do_select流程图</figcaption></figure></p>
 <p>代码省略了一些，比如超时标志位<code>timed_out</code>的置位操作等。</p>
@@ -359,7 +359,7 @@
 <h1 id="pollwait"><a href="#pollwait" class="headerlink" title="__pollwait"></a>__pollwait</h1><p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/08/IO-Multiplexing-do-select/pollwait.png"
+                     data-src="/IO-Multiplexing-do-select/pollwait.png"
                       alt="pollwait"
                 ><figcaption>pollwait</figcaption></figure></p>
 <p><code>__pollwait</code>用于处理轮询时的等待队列。这个函数通过创建并初始化<code>poll_table_entry</code>实例，将等待进程（或线程）添加到指定设备或文件的等待队列中。</p>
@@ -380,7 +380,7 @@
 <p><code>POLL_TABLE_FULL</code>为true情况的示意图：<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/08/IO-Multiplexing-do-select/poll_table_page.png"
+                     data-src="/IO-Multiplexing-do-select/poll_table_page.png"
                       alt="POLL_TABLE_FULL为真"
                 ><figcaption>POLL_TABLE_FULL为真</figcaption></figure></p>
 <h2 id="init-waitqueue-func-entry"><a href="#init-waitqueue-func-entry" class="headerlink" title="init_waitqueue_func_entry"></a>init_waitqueue_func_entry</h2><p><code>init_waitqueue_func_entry</code>用于初始化<code>wait_queue_entry</code>实例的各个成员。</p>
@@ -394,7 +394,7 @@
 <h1 id="pollwake"><a href="#pollwake" class="headerlink" title="pollwake"></a>pollwake</h1><p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/08/IO-Multiplexing-do-select/pollwake.png"
+                     data-src="/IO-Multiplexing-do-select/pollwake.png"
                       alt="pollwake"
                 ><figcaption>pollwake</figcaption></figure></p>
 <h2 id="回调过程"><a href="#回调过程" class="headerlink" title="回调过程"></a>回调过程</h2><p>前面提到<code>pollwake</code>会在设备驱动中被回调，下面简单梳理一下在设备驱动中的调用链，还是以socket中的tcp为例，当有数据包来临时函数的调用链为：<br><code>tcp_data_queue</code>-&gt;<code>sock_def_readable</code>-&gt;<code>wake_up_interruptible_sync_poll</code>-&gt;<code>__wake_up_sync_key</code>-&gt;<code>__wake_up_common_lock</code>-&gt;<code>__wake_up_common</code></p>
@@ -410,13 +410,13 @@
   </entry>
   <entry>
     <title>I/O多路复用学习（一）select</title>
-    <url>/2024/03/05/IO-Multiplexing-select/</url>
+    <url>/IO-Multiplexing-select/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要是简单讨论select的特点并梳理一下select的调用链，不涉及具体的使用方法。<br>本文中涉及的源码均出自Linux内核5.4.0版本</p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>select 是一种 IO 多路复用的技术，它允许单个进程或线程高效地管理多个输入&#x2F;输出流，从而提高程序的性能和响应速度。</p>
 <h1 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h1><h2 id="do-select"><a href="#do-select" class="headerlink" title="do_select"></a>do_select</h2><p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/05/IO-Multiplexing-select/doselect.png"
+                     data-src="/IO-Multiplexing-select/doselect.png"
                       alt="select调用链"
                 ><figcaption>select调用链</figcaption></figure></p>
 <p>select的核心功能都在do_select中，里面的关键操作有：<br>1、poll_initwait：初始化轮询等待队列结构体 (<code>poll_wqueues</code>) 的所有字段，包括函数指针的初始化，后面用于驱动中回调<code>__pollwait</code>。<br>2、for循环：遍历每个fd并调用<code>vfs_poll</code>，<code>vfs_poll</code>针对传入的fd，调用其各自的poll函数（由设备驱动程序实现，比如<code>sock_poll</code>）。之后若满足一定条件则跳出循环。<br>3、poll_freewait：清理等待队列。</p>
@@ -424,7 +424,7 @@
 <h2 id="pollwait"><a href="#pollwait" class="headerlink" title="__pollwait"></a>__pollwait</h2><p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/05/IO-Multiplexing-select/pollwait.png"
+                     data-src="/IO-Multiplexing-select/pollwait.png"
                       alt="__pollwait调用链"
                 ><figcaption>__pollwait调用链</figcaption></figure></p>
 <p>__pollwait的作用是在等待队列上注册一个新的节点()，并初始化<code>poll_table_entry</code>的成员。<br>1、poll_get_entry：从轮询等待队列结构体 (<code>poll_wqueues</code>) 中获取一个空闲的<code>poll_table_entry</code>结构体实例<br>2、init_waitqueue_func_entry：初始化<code>poll_table_entry</code>结构体实例，包括函数指针的初始化，后面用于驱动中回调pollwake。<br>3、add_wait_queue：向等待队列添加一个节点</p>
@@ -439,7 +439,7 @@
   </entry>
   <entry>
     <title>使用FModel提取《黑神话:悟空》的资产</title>
-    <url>/2024/08/21/UE-fmodel-blackmyth-wukong/</url>
+    <url>/UE-fmodel-blackmyth-wukong/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>黑神话悟空昨天上线了，解个包looklook。</p>
 <ul>
 <li>本文内容比较简洁，仅介绍解包黑神话所需的专项配置，关于FModel的基础使用流程，请见<a href="/UE-fmodel-usage">《使用FModel提取UE4&#x2F;5游戏资产》</a></li>
@@ -460,75 +460,75 @@
 <p>先看下咱猴哥的英俊面庞：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/1_wukong_face.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/1_wukong_face.png"
                      
                 ></p>
 <p>然后看下四大天王</p>
 <p>持国天王：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/2_chiguo.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/2_chiguo.png"
                      
                 ></p>
 <p>多闻天王<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/3_duowen.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/3_duowen.png"
                      
                 ></p>
 <p>广目天王<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/4_guangmu.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/4_guangmu.png"
                      
                 ></p>
 <p>增长天王<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/5_zengzhang.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/5_zengzhang.png"
                      
                 ></p>
 <p>最后再看个小狗：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/6_dog.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/6_dog.png"
                      
                 ></p>
 <h1 id="闲聊"><a href="#闲聊" class="headerlink" title="闲聊"></a>闲聊</h1><p>通过解包可以发现，黑神话里面的资源命名都是使用汉语拼音而非英文单词，不知道这是不是国内行业普遍使用的规矩，希望有从事相关行业的大佬能解开我这个疑惑。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/7_name.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/7_name.png"
                      
                 ></p>
 <p>至于为啥不使用英文，我猜一是有些中文词汇很难用英语翻译，强行翻译可能会词不达意；二是有些翻译会导致命名长度太长。</p>
 <p>但是哥们儿，下面这个首字母简写我个人认为确实有一点点抽象了，能全部猜出来的也算是神人了。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/8_name_hard.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/8_name_hard.png"
                      
                 ></p>
 <p>由于一周目才刚开始打，我现在只能猜出来一部分：GYCY（观音禅院），HFM（黑风庙？），HGS（花果山），HYS（火焰山），LSH（流沙河？），LYS（雷音寺），MGD（埋骨地？），PSD（盘丝洞）。</p>
 <p>另外，通过解包我们还可以看见项目中有刘备，孙权，太史慈的人物建模，难道是《黑神话2：三国群英传》？😂<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/11_sanguo.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/11_sanguo.png"
                      
                 ></p>
 <p>项目里甚至还有一个电饭煲的模型hhh。讲道理，我孙悟空用电饭煲封印个比克大魔王，也是很合理的好吧。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/10_rice_cooker.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/10_rice_cooker.png"
                      
                 ><br>不过上述资源的存在让我想到了一张梗图：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/12_coconut.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/12_coconut.png"
                      
                 ></p>
 <h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><h2 id="没有相应的UE引擎版本选项"><a href="#没有相应的UE引擎版本选项" class="headerlink" title="没有相应的UE引擎版本选项"></a>没有相应的UE引擎版本选项</h2><p><strong>问题描述：</strong>在设置UE引擎版本时，下拉菜单中可能会没有<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项。<br><strong>解决方法：</strong>在settings的update mode选项中选择<code>QA Testing</code>，然后软件会提示你更新，然后一路确定。待更新完成后重新打开软件，即可在<code>UE Version</code>中看到<code>GAME_BlackMythWukong (UE 5.0)</code>这个选项<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/08/21/UE-fmodel-blackmyth-wukong/9_version_solution.png"
+                     data-src="/UE-fmodel-blackmyth-wukong/9_version_solution.png"
                      
                 ></p>
 <h2 id="映射文件生成失败"><a href="#映射文件生成失败" class="headerlink" title="映射文件生成失败"></a>映射文件生成失败</h2><p>由于映射文件生成比较复杂，在此提供现成的映射文件(伴随游戏更新映射文件可能失效，失效请联系我更换)：</p>
@@ -540,7 +540,7 @@
   </entry>
   <entry>
     <title>使用FModel提取UE4/5游戏资产</title>
-    <url>/2024/07/16/UE-fmodel-usage/</url>
+    <url>/UE-fmodel-usage/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这篇文章仅记录我作为初学者使用FModel工具提取某款游戏模型的过程。</p>
 <h1 id="FModel简介"><a href="#FModel简介" class="headerlink" title="FModel简介"></a>FModel简介</h1><p>FModel是一个开源软件，可以用于查看和提取UE4-5项目中的资产。它支持从<code>.pak</code>和<code>.uasset</code>文件中提取内容，如3D模型，纹理，音频等。</p>
 <h1 id="FModel安装"><a href="#FModel安装" class="headerlink" title="FModel安装"></a>FModel安装</h1><p>首先进入<a class="link"   href="https://fmodel.app/" >FModel官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，下载最新的发布版本。</p>
@@ -548,44 +548,44 @@
 <p>FModel还需要依赖<code>.NET</code>，如果你的系统中没有，则会提示你安装：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/1_fmodel.png"
+                     data-src="/UE-fmodel-usage/1_fmodel.png"
                      
                 ></p>
 <p>安装好<code>.NET</code>之后，重新打开<code>FModel.exe</code>，此时软件可以正常打开。</p>
 <h1 id="FModel使用"><a href="#FModel使用" class="headerlink" title="FModel使用"></a>FModel使用</h1><h2 id="初次使用"><a href="#初次使用" class="headerlink" title="初次使用"></a>初次使用</h2><p><strong>①软件初次打开会弹出这个界面</strong>：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/2_first_time.png"
+                     data-src="/UE-fmodel-usage/2_first_time.png"
                      
                 ></p>
 <p>这里可以随便设置，之后进入软件还可以更改。<br><strong>②点击ok进入软件</strong><br><strong>③设置填写AES key</strong><br>这里填写你要解包的游戏对应的AES key<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/3_aes.png"
+                     data-src="/UE-fmodel-usage/3_aes.png"
                      
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/4_aes2.png"
+                     data-src="/UE-fmodel-usage/4_aes2.png"
                      
                 ></p>
 <p><strong>④设置选择UE版本和填写游戏路径</strong><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/5_path.png"
+                     data-src="/UE-fmodel-usage/5_path.png"
                      
                 ></p>
 <p>⑤<strong>解包</strong><br>全选（我在使用时是这样，可能会因游戏的不同而不一样）然后load<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/6_unpack.png"
+                     data-src="/UE-fmodel-usage/6_unpack.png"
                      
                 ></p>
 <p>然后就会自动跳到Folder下，此时我们就可以随便选择一个资产双击进行查看<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/7_result.png"
+                     data-src="/UE-fmodel-usage/7_result.png"
                      
                 ></p>
 <p><strong>注意：</strong><br>如果你要解包的游戏是使用UE5开发的，那么在解包的时候可能会报错：</p>
@@ -595,14 +595,14 @@
 <p>比如<code>3D Viewer</code>的模型预览是这样<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/8_viewer.png"
+                     data-src="/UE-fmodel-usage/8_viewer.png"
                      
                 ></p>
 <h2 id="资产导出"><a href="#资产导出" class="headerlink" title="资产导出"></a>资产导出</h2><p>在<code>Settings</code>的<code>Models</code>中设置资产的导出格式（比如对于<code>mesh</code>可以设置导出为<code>.glb</code>，<code>texture</code>可以设置导出为<code>.png</code>）</p>
 <p>然后在你要导出的资产上右键，选择要导出的类型即可：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/9_menu.png"
+                     data-src="/UE-fmodel-usage/9_menu.png"
                      
                 ></p>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="dumper"><a href="#dumper" class="headerlink" title="dumper"></a>dumper</h2><p>对于UE5+的游戏来说，具有<code>unversioned</code>属性的包是意料之中的。然而现在有一些解决方案可以让FModel支持对它们的解析。</p>
@@ -612,7 +612,7 @@
 <p>当成功生成了<code>*.usmap</code>文件后，你可以在<code>FModel</code>软件的设置界面将其添加到<code>Mapping File Path</code>中：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/10_usmap.png"
+                     data-src="/UE-fmodel-usage/10_usmap.png"
                      
                 ></p>
 <p>下面我将演示通过使用<code>Dumper-7</code>生成<code>*.usmap</code>的过程</p>
@@ -620,7 +620,7 @@
 <h2 id="向游戏中注入dll"><a href="#向游戏中注入dll" class="headerlink" title="向游戏中注入dll"></a>向游戏中注入dll</h2><p>为了向游戏中注入dll，我们要使用一个工具：DLL Injector<br>官网链接：<a class="link"   href="https://dllinjector.net/" >DLL Injector官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>使用方法：<br>①打开DLL Injector<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/11_injector.png"
+                     data-src="/UE-fmodel-usage/11_injector.png"
                      
                 ></p>
 <p>②选择要加载的DLL文件（有两种方法）：</p>
@@ -629,7 +629,7 @@
 <li>拖拽你的dll文件到DLL injector软件的界面中<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/12_dll.png"
+                     data-src="/UE-fmodel-usage/12_dll.png"
                      
                 ></li>
 </ul>
@@ -639,14 +639,14 @@
 <li>如果使用筛选功能最后只筛选出一个进程，则此进程会被自动选中<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/13_select_pid.png"
+                     data-src="/UE-fmodel-usage/13_select_pid.png"
                      
                 ></li>
 </ul>
 <p>④点击右上方的注入按钮将DLL注入目标进程，结束后会在指定文件夹生成usmap文件<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/UE-fmodel-usage/14_inject.png"
+                     data-src="/UE-fmodel-usage/14_inject.png"
                      
                 ></p>
 ]]></content>
@@ -657,7 +657,7 @@
   </entry>
   <entry>
     <title>GVCP数据包</title>
-    <url>/2024/11/01/aravis-GVCP-packets/</url>
+    <url>/aravis-GVCP-packets/</url>
     <content><![CDATA[<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>设备通过监听GVCP端口（3956）等待GVCP数据包。当客户端（如：PC设备）向设备（如：相机）发送一个GVCP命令数据包时，设备会回复一个确认数据包。每个命令&#x2F;确认对(<code>command/acknowledge pair</code>)都使用一个16 bit的值来标识(就相当于ID)，这样可以检查确认数据包是否与之前发送的命令对应。0是这个标识符的错误值。如果在给定的超时时间后没有收到确认，将再次发送命令数据包，直到达到最大重试次数。</p>
 <p><a class="link"   href="https://aravisproject.github.io/docs/aravis-0.5/aravis-ArvGvcp.html" >ArvGvcp <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>API提供了一系列处理GVCP包的函数。</p>
 <p>GVCP数据包的内容由一个64 bit的头部组成，头部后面可能跟着一个数据字节数组（也可能没有，具体取决于GVCP数据包的类型）。多字节值采用大端编码。</p>
@@ -933,7 +933,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（五）——camera-api</title>
-    <url>/2024/04/28/aravis-camera-api/</url>
+    <url>/aravis-camera-api/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：03-camera-api做简单的讲解。并介绍其中调用的<code>arv_camera_get_region</code>，<code>arv_camera_get_pixel_format_as_string</code>，<code>arv_camera_get_pixel_format</code>，<code>ARV_PIXEL_FORMAT_BIT_PER_PIXEL</code>。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，获取相机的一些基本设置，如图像的宽度、高度和像素格式，主要操作步骤如下：</p>
@@ -949,7 +949,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/28/aravis-camera-api/result.png"
+                     data-src="/aravis-camera-api/result.png"
                      
                 ></p>
 <h1 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h1><h2 id="arv-camera-get-region"><a href="#arv-camera-get-region" class="headerlink" title="arv_camera_get_region"></a>arv_camera_get_region</h2><p>简介：用于获取相机当前的感兴趣区域（ROI），此函数会将当前相机的ROI的位置坐标（x，y）和尺寸（width，height）通过指针返回，并记录错误信息。</p>
@@ -974,7 +974,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（六）——camera-features</title>
-    <url>/2024/05/01/aravis-camera-features/</url>
+    <url>/aravis-camera-features/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：04-camera-features做简单的讲解。并介绍其中调用的<code>arv_camera_get_integer</code>，<code>arv_camera_get_string</code>。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，获取相机的一些基本设置，如图像的宽度、高度和像素格式，主要操作步骤如下：</p>
@@ -993,7 +993,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/05/01/aravis-camera-features/result.png"
+                     data-src="/aravis-camera-features/result.png"
                      
                 ></p>
 <h1 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h1><h2 id="arv-camera-get-integer"><a href="#arv-camera-get-integer" class="headerlink" title="arv_camera_get_integer"></a>arv_camera_get_integer</h2><p>简介：获取已连接相机的一个整数型特性的值</p>
@@ -1012,7 +1012,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（七）——chunk-parser</title>
-    <url>/2024/05/10/aravis-chunk-parser/</url>
+    <url>/aravis-chunk-parser/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：05-chunk-parser做简单的讲解。并介绍其中调用的<code>arv_camera_create_chunk_parser</code>，<code>arv_camera_set_chunks</code>，<code>arv_chunk_parser_get_integer_value</code>函数。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，操作相机捕获图像并获取流数据中附加的块信息（例程中启用的块数据为图像的长和宽），主要操作步骤如下：</p>
@@ -1056,7 +1056,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis学习——安装</title>
-    <url>/2024/03/30/aravis-install/</url>
+    <url>/aravis-install/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近在做采集软件的开发，由于我自己使用过Huaray和Basler两个品牌的相机，所以在设计软件时尝试设计统一的接口去控制不同品牌和型号相机的相同或类似的行为。当然，我的设计思路都是建立在调用各品牌SDK的基础上。<br>后来我去外网搜索，发现了一个开源项目Aravis，它通过提供一个通用的API，让我们能够不受相机的品牌或型号限制，自由地进行图像采集和相机控制，支持从简单的图像捕获到复杂的相机设置调整的一系列操作。</p>
 <p>项目地址：<a class="link"   href="https://github.com/AravisProject/aravis" >https://github.com/AravisProject/aravis <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h1 id="Aravis简介"><a href="#Aravis简介" class="headerlink" title="Aravis简介"></a>Aravis简介</h1><p>Aravis是一个基于glib&#x2F;gobject的库，允许开发者对遵循GenICam标准的网络相机进行通信和控制。它目前实现了工业相机使用的GigE和USB3协议。它还提供了一个简单的以太网相机模拟器和视频查看器。</p>
@@ -1075,7 +1075,7 @@
 <p>在github上找到所需的aravis的发行版本，并下载：<a class="link"   href="https://github.com/AravisProject/aravis/releases" >https://github.com/AravisProject/aravis/releases <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>我选择的是0.8.31版本：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/aravis_info.png"
+                     data-src="/aravis-install/aravis_info.png"
                      
                 ></p>
 <p>下载压缩包后解压即可</p>
@@ -1087,13 +1087,13 @@
 <h1 id="视频查看器"><a href="#视频查看器" class="headerlink" title="视频查看器"></a>视频查看器</h1><p>找到Aravis双击打开，即可查看已连接的相机设备<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/video_viewer.png"
+                     data-src="/aravis-install/video_viewer.png"
                      
                 ></p>
 <h1 id="安装过程中遇到的问题"><a href="#安装过程中遇到的问题" class="headerlink" title="安装过程中遇到的问题"></a>安装过程中遇到的问题</h1><h2 id="meson版本过低"><a href="#meson版本过低" class="headerlink" title="meson版本过低"></a>meson版本过低</h2><p>我安装的aravis版本是0.8.31，这个版本aravis的编译依赖0.57.0及以上版本的meson，而我通过apt包管理器下载的meson版本为0.53.2，不满足需求。因此要对meson进行升级操作：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/meson.png"
+                     data-src="/aravis-install/meson.png"
                      
                 ></p>
 <p>①首先安装或升级pip</p>
@@ -1111,13 +1111,13 @@
 <p>我的安装结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/result.png"
+                     data-src="/aravis-install/result.png"
                      
                 ></p>
 <h2 id="CMake版本过低"><a href="#CMake版本过低" class="headerlink" title="CMake版本过低"></a>CMake版本过低</h2><p>在构建项目的时候，提示了以下错误信息：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/cmake.png"
+                     data-src="/aravis-install/cmake.png"
                      
                 ></p>
 <p>说明我系统中的CMake版本过低，需要升级。</p>
@@ -1138,7 +1138,7 @@
 <h2 id="缺少GStreamer组件"><a href="#缺少GStreamer组件" class="headerlink" title="缺少GStreamer组件"></a>缺少GStreamer组件</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/30/aravis-install/gstreamer.png"
+                     data-src="/aravis-install/gstreamer.png"
                      
                 ></p>
 <p>直接使用包管理器安装即可</p>
@@ -1153,7 +1153,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（三）——注册回调multiple-acquisition-callback</title>
-    <url>/2024/04/15/aravis-multiple-acquisition-callback/</url>
+    <url>/aravis-multiple-acquisition-callback/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：02-multiple-acquisition-callback做简单的讲解。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，控制相机连续采集，并异步地在回调函数中获取10个有效图像，主要操作步骤如下：</p>
@@ -1171,7 +1171,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/15/aravis-multiple-acquisition-callback/result.png"
+                     data-src="/aravis-multiple-acquisition-callback/result.png"
                      
                 ></p>
 <p>其中&lt;&gt;之间的是线程号。</p>
@@ -1195,7 +1195,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread</title>
-    <url>/2024/04/15/aravis-multiple-acquisition-main-thread/</url>
+    <url>/aravis-multiple-acquisition-main-thread/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：02-multiple-acquisition-main-thread做简单的讲解，并简单介绍其中调用的<code>arv_camera_set_acquisition_mode </code>，<code>arv_camera_create_stream</code>，<code>arv_camera_get_payload</code>，<code>arv_buffer_new </code>，<code>arv_stream_push_buffer</code>，<code>arv_camera_start_acquisition</code>，<code>arv_stream_pop_buffer</code>，<code>arv_camera_stop_acquisition</code>函数。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，控制相机连续采集，并在主线程中从缓冲区获取前10帧图像（假设不丢帧），主要操作步骤如下：</p>
@@ -1213,7 +1213,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/15/aravis-multiple-acquisition-main-thread/result.png"
+                     data-src="/aravis-multiple-acquisition-main-thread/result.png"
                      
                 ></p>
 <h1 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h1><h2 id="arv-camera-set-acquisition-mode"><a href="#arv-camera-set-acquisition-mode" class="headerlink" title="arv_camera_set_acquisition_mode"></a>arv_camera_set_acquisition_mode</h2><p>简介：设置相机的采集模式</p>
@@ -1254,7 +1254,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（四）——multiple-acquisition-signal</title>
-    <url>/2024/04/25/aravis-multiple-acquisition-signal/</url>
+    <url>/aravis-multiple-acquisition-signal/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的：02-multiple-acquisition-signal做简单的讲解。并简单介绍其中调用的<code>g_main_loop_new</code>，<code>g_main_loop_run</code>，<code>g_main_loop_quit</code>，<code>g_signal_connect</code>，<code>arv_stream_set_emit_signals</code>。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="例程代码"><a href="#例程代码" class="headerlink" title="例程代码"></a>例程代码</h1><p>这段代码使用Aravis的API，控制相机连续采集，并通过GLib的事件循环机制和GObject的信号系统异步地获取10个图像，主要操作步骤如下：</p>
@@ -1274,7 +1274,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/25/aravis-multiple-acquisition-signal/result.png"
+                     data-src="/aravis-multiple-acquisition-signal/result.png"
                      
                 ></p>
 <p>其中&lt;&gt;之间的是线程号。</p>
@@ -1296,7 +1296,7 @@
 <h1 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="回调函数的同步调用与异步调用"><a href="#回调函数的同步调用与异步调用" class="headerlink" title="回调函数的同步调用与异步调用"></a>回调函数的同步调用与异步调用</h2><p>观察程序运行时的日志，可以发现new_buffer_cb的运行并不是在主线程中。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/25/aravis-multiple-acquisition-signal/solution.png"
+                     data-src="/aravis-multiple-acquisition-signal/solution.png"
                      
                 ></p>
 <p>但是按照<code>g_signal_connect</code>的描述，回调函数应该是被同步调用，也就是说<code>new_buffer_cb</code>理论上应该在主线程被调用。<br>后来查看文档发现，在GObject的信号系统中，处理器的调用是同步的。当信号发射时，其关联的所有处理器会都会在发射信号的线程中按照它们被连接的顺序依次执行。</p>
@@ -1312,7 +1312,7 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis学习——PixelFormat编码规则</title>
-    <url>/2024/04/28/aravis-pixelformat/</url>
+    <url>/aravis-pixelformat/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在学习<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18163483" >Aravis官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>的时候，有这么一个函数：<code>arv_camera_get_pixel_format</code>，它的返回类型是<code>ArvPixelFormat</code>(本质是个32位无符号整数)。这意味着对于每个图像数据格式，都有自己对应的唯一的编码。我比较好奇Aravis是通过什么规则对各种图像数据格式进行的编码，于是就查看了源码。</p>
 <p>本文主要讨论Aravis中对不同图像数据格式的编码规则。</p>
 <h1 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h1><h2 id="PixelFormat"><a href="#PixelFormat" class="headerlink" title="PixelFormat"></a>PixelFormat</h2><p>PixelFormat指的是图像中每个像素的数据格式，它定义了图像中像素的组成方式、颜色信息的存储方法和每个像素所占的位数等。这一格式对于图像的处理和显示是非常关键的，因为它直接影响到图像的质量和处理的效率。</p>
@@ -1347,14 +1347,14 @@
   </entry>
   <entry>
     <title>开源相机管理库Aravis例程学习（一）——单帧采集single-acquisition</title>
-    <url>/2024/04/10/aravis-single-acquisition/</url>
+    <url>/aravis-single-acquisition/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文针对<a class="link"   href="https://github.com/AravisProject/aravis-c-examples" >官方例程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中的第一个例程：single-acquisition做简单的讲解，并简单分析其中调用的<code>arv_camera_new </code>，<code>arv_camera_acquisition</code>，<code>arv_camera_get_model_name </code>，<code>arv_buffer_get_image_width </code>，<code>arv_buffer_get_image_height </code>函数。</p>
 <p>aravis版本：0.8.31<br>操作系统：ubuntu-20.04<br>gcc版本：9.4.0</p>
 <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* SPDX-License-Identifier:Unlicense */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Aravis header */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arv.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Standard headers */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Connect to the first available camera, then acquire a single buffer.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ArvCamera *camera;</span><br><span class="line">	ArvBuffer *buffer;</span><br><span class="line">	GError *error = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Connect to the first available camera */</span></span><br><span class="line">	camera = <span class="built_in">arv_camera_new</span> (<span class="literal">NULL</span>, &amp;error);</span><br><span class="line">    <span class="comment">//camera = arv_camera_new (&quot;192.168.6.23&quot;, &amp;error);</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">ARV_IS_CAMERA</span> (camera))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span> (<span class="string">&quot;Found camera &#x27;%s&#x27;\n&quot;</span>, <span class="built_in">arv_camera_get_model_name</span> (camera, <span class="literal">NULL</span>));</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* Acquire a single buffer */</span></span><br><span class="line">		buffer = <span class="built_in">arv_camera_acquisition</span> (camera, <span class="number">0</span>, &amp;error);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">ARV_IS_BUFFER</span> (buffer))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">/* Display some informations about the retrieved buffer */</span></span><br><span class="line">			<span class="built_in">printf</span> (<span class="string">&quot;Acquired %d×%d buffer\n&quot;</span>,</span><br><span class="line">				<span class="built_in">arv_buffer_get_image_width</span> (buffer),</span><br><span class="line">				<span class="built_in">arv_buffer_get_image_height</span> (buffer));</span><br><span class="line">			<span class="comment">/* Destroy the buffer */</span></span><br><span class="line">			<span class="built_in">g_clear_object</span> (&amp;buffer);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/* Destroy the camera instance */</span></span><br><span class="line">		<span class="built_in">g_clear_object</span> (&amp;camera);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (error != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">/* An error happened, display the correspdonding message */</span></span><br><span class="line">		<span class="built_in">printf</span> (<span class="string">&quot;Error: %s\n&quot;</span>, error-&gt;message);</span><br><span class="line">		<span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>此例程较为简单，每一步的细节查看注释即可，此处不过多讲解。<br>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/10/aravis-single-acquisition/result.png"
+                     data-src="/aravis-single-acquisition/result.png"
                      
                 ></p>
 <h1 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h1><h2 id="arv-camera-new"><a href="#arv-camera-new" class="headerlink" title="arv_camera_new"></a>arv_camera_new</h2><p>简介：创建一个ArvCamera对象，如果name是NULL，则连接第一个可用的相机。</p>
@@ -1397,7 +1397,7 @@
   </entry>
   <entry>
     <title>C++自用小轮子——单例模板</title>
-    <url>/2024/04/03/cpp-development-components-singleton-CRTP/</url>
+    <url>/cpp-development-components-singleton-CRTP/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>记录开发时自用的小轮子：单例模板。</p>
 <h1 id="单例模板"><a href="#单例模板" class="headerlink" title="单例模板"></a>单例模板</h1><p>提供了一个基于模板的单例模式的实现，代码如下：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> SINGLETON_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SINGLETON_H</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CSingleton</span> </span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> T&amp; <span class="title">GetInstance</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">static</span> T instance;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="built_in">CSingleton</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">CSingleton</span>() &#123;&#125;</span><br><span class="line">    <span class="built_in">CSingleton</span>(<span class="type">const</span> CSingleton&amp;)            = <span class="keyword">delete</span>;</span><br><span class="line">    CSingleton&amp; <span class="keyword">operator</span>=(<span class="type">const</span> CSingleton&amp;) = <span class="keyword">delete</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// SINGLETON_H</span></span></span><br></pre></td></tr></table></figure></div>
@@ -1411,7 +1411,7 @@
   </entry>
   <entry>
     <title>C++自用小轮子——线程安全队列</title>
-    <url>/2024/04/03/cpp-development-components-threadsafe-queue/</url>
+    <url>/cpp-development-components-threadsafe-queue/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>记录开发时自用的小轮子：线程安全队列</p>
 <h1 id="线程安全队列"><a href="#线程安全队列" class="headerlink" title="线程安全队列"></a>线程安全队列</h1><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> THREADSAFEQUEUE_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> THREADSAFEQUEUE_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThreadSafeQueue</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">ThreadSafeQueue</span>();</span><br><span class="line">    <span class="built_in">ThreadSafeQueue</span>(<span class="type">const</span> ThreadSafeQueue&amp; other);</span><br><span class="line">    ThreadSafeQueue&amp; <span class="keyword">operator</span>=(<span class="type">const</span> ThreadSafeQueue&amp; other);</span><br><span class="line">    ~<span class="built_in">ThreadSafeQueue</span>();</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(T new_value)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对于pop方法，std::queue中的pop只负责弹出元素，不返回元素</span></span><br><span class="line">    <span class="comment">//这里为了接口简化，设计为在pop的同时返回弹出的元素</span></span><br><span class="line">    <span class="comment">//timeout为超时时间，单位为毫秒</span></span><br><span class="line">    <span class="comment">//默认阻塞pop</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">wait_and_pop</span><span class="params">(T&amp; value, std::chrono::milliseconds timeout_millisecond = std::chrono::milliseconds::max())</span></span>;</span><br><span class="line">    <span class="function">std::shared_ptr&lt;T&gt; <span class="title">wait_and_pop</span><span class="params">(std::chrono::milliseconds timeout_millisecond = std::chrono::milliseconds::max())</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">    <span class="function"><span class="type">size_t</span> <span class="title">size</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">T&amp; <span class="title">front</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">const</span> T&amp; <span class="title">front</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">    <span class="function">std::shared_ptr&lt;T&gt; <span class="title">front_ptr</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">mutable</span> std::mutex mtx_;</span><br><span class="line">    std::queue&lt;T&gt; data_queue_;</span><br><span class="line">    std::condition_variable cv_data_; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">ThreadSafeQueue&lt;T&gt;::<span class="built_in">ThreadSafeQueue</span>()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">ThreadSafeQueue&lt;T&gt;::~<span class="built_in">ThreadSafeQueue</span>()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">ThreadSafeQueue&lt;T&gt;::<span class="built_in">ThreadSafeQueue</span>(<span class="type">const</span> ThreadSafeQueue&amp; other)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(other.mtx_)</span></span>;</span><br><span class="line">    data_queue_ = other.data_queue_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">ThreadSafeQueue&lt;T&gt;&amp; ThreadSafeQueue&lt;T&gt;::<span class="keyword">operator</span>=(<span class="type">const</span> ThreadSafeQueue&amp; other)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;other)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//同时锁定两个互斥量，防止死锁</span></span><br><span class="line">    std::<span class="built_in">lock</span>(mtx_, other.mtx_);</span><br><span class="line">    <span class="comment">//领养锁，因为已经锁定了</span></span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">self_lock</span><span class="params">(mtx_, std::adopt_lock)</span></span>;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">other_lock</span><span class="params">(other.mtx_, std::adopt_lock)</span></span>;</span><br><span class="line">    data_queue_ = other.data_queue_;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">void</span> ThreadSafeQueue&lt;T&gt;::<span class="built_in">push</span>(T new_value)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    data_queue_.<span class="built_in">push</span>(std::<span class="built_in">move</span>(new_value));</span><br><span class="line">    cv_data_.<span class="built_in">notify_one</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">bool</span> ThreadSafeQueue&lt;T&gt;::<span class="built_in">wait_and_pop</span>(T&amp; value, std::chrono::milliseconds timeout_millisecond)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (data_queue_.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout_millisecond == std::chrono::milliseconds::<span class="built_in">max</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cv_data_.<span class="built_in">wait</span>(lock, [<span class="keyword">this</span>] &#123;<span class="keyword">return</span> !data_queue_.<span class="built_in">empty</span>();&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!cv_data_.<span class="built_in">wait_for</span>(lock, timeout_millisecond, [<span class="keyword">this</span>] &#123;<span class="keyword">return</span> !data_queue_.<span class="built_in">empty</span>();&#125;))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    value = std::<span class="built_in">move</span>(data_queue_.<span class="built_in">front</span>());</span><br><span class="line">    data_queue_.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">std::shared_ptr&lt;T&gt; ThreadSafeQueue&lt;T&gt;::<span class="built_in">wait_and_pop</span>(std::chrono::milliseconds timeout_millisecond)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::unique_lock&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">if</span> (data_queue_.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout_millisecond == std::chrono::milliseconds::<span class="built_in">max</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cv_data_.<span class="built_in">wait</span>(lock, [<span class="keyword">this</span>] &#123;<span class="keyword">return</span> !data_queue_.<span class="built_in">empty</span>();&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!(cv_data_.<span class="built_in">wait_for</span>(lock, timeout_millisecond, [<span class="keyword">this</span>] &#123;<span class="keyword">return</span> !data_queue_.<span class="built_in">empty</span>();&#125;)))</span><br><span class="line">                <span class="keyword">return</span> std::<span class="built_in">shared_ptr</span>&lt;T&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">std::shared_ptr&lt;T&gt; <span class="title">res</span><span class="params">(std::make_shared&lt;T&gt;(std::move(data_queue_.front())))</span></span>;</span><br><span class="line">    data_queue_.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">bool</span> ThreadSafeQueue&lt;T&gt;::<span class="built_in">empty</span>() <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> data_queue_.<span class="built_in">empty</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">size_t</span> ThreadSafeQueue&lt;T&gt;::<span class="built_in">size</span>() <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> data_queue_.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T&amp; ThreadSafeQueue&lt;T&gt;::<span class="built_in">front</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(data_queue_.<span class="built_in">empty</span>())</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;queue is empty&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> data_queue_.<span class="built_in">front</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">const</span> T&amp; ThreadSafeQueue&lt;T&gt;::<span class="built_in">front</span>() <span class="type">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(data_queue_.<span class="built_in">empty</span>())</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;queue is empty&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> data_queue_.<span class="built_in">front</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">std::shared_ptr&lt;T&gt; ThreadSafeQueue&lt;T&gt;::<span class="built_in">front_ptr</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(mtx_)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(data_queue_.<span class="built_in">empty</span>())</span><br><span class="line">        <span class="keyword">return</span> std::<span class="built_in">shared_ptr</span>&lt;T&gt;();</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">make_shared</span>&lt;T&gt;(data_queue_.<span class="built_in">front</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">// THREADSAFEQUEUE_H</span></span></span><br></pre></td></tr></table></figure></div>
 ]]></content>
@@ -1422,7 +1422,7 @@
   </entry>
   <entry>
     <title>编译期链接时共享库路径搜索优先级实验</title>
-    <url>/2024/07/29/cpp-shared-lib-search-priority-test-linking/</url>
+    <url>/cpp-shared-lib-search-priority-test-linking/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a class="link"   href="https://www.cnblogs.com/paw5zx/p/18302745" >《共享库链接和加载时的路径搜索优先级》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中提到，使用g++时，共享库在编译期链接时的库路径搜索优先级为：<code>-L指定的路径</code>&gt;<code>LIBRARY_PATH记录的路径</code>&gt;<code>默认路径</code>。</p>
 <p>本实验分三步验证上述结论<br>①单独测试每种方法指定的路径的可行性<br>②对比测试三种方法间的优先级<br>③使用DEBUG模式，查看链接器输出的详细信息，二次验证上述结论</p>
 <p>值得注意的是，我看网上都说<code>LIBRARY_PATH指定的路径</code>优先级要大于<code>默认路径</code>的优先级，但是就我的测试结果来看，结论是相反的（可能是我使用了g++而不是直接使用底层的ld?）。</p>
@@ -1447,7 +1447,7 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/1_none.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/1_none.png"
                      
                 ></p>
 <p>可以看到由于我们没有配置任何额外的搜索路径，并且没有在默认搜索路径下放置<code>libhello.so</code>文件，链接器就找不到相应的共享库文件，就会链接失败。</p>
@@ -1459,14 +1459,14 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/2_default_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/2_default_result.png"
                      
                 ></p>
 <p>没有报错。</p>
 <p>然后使用<code>readelf -d</code>查看可执行文件的动态段信息，可见链接成功，共享库的soname已经被写入到可执行文件的动态段信息中了。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/3_default_readelf.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/3_default_readelf.png"
                      
                 ></p>
 <h2 id="LIBRARY-PATH"><a href="#LIBRARY-PATH" class="headerlink" title="LIBRARY_PATH"></a>LIBRARY_PATH</h2><p>创建路径<code>/opt/hellolib</code>，将<code>libhello.so.1.1.0</code>拷贝至<code>/opt/hellolib</code>，并在<code>/opt/hellolib</code>下创建一个软链接（<code>libhello.so</code>）指向它。然后将<code>/opt/hellolib</code>添加至<code>LIBRARY_PATH</code>并进行<code>main.o</code>和<code>hello</code>的共享库文件的链接操作，查看是否可以链接成功。</p>
@@ -1476,14 +1476,14 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/4_libpath_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/4_libpath_result.png"
                      
                 ></p>
 <p>没有报错。</p>
 <p>然后使用<code>readelf -d</code>查看可执行文件的动态段信息，可见链接成功，共享库的soname已经被写入到可执行文件的动态段信息中了。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/5_libpath_readelf.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/5_libpath_readelf.png"
                      
                 ></p>
 <h2 id="L"><a href="#L" class="headerlink" title="-L"></a>-L</h2><p>创建路径<code>/opt/hellolib</code>，将<code>libhello.so.1.1.0</code>拷贝至<code>/opt/hellolib</code>，并在<code>/opt/hellolib</code>下创建一个软链接（<code>libhello.so</code>）指向它，然后添加链接选项<code>-L/opt/hellolib</code>并进行链接操作，查看是否可以将<code>main.o</code>和<code>hello</code>的共享库文件链接成功。</p>
@@ -1493,14 +1493,14 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/6_l_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/6_l_result.png"
                      
                 ></p>
 <p>没有报错。</p>
 <p>然后使用<code>readelf -d</code>查看可执行文件的动态段信息，可见链接成功，共享库的soname已经被写入到可执行文件的动态段信息中了。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/7_l_readelf.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/7_l_readelf.png"
                      
                 ></p>
 <h1 id="优先级测试"><a href="#优先级测试" class="headerlink" title="优先级测试"></a>优先级测试</h1><h2 id="默认路径和LIBRARY-PATH"><a href="#默认路径和LIBRARY-PATH" class="headerlink" title="默认路径和LIBRARY_PATH"></a>默认路径和LIBRARY_PATH</h2><ul>
@@ -1514,13 +1514,13 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/8_default_libpath_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/8_default_libpath_result.png"
                      
                 ></p>
 <p>然后使用<code>readelf -d</code>查看可执行文件的动态段信息，可见链接成功，并且链接的是默认路径下的共享库文件<code>libhello.so.2.1.0</code>（其soname为<code>libhello.so.2</code>）。因此可以得出结论：<code>默认路径</code>搜索优先级要高于<code>LIBRARY_PATH指定的路径</code>的搜索优先级。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/9_default_libpath_readelf.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/9_default_libpath_readelf.png"
                      
                 ></p>
 <p>对于上述结论，将会在后文的DEBUG模式中给出更详细的验证。</p>
@@ -1535,14 +1535,14 @@
 <p>输出：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/10_l_default_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/10_l_default_result.png"
                      
                 ></p>
 <p>然后使用<code>readelf -d</code>查看可执行文件的动态段信息，可见链接成功，并且链接的是-L指定路径下的共享库文件<code>libhello.so.2.1.0</code>（其soname为<code>libhello.so.2</code>）。因此可以得出结论：<code>-L指定路径</code>搜索优先级要高于<code>默认搜索路径</code>的搜索优先级。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/11_l_default_readelf.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/11_l_default_readelf.png"
                      
                 ></p>
 <p>对于上述结论，将会在后文的DEBUG模式中给出更详细的验证。</p>
@@ -1560,7 +1560,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/12_debug_compiler_info.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/12_debug_compiler_info.png"
                      
                 ></p>
 <p>图片中的文字内容如下：</p>
@@ -1575,7 +1575,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/13_deliver.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/13_deliver.png"
                      
                 ></p>
 <p>图片中的文字内容如下（省略了一部分不需要关注的）：</p>
@@ -1588,7 +1588,7 @@
 <h2 id="链接器详细信息"><a href="#链接器详细信息" class="headerlink" title="链接器详细信息"></a>链接器详细信息</h2><p>然后我们再看链接器输出的详细信息：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/14_debug_linker_info.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/14_debug_linker_info.png"
                      
                 ></p>
 <p>图片中的文字内容如下：</p>
@@ -1610,7 +1610,7 @@
 <h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>最后我们可以通过链接器在链接特定库（比如我们的<code>libhello</code>）时的搜索过程验证上述结论：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/cpp-shared-lib-search-priority-test-linking/15_result.png"
+                     data-src="/cpp-shared-lib-search-priority-test-linking/15_result.png"
                      
                 ></p>
 <p>可见链接器先是搜索我们使用<code>-L</code>指定的路径<code>/opt/hellolib_L</code>，然后搜索编译器配置的路径<code>/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib/</code>（其本质就是默认路径<code>/usr/lib/</code>），最后搜索LIBRARY_PATH指定的路径<code>/opt/hellolib</code>。证明了编译过程中链接时库搜索路径的优先级为</p>
@@ -1634,7 +1634,7 @@
   </entry>
   <entry>
     <title>运行期加载时共享库路径搜索优先级实验</title>
-    <url>/2024/08/01/cpp-shared-lib-search-priority-test-loading/</url>
+    <url>/cpp-shared-lib-search-priority-test-loading/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a class="link"   href="https://www.cnblogs.com/paw5zx/p/18302745" >《共享库链接和加载时的路径搜索优先级》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中提到，共享库在运行期加载时的路径搜索优先级为：<br><code>RPATH</code>&gt;<code>LD_LIBRARY_PATH</code>&gt;<code>RUNPATH</code>&gt;<code>/etc/ld.so.conf</code>和<code>/etc/ld.so.conf.d/*</code>&gt;<code>默认库路径</code></p>
 <p>本实验分两步验证上述结论<br>①单独测试每种方法指定的路径的可行性<br>②查看链接器输出的详细信息，验证上述优先级顺序</p>
 <h1 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h1><p>操作系统：<code>Ubuntu 20.04</code><br>编译器：<code>g++-11.4.0</code><br>make：<code>GNU Make 4.2.1</code></p>
@@ -1726,7 +1726,7 @@
   </entry>
   <entry>
     <title>共享库链接和加载时的路径搜索优先级</title>
-    <url>/2024/07/15/cpp-shared-lib-search-priority/</url>
+    <url>/cpp-shared-lib-search-priority/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在开发一个新项目时遇到了共享库冲突的问题，因此在这里记录一下共享库的链接和加载过程中库路径的搜索优先级的相关知识。</p>
 <h1 id="共享库的链接"><a href="#共享库的链接" class="headerlink" title="共享库的链接"></a>共享库的链接</h1><p>现在有一个<code>main.o</code>可重定位目标文件，其中需要用到开源库log4cpp。在链接的时候，我们可以这样链接：</p>
 <div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">g++ main.o -o a.out -L/path/to/libs -llog4cpp</span><br></pre></td></tr></table></figure></div>
@@ -1752,7 +1752,7 @@
   </entry>
   <entry>
     <title>共享库soname机制</title>
-    <url>/2024/07/16/cpp-shared-lib-soname/</url>
+    <url>/cpp-shared-lib-soname/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在使用第三方库时，我们会发现第三方库会提供一组文件，他们的后缀一般是<code>.so</code>（如<code>libname.so</code>），<code>.so.x</code>和<code>.so.x.y.z</code>。本文讨论他们之间的关系。</p>
 <h1 id="共享库版本号"><a href="#共享库版本号" class="headerlink" title="共享库版本号"></a>共享库版本号</h1><p>共享库一般会由于修复bug或增加接口等原因不断更新，有些更新是向下兼容的，有些则不是。一旦不向下兼容，那么当共享库更新后，依赖该库的程序将无法运行，需要重新编译。</p>
 <p>为了避免上述情况，就要对共享库进行版本控制。根据更新内容的不同可以划分不同的版本号：</p>
@@ -1787,7 +1787,7 @@
 <li>对于一个共享库文件，我们可以通过<code>readelf -d</code>命令查看其soname<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/16/cpp-shared-lib-soname/readelf.png"
+                     data-src="/cpp-shared-lib-soname/readelf.png"
                      
                 ></li>
 </ul>
@@ -1809,13 +1809,13 @@
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——抽象工厂模式+注册表</title>
-    <url>/2024/07/09/design-pattern-2-abstract-factory-reflect/</url>
+    <url>/design-pattern-2-abstract-factory-reflect/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18286354" >上一篇文章中 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>我们提到了抽象工厂模式初版代码的一些缺点：①客户端违反开闭原则②提供方违反开闭原则。本文将针对这两点进行讨论</p>
 <h1 id="使用简单工厂改进"><a href="#使用简单工厂改进" class="headerlink" title="使用简单工厂改进"></a>使用简单工厂改进</h1><p>对于缺点①，我们可以使用简单工厂的思路来改进抽象工厂的初版代码。对于上一篇文章中的例子，我们去除<code>CameraFactory</code>、<code>BaslerCameraFactory</code>和<code>SickCameraFactory</code>，取而代之的是<code>SimpleFactory</code>类。</p>
 <p>类图如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/09/design-pattern-2-abstract-factory-reflect/uml.png"
+                     data-src="/design-pattern-2-abstract-factory-reflect/uml.png"
                      
                 ></p>
 <p>代码如下：</p>
@@ -1837,12 +1837,12 @@
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——抽象工厂模式</title>
-    <url>/2024/07/05/design-pattern-2-abstract-factory/</url>
+    <url>/design-pattern-2-abstract-factory/</url>
     <content><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>现在我需要开发一个相机操作模块，它可能在<code>Windows</code>下运行，也可能在<code>Linux</code>下运行。由于在厂家提供的SDK中，<code>Windows</code>下的SDK和<code>Linux</code>下的SDK是有区别的，因此对于一个品牌的相机，我们要创建两个类去封装这两个不同平台下的API。</p>
 <p>我们先使用工厂方法模式去设计（以<code>Basler</code>相机为例），类图如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/05/design-pattern-2-abstract-factory/uml_factory.png"
+                     data-src="/design-pattern-2-abstract-factory/uml_factory.png"
                      
                 ></p>
 <p>对应的代码（就不用智能指针了，要不然类图不好画）：</p>
@@ -1860,7 +1860,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/05/design-pattern-2-abstract-factory/uml.png"
+                     data-src="/design-pattern-2-abstract-factory/uml.png"
                      
                 ></p>
 <p><code>AbstractProductA</code>和<code>AbstractProductB</code>是两个抽象产品，之所以为抽象，是因为他们可能有多种不同的实现，就刚才的例子来说，抽象产品就是<code>BaslerCamera</code>和<code>SickCamera</code>。<code>ProductA1</code>，<code>ProductA2</code>，<code>ProductB1</code>，<code>ProductB2</code>就是对两个抽象产品的具体分类的实现，对应例子中的<code>LinuxBaslerCamera</code>，<code>WindowsBaslerCamera</code>，<code>LinuxSickCamera</code>，<code>WindowsSickCamera</code>。</p>
@@ -1890,11 +1890,11 @@
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——工厂方法模式+注册表</title>
-    <url>/2024/06/03/design-pattern-2-factory-method-reflect/</url>
+    <url>/design-pattern-2-factory-method-reflect/</url>
     <content><![CDATA[<h1 id="工厂方法模式的瑕疵"><a href="#工厂方法模式的瑕疵" class="headerlink" title="工厂方法模式的瑕疵"></a>工厂方法模式的瑕疵</h1><p>在<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18197513" >前一篇笔记 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中我们介绍了工厂方法模式，示例的类图如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/03/design-pattern-2-factory-method-reflect/uml.png"
+                     data-src="/design-pattern-2-factory-method-reflect/uml.png"
                      
                 ></p>
 <p>前文中提到</p>
@@ -1919,7 +1919,7 @@
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——工厂方法模式</title>
-    <url>/2024/05/17/design-pattern-2-factory-method/</url>
+    <url>/design-pattern-2-factory-method/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a class="link"   href="https://www.cnblogs.com/paw5zx/p/18191839" >前一篇文章 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>介绍了简单工厂模式，提到了简单工厂模式的缺点（违反开闭原则，扩展困难），本文要介绍的工厂方法模式在一定程度上弥补了简单工厂模式的缺点。</p>
 <h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>工厂方法模式是创建型设计模式之一，它在抽象工厂类中声明创建对象的接口，在具体工厂类中实现具体的实例化过程。这个模式的核心思想是将对象的实例化延迟到子类中进行。</p>
 <p>这样的话，当要添加一个具体产品时，我们不会修改原有的工厂类（对修改封闭），而是新创建一个关联于具体产品的具体工厂类（对扩展开放）。</p>
@@ -1928,7 +1928,7 @@
 <p>UML类图如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/05/17/design-pattern-2-factory-method/uml.png"
+                     data-src="/design-pattern-2-factory-method/uml.png"
                      
                 ></p>
 <p>代码如下：</p>
@@ -1956,7 +1956,7 @@
   </entry>
   <entry>
     <title>设计模式学习（二）工厂模式——简单工厂模式</title>
-    <url>/2024/05/14/design-pattern-2-simple-factory/</url>
+    <url>/design-pattern-2-simple-factory/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>工厂模式是一种常用的设计模式，属于创建型模式之一。它的主要目的是为了解耦组件之间的依赖关系。通过使用工厂模式，系统中的具体类的实例化过程可以被抽象出来，从而使得系统更加模块化，增强了系统的可维护性和可扩展性。</p>
 <p>工厂模式可以分为三种类型：简单工厂模式，工厂方法模式和抽象工厂模式。本文先讨论简单工厂模式。</p>
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在工业相机领域，多个品牌如Basler、Sick、Huaray等，各自提供了控制相机的API。本文中我们按照提供方和使用方两个角色来进行分析，以便更好地理解工厂模式的优点：</p>
@@ -1977,7 +1977,7 @@
 <p>UML类图如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/05/14/design-pattern-2-simple-factory/uml.png"
+                     data-src="/design-pattern-2-simple-factory/uml.png"
                      
                 ></p>
 <p>代码如下：</p>
@@ -2006,7 +2006,7 @@
   </entry>
   <entry>
     <title>Git学习——迁移单一仓库至其他代码托管平台</title>
-    <url>/2024/05/10/git-code-migration/</url>
+    <url>/git-code-migration/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>因需迁移单一代码仓库至其他代码托管平台，要迁移的包括仓库内容以及所有历史记录和推送日志。</p>
 <p>本文中的方法同样适用于在同一代码托管平台中克隆仓库。</p>
 <h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><p><strong>1. 创建新仓库：</strong><br>在目的平台的指定位置创建一个新的仓库（目的仓库），用于接收克隆的数据。</p>
@@ -2027,7 +2027,7 @@
   </entry>
   <entry>
     <title>Centos8系统启动时间优化</title>
-    <url>/2024/05/16/linux-centos-boot-time-optimization/</url>
+    <url>/linux-centos-boot-time-optimization/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因需要，对Centos8操作系统的启动时间进行优化。</p>
 <h1 id="初始化系统"><a href="#初始化系统" class="headerlink" title="初始化系统"></a>初始化系统</h1><p>Centos8使用了systemd作为系统和服务管理器。systemd是现代Linux发行版中普遍采用的初始化系统，它负责在启动时初始化系统环境并管理系统服务。我们在分析操作系统的启动过程时可以使用<code>systemd</code>和<code>systemctl</code>相关的命令。</p>
 <h1 id="启动阶段"><a href="#启动阶段" class="headerlink" title="启动阶段"></a>启动阶段</h1><p>首先查看操作系统启动过程中各阶段的耗时信息：</p>
@@ -2076,7 +2076,7 @@
 <li><p><strong>分析服务启动时间并禁用非必要的服务</strong>：使用<code>systemd-analyze blame</code>查看启动过程中每个服务的耗时，根据具体情况确定哪些服务是非常耗时且非必要的，使用<code>systemctl disable xxxservicenamexxx</code>禁用这些服务以加速启动过程。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/05/16/linux-centos-boot-time-optimization/result.png"
+                     data-src="/linux-centos-boot-time-optimization/result.png"
                      
                 ></p>
 </li>
@@ -2097,7 +2097,7 @@
   </entry>
   <entry>
     <title>使用update-alternatives管理GCC版本</title>
-    <url>/2024/07/29/linux-update-alternatives/</url>
+    <url>/linux-update-alternatives/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>当操作系统中存在多个版本的GCC时，可以使用使用<code>update-alternatives</code>管理默认使用的编译器版本。</p>
 <p>本文使用<code>gcc-9</code>和<code>gcc-11</code>做演示，操作系统为<code>ubuntu-20.04</code></p>
 <h1 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h1><p><strong>①使用以下命令确认<code>gcc</code>已正确安装</strong></p>
@@ -2107,7 +2107,7 @@
 <p>没有配置过应该输出如下：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/linux-update-alternatives/result.png"
+                     data-src="/linux-update-alternatives/result.png"
                      
                 ></p>
 <p><strong>③添加版本到update-alternatives</strong></p>
@@ -2118,7 +2118,7 @@
 <p>执行此命令后，系统将提供一个选择列表，我们可以选择默认的<code>gcc</code>版本<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/linux-update-alternatives/gcc_version.png"
+                     data-src="/linux-update-alternatives/gcc_version.png"
                      
                 ></p>
 <p>我这里优先级最大的<code>gcc-11</code>被自动选为了默认版本，我们直接输入回车选择它就可以（具体的要根据你的实际情况进行选择）</p>
@@ -2127,7 +2127,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/29/linux-update-alternatives/confirm.png"
+                     data-src="/linux-update-alternatives/confirm.png"
                      
                 ></p>
 ]]></content>
@@ -2138,7 +2138,7 @@
   </entry>
   <entry>
     <title>CentOS8系统网口桥接</title>
-    <url>/2024/03/04/network-bridging/</url>
+    <url>/network-bridging/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>因需要，对主板两个网口进行桥接。</p>
 <h1 id="操作环境"><a href="#操作环境" class="headerlink" title="操作环境"></a>操作环境</h1><p>主板型号：Gigabyte GA-IMB370TN<br>操作系统：CentOS 8.2</p>
 <h1 id="桥接步骤"><a href="#桥接步骤" class="headerlink" title="桥接步骤"></a>桥接步骤</h1><h2 id="清除旧配置"><a href="#清除旧配置" class="headerlink" title="清除旧配置"></a>清除旧配置</h2><p>先备份旧的网络配置文件，然后将其清除。<br>网络配置文件的位置如下：</p>
@@ -2146,14 +2146,14 @@
 <p>网络配置文件：<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/04/network-bridging/net_config.png"
+                     data-src="/network-bridging/net_config.png"
                       alt="网络配置文件"
                 ><figcaption>网络配置文件</figcaption></figure></p>
 <h2 id="查看网口名称"><a href="#查看网口名称" class="headerlink" title="查看网口名称"></a>查看网口名称</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nmcli con show</span><br></pre></td></tr></table></figure></div>
 <p>我的两个网口名称分别为：eno1和enp3s0<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/04/network-bridging/port_name.png"
+                     data-src="/network-bridging/port_name.png"
                       alt="网口名称"
                 ><figcaption>网口名称</figcaption></figure></p>
 <h2 id="建立网桥"><a href="#建立网桥" class="headerlink" title="建立网桥"></a>建立网桥</h2><p>创建一个新的桥接连接，其名为br0，设置其ipv4地址为：xxx.xxx.xxx.xxx（如192.168.23.23），子网掩码为：255.255.255.0，并设置为自动连接。<br>br0将eno1和enp3s0作为从属接口，这允许两个网络接口（eno1和enp3s0）在同一个桥接网络内可以相互通信，同时这个桥接还可以与其他设备或网络通信</p>
@@ -2161,19 +2161,19 @@
 <p>操作结果：<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/04/network-bridging/result.png"
+                     data-src="/network-bridging/result.png"
                       alt="桥接操作结果"
                 ><figcaption>桥接操作结果</figcaption></figure><br>此时，网络配置文件有三个：<br><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/04/network-bridging/net_config2.png"
+                     data-src="/network-bridging/net_config2.png"
                       alt="网络配置文件2"
                 ><figcaption>网络配置文件2</figcaption></figure></p>
 <h2 id="查看是否桥接成功"><a href="#查看是否桥接成功" class="headerlink" title="查看是否桥接成功"></a>查看是否桥接成功</h2><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nmcli con show</span><br></pre></td></tr></table></figure></div>
 <p><figure class="image-caption"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/04/network-bridging/result2.png"
+                     data-src="/network-bridging/result2.png"
                       alt="在这里插入图片描述"
                 ><figcaption>在这里插入图片描述</figcaption></figure><br>当然也可以使用另一台设备去连接这两个网口，若使用两个网口都可以连接到设置的ip：xxx.xxx.xxx.xxx。则证明操作成功。</p>
 <p><strong>至此网络桥接已操作完成</strong></p>
@@ -2185,7 +2185,7 @@
   </entry>
   <entry>
     <title>C++智能指针学习——小谈引用计数</title>
-    <url>/2024/04/07/reference-counting/</url>
+    <url>/reference-counting/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文结合源码讨论std::shared_ptr和std::weak_ptr的部分底层实现，然后讨论引用计数，弱引用计数的创建和增减。<br>文章中尽可能的先阐述原理，然后再贴上代码。如果有不想看代码的，直接略过代码即可。<br>本文涉及的源码均出自gcc 9.4.0版本</p>
 <h1 id="控制块简介"><a href="#控制块简介" class="headerlink" title="控制块简介"></a>控制块简介</h1><p>控制块是<code>shared_ptr</code>和<code>weak_ptr</code>中的重要组成，主要用于管理资源的引用计数和生命周期。这个机制允许智能指针安全地共享和管理同一个对象，同时自动释放不再需要的资源。</p>
 <p>控制块包含以下部分：</p>
@@ -2200,7 +2200,7 @@
 <p>示意图大概长这样：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/04/07/reference-counting/ctr_block.png"
+                     data-src="/reference-counting/ctr_block.png"
                      
                 ></p>
 <h1 id="引用计数与弱引用计数创建过程"><a href="#引用计数与弱引用计数创建过程" class="headerlink" title="引用计数与弱引用计数创建过程"></a>引用计数与弱引用计数创建过程</h1><p>在谈引用计数和弱引用计数的创建时，其实就是讨论控制块的创建。</p>
@@ -2295,7 +2295,7 @@
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式补充——单例模式析构</title>
-    <url>/2024/03/19/singleton-destruct/</url>
+    <url>/singleton-destruct/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18081803" >《单例模式学习》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中提到了，在单例对象是通过<code>new</code>关键字动态分配在堆上的情况下，当程序退出时，不会通过C++的RAII机制自动调用其析构函数。本文讨论一下这种现象的原因以及解决方法。</p>
 <h1 id="无法调用析构函数的原因"><a href="#无法调用析构函数的原因" class="headerlink" title="无法调用析构函数的原因"></a>无法调用析构函数的原因</h1><p>在DCLP（双检查锁模式）中，CSingleton中的<code>instance</code>是一个静态指针变量，被分配在全局&#x2F;静态存储区。而<code>instance</code>所指向的CSingleton实例是通过<code>new</code>创建在堆上的，只能手动调用delete来释放相关资源（对于单例模式这是无法实现的，因为析构函数私有），无法通过RAII释放相关资源。<br>在程序结束时，<code>instance</code>这个指针变量被销毁了，但它所指向的内存空间中的CSingleton对象并没有被显式销毁，而是由操作系统去回收这一块内存（不会调用其析构函数）。然而依赖操作系统来清理资源并不是一个优雅的结束方式，可能会造成文件句柄未关闭、网络连接未断开等资源泄漏。</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CSingleton</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> CSingleton* <span class="title">getInstance</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="type">static</span> std::mutex mtx;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">CSingleton</span>()&#123;&#125;</span><br><span class="line">    ~<span class="built_in">CSingleton</span>()&#123;&#125;</span><br><span class="line">    <span class="built_in">CSingleton</span>(<span class="type">const</span> CSingleton&amp;)			 = <span class="keyword">delete</span>;</span><br><span class="line">    CSingleton&amp; <span class="keyword">operator</span>=(<span class="type">const</span> CSingleton&amp;) = <span class="keyword">delete</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">static</span> CSingleton* instance;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CSingleton* CSingleton::instance;</span><br><span class="line"></span><br><span class="line"><span class="function">CSingleton* <span class="title">CSingleton::getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">nullptr</span> == instance)</span><br><span class="line">    &#123;</span><br><span class="line">        mtx.<span class="built_in">lock</span>();</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">nullptr</span> == instance)</span><br><span class="line">        &#123;</span><br><span class="line">            instance = <span class="keyword">new</span> <span class="built_in">CSingleton</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        mtx.<span class="built_in">unlock</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -2309,7 +2309,7 @@
 <p>运行结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/19/singleton-destruct/result_garbo.png"
+                     data-src="/singleton-destruct/result_garbo.png"
                      
                 ></p>
 <h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>我们还可以利用智能指针引用计数机制，对资源自动管理：</p>
@@ -2320,7 +2320,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/19/singleton-destruct/result_shared_ptr.png"
+                     data-src="/singleton-destruct/result_shared_ptr.png"
                      
                 ></p>
 <h2 id="局部静态变量"><a href="#局部静态变量" class="headerlink" title="局部静态变量"></a>局部静态变量</h2><p>局部静态变量形式的单例模式也可以完成资源的释放，详见<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18081803" >《单例模式学习》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
@@ -2332,7 +2332,7 @@
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式补充——指令重排</title>
-    <url>/2024/03/19/singleton-reorder/</url>
+    <url>/singleton-reorder/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18081803" >《单例模式学习》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中曾提到懒汉式DCLP的单例模式实际也不是线程安全的，这是编译器的指令重排导致的，本文就简单讨论一下指令重排对单例模式的影响，以及对应的解决方法。</p>
 <h1 id="指令重排简介"><a href="#指令重排简介" class="headerlink" title="指令重排简介"></a>指令重排简介</h1><blockquote>
 <p>指令重排（Instruction Reordering）是编译器或处理器为了优化程序执行效率而对程序中的指令序列进行重新排序的过程。这种重排可以发生在编译时也可以发生在运行时，目的是为了减少指令的等待时间和提高执行的并行性。</p>
@@ -2369,7 +2369,7 @@
   </entry>
   <entry>
     <title>设计模式学习（一）单例模式的几种实现方式</title>
-    <url>/2024/03/18/singleton/</url>
+    <url>/singleton/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>单例模式，其核心目标是确保在程序运行的过程中，有且只有存在一个实例才能保证他们的逻辑正确性以及良好的效率。因此单例模式的实现思路就是确保一个类有且只有一个实例，并提供一个该实例的全局访问点。<br>单例模式设计要点：</p>
 <ul>
 <li>私有构造、析构</li>
@@ -2385,7 +2385,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/18/singleton/result_hungry.png"
+                     data-src="/singleton/result_hungry.png"
                      
                 ></p>
 <p>饿汉式的缺点：</p>
@@ -2398,7 +2398,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/18/singleton/result_lazy.png"
+                     data-src="/singleton/result_lazy.png"
                      
                 ></p>
 <p>但是上述代码有几个缺点：</p>
@@ -2416,7 +2416,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/18/singleton/result_DCLP.png"
+                     data-src="/singleton/result_DCLP.png"
                      
                 ></p>
 <p>但是遗憾的是，这种方法其实也不是线程安全的，具体原因可见：<a class="link"   href="https://www.cnblogs.com/paw5zx/p/18081876" >补充-指令重排 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
@@ -2427,7 +2427,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/18/singleton/result_meyers.png"
+                     data-src="/singleton/result_meyers.png"
                      
                 ></p>
 <p><strong>对于线程安全问题</strong>：在C++11及更高版本中，静态局部变量的初始化是线程安全的。即当多个线程同时首次访问局部静态变量，编译器可以保证其初始化代码仅执行一次，防止了任何可能的竞态条件或重复初始化。</p>
@@ -2438,7 +2438,7 @@
 <p>测试结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/03/18/singleton/result_CRTP.png"
+                     data-src="/singleton/result_CRTP.png"
                      
                 ></p>
 <p>这种形式使用了奇异递归模板模式（Curiously Recurring Template Pattern, CRTP）。在使用时要注意，子类需要将自己作为模板参数传递给CSingleton模板进行模板类实例化，用做基类；同时需要将基类声明为友元，这样才能在通过<code>CSingleton&lt;T&gt;::getInstance()</code>方法创建MyClass唯一实例时，调用到MyClass的私有构造函数。</p>
@@ -2451,7 +2451,7 @@
   </entry>
   <entry>
     <title>jsoncpp的安装及使用</title>
-    <url>/2024/06/13/thirdlib-jsoncpp/</url>
+    <url>/thirdlib-jsoncpp/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文操作均在ubuntu20.04下进行。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="方法一：apt包管理器"><a href="#方法一：apt包管理器" class="headerlink" title="方法一：apt包管理器"></a>方法一：apt包管理器</h2><p><strong>①使用包管理器安装</strong><br>这种方法比较简单，直接使用apt包管理器安装jsoncpp：</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">apt install libjsoncpp-dev</span><br></pre></td></tr></table></figure></div>
@@ -2459,19 +2459,19 @@
 <p><strong>②查看头文件和库文件</strong><br>安装完毕后我们可以去找一下jsoncpp的头文件和库文件<br>头文件位于<code>/usr/include/jsoncpp/json/</code><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/location.png"
+                     data-src="/thirdlib-jsoncpp/location.png"
                      
                 ></p>
 <p>库文件位于<code>/usr/lib/x86_64-linux-gnu/</code><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/libfile.png"
+                     data-src="/thirdlib-jsoncpp/libfile.png"
                      
                 ></p>
 <p>但是我们通过头文件的version.h和动态库文件的realname，可以知道使用apt包管理器安装的jsoncpp的版本号为1.7.4<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/apt.png"
+                     data-src="/thirdlib-jsoncpp/apt.png"
                      
                 ></p>
 <p>那如果我需要安装的是jsoncpp的其他版本，就需要下载源代码并编译安装。</p>
@@ -2492,7 +2492,7 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/source_soname.png"
+                     data-src="/thirdlib-jsoncpp/source_soname.png"
                      
                 ></p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="编写示例代码"><a href="#编写示例代码" class="headerlink" title="编写示例代码"></a>编写示例代码</h2><h3 id="写JSON"><a href="#写JSON" class="headerlink" title="写JSON"></a>写JSON</h3><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;json/json.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 创建一个Json::Value对象</span></span><br><span class="line">    Json::Value root;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向对象中添加数据</span></span><br><span class="line">    root[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;John Doe&quot;</span>;</span><br><span class="line">    root[<span class="string">&quot;age&quot;</span>] = <span class="number">30</span>;</span><br><span class="line">    root[<span class="string">&quot;isAlive&quot;</span>] = <span class="literal">true</span>;</span><br><span class="line">    root[<span class="string">&quot;address&quot;</span>][<span class="string">&quot;city&quot;</span>] = <span class="string">&quot;New York&quot;</span>;</span><br><span class="line">    root[<span class="string">&quot;address&quot;</span>][<span class="string">&quot;state&quot;</span>] = <span class="string">&quot;NY&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个Json::StreamWriterBuilder</span></span><br><span class="line">    Json::StreamWriterBuilder writer;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将Json::Value对象转换为字符串</span></span><br><span class="line">    std::string output = Json::<span class="built_in">writeString</span>(writer, root);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印输出</span></span><br><span class="line">    std::cout &lt;&lt; output &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -2502,13 +2502,13 @@
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><h3 id="写JSON-1"><a href="#写JSON-1" class="headerlink" title="写JSON"></a>写JSON</h3><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/result_write.png"
+                     data-src="/thirdlib-jsoncpp/result_write.png"
                      
                 ></p>
 <h3 id="读JSON-1"><a href="#读JSON-1" class="headerlink" title="读JSON"></a>读JSON</h3><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/06/13/thirdlib-jsoncpp/result_read.png"
+                     data-src="/thirdlib-jsoncpp/result_read.png"
                      
                 ></p>
 ]]></content>
@@ -2519,7 +2519,7 @@
   </entry>
   <entry>
     <title>log4cpp的安装及使用</title>
-    <url>/2024/07/15/thirdlib-log4cpp/</url>
+    <url>/thirdlib-log4cpp/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文的操作均在ubuntu20.04下进行</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>本文仅介绍从源码编译安装log4cpp的过程。</p>
 <p><strong>①在开始编译前，首先要确保系统中安装了<code>g++</code>，<code>make</code>，<code>autoconf</code>和<code>libtool</code></strong></p>
@@ -2530,12 +2530,12 @@
 <p><strong>④查看头文件和库文件</strong><br>默认配置安装的log4cpp，其头文件位于<code>/usr/local/include/log4cpp/</code>，库文件位于<code>/usr/local/lib/</code>。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/15/thirdlib-log4cpp/location.png"
+                     data-src="/thirdlib-log4cpp/location.png"
                      
                 ><br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/15/thirdlib-log4cpp/location2.png"
+                     data-src="/thirdlib-log4cpp/location2.png"
                      
                 ></p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;log4cpp/PropertyConfigurator.hh&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;log4cpp/Category.hh&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">      log4cpp::PropertyConfigurator::<span class="built_in">configure</span>(<span class="string">&quot;./cfg/log4cfg&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> (log4cpp::ConfigureFailure&amp; f)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;configure problem &quot;</span> &lt;&lt; f.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    log4cpp::Category &amp; log = log4cpp::Category::<span class="built_in">getRoot</span>();</span><br><span class="line"></span><br><span class="line">    std::string s = __FILE__;</span><br><span class="line">    s += <span class="string">&quot; : &quot;</span>;</span><br><span class="line">    std::ostringstream line;</span><br><span class="line">    line &lt;&lt; std::<span class="built_in">setw</span>(<span class="number">4</span>) &lt;&lt; std::<span class="built_in">setfill</span>(<span class="string">&#x27;0&#x27;</span>) &lt;&lt; __LINE__;</span><br><span class="line">    s += line.<span class="built_in">str</span>();</span><br><span class="line">    s += <span class="string">&quot; : &quot;</span>;</span><br><span class="line">    std::ostringstream  buf;</span><br><span class="line">    buf&lt;&lt; <span class="string">&quot;test message&quot;</span>; ;</span><br><span class="line">    s += buf.<span class="built_in">str</span>();</span><br><span class="line"></span><br><span class="line">    log.<span class="built_in">info</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -2544,7 +2544,7 @@
 <h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>输出结果：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/2024/07/15/thirdlib-log4cpp/result.png"
+                     data-src="/thirdlib-log4cpp/result.png"
                      
                 ></p>
 ]]></content>
@@ -2555,7 +2555,7 @@
   </entry>
   <entry>
     <title>内存布局分析工具pahole的安装和使用</title>
-    <url>/2024/10/11/tools-pahole/</url>
+    <url>/tools-pahole/</url>
     <content><![CDATA[<p>本文相关测试的机器环境：</p>
 <div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="code"><pre><span class="line">Linux user-GA-IMB410TN 5.15.0-122-generic #132~20.04.1-Ubuntu SMP Fri Aug 30 15:50:07 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure></div>
 <p>gcc版本：</p>
