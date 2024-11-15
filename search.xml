@@ -616,7 +616,11 @@
                      
                 ></p>
 <p>下面我将演示通过使用<code>Dumper-7</code>生成<code>*.usmap</code>的过程</p>
-<h2 id="Dumper-7生成usmap文件"><a href="#Dumper-7生成usmap文件" class="headerlink" title="Dumper-7生成usmap文件"></a>Dumper-7生成usmap文件</h2><p>①将Dumper-7项目git到本地<br>②使用Visual Studio打开<code>.sln</code>文件，将<code>Settings.h</code>中的<code>SDKGenerationPath</code>修改为你期望的usmap文件保存路径（默认路径为<code>C:/Dumper-7</code>）<br>③在x64-Release下编译，生成dll文件<br>④向目标游戏中注入dll（这一步我将在下面展开介绍）<br>⑤查看生成的usmap文件</p>
+<h2 id="Dumper-7生成usmap文件"><a href="#Dumper-7生成usmap文件" class="headerlink" title="Dumper-7生成usmap文件"></a>Dumper-7生成usmap文件</h2><p>①将Dumper-7项目git到本地<br>②使用Visual Studio打开<code>.sln</code>文件，将<code>Settings.h</code>中的<code>SDKGenerationPath</code>修改为你期望的usmap文件保存路径（默认路径为<code>C:/Dumper-7</code>）<br>③在x64-Release下编译，生成dll文件</p>
+<p>在此提供现成的dll文件：</p>
+<a class="button  regular" href='/downloads/Dumper-7.dll' title='点击下载文件'><i class='fa-solid fa-download'></i> 点击下载文件</a>
+
+<p>④向目标游戏中注入dll（这一步我将在下面展开介绍）<br>⑤查看生成的usmap文件</p>
 <h2 id="向游戏中注入dll"><a href="#向游戏中注入dll" class="headerlink" title="向游戏中注入dll"></a>向游戏中注入dll</h2><p>为了向游戏中注入dll，我们要使用一个工具：DLL Injector<br>官网链接：<a class="link"   href="https://dllinjector.net/" >DLL Injector官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>使用方法：<br>①打开DLL Injector<br><img  
                      lazyload
                      src="/images/loading.svg"
