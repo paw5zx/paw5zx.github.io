@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="6.26151in" height="4.79301in" viewBox="0 0 450.829 345.096" xml:space="preserve" color-interpolation-filters="sRGB" class="st11">
+	<style type="text/css"><![CDATA[
+		.st1 {fill:#cdcdcd;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st2 {fill:#000000;font-family:Arial;font-size:0.666664em}
+		.st3 {fill:#e6e6e6;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st4 {fill:#d8d86d;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st5 {fill:#f2f2f2;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st6 {fill:#b9e2b8;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st7 {font-size:1em}
+		.st8 {fill:#b9e2b8;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st9 {fill:#b9e2b8;marker-end:url(#mrkr13-73);stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st10 {fill:#4d4d4d;fill-opacity:1;stroke:#4d4d4d;stroke-opacity:1;stroke-width:0.045454545454545}
+		.st11 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]></style>
+	<defs id="Markers">
+		<g id="lend13">
+			<path d="M 3 1 L 0 0 L 3 -1 L 3 1 " style="stroke:none" />
+		</g>
+		<marker id="mrkr13-73" class="st10" refX="-66" orient="auto" markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend13" transform="scale(-22,-22) " />
+		</marker>
+	</defs>
+	<g>
+		<title>Zeichenblatt-1</title>
+		<g id="shape24-1" transform="translate(0.06,-64.4065)">
+			<title>Rectangle.24</title>
+			<desc>pylon C++ API</desc>
+			<rect x="0" y="95.6476" width="450.709" height="249.449" class="st1" />
+			<text x="199.56" y="106.85" class="st2">pylon C++ API</text>
+		</g>
+		<g id="shape17-4" transform="translate(14.2332,-75.745)">
+			<title>Rectangle.17</title>
+			<desc>Low Level API</desc>
+			<rect x="0" y="223.207" width="147.402" height="121.89" class="st3" />
+			<text x="48.13" y="234.41" class="st2">Low Level API</text>
+		</g>
+		<g id="shape19-7" transform="translate(23.9192,-150.367)">
+			<title>Rectangle.19</title>
+			<desc>Camera Classes</desc>
+			<rect x="0" y="322.419" width="129.164" height="22.6772" class="st4" />
+			<text x="35.02" y="336.16" class="st2">Camera Classes</text>
+		</g>
+		<g id="shape4-10" transform="translate(23.9192,-123.721)">
+			<title>Rectangle.4</title>
+			<desc>pylon Devices</desc>
+			<rect x="0" y="322.419" width="129.164" height="22.6772" class="st4" />
+			<text x="39.68" y="336.16" class="st2">pylon Devices</text>
+		</g>
+		<g id="shape20-13" transform="translate(0.06,-322.359)">
+			<title>Rectangle.20</title>
+			<desc>Application</desc>
+			<rect x="0" y="322.419" width="450.709" height="22.6772" class="st5" />
+			<text x="205.79" y="336.16" class="st2">Application</text>
+		</g>
+		<g id="shape14-16" transform="translate(14.2332,-203.304)">
+			<title>Rectangle.14</title>
+			<desc>Instant Camera Classes Instant Camera Array Classes</desc>
+			<rect x="0" y="257.222" width="147.402" height="87.874" class="st6" />
+			<text x="31.02" y="298.76" class="st2">Instant Camera Classes <tspan x="20.35" dy="1.2em" class="st7">Instant Camera Array Classes</tspan>
+			</text>
+		</g>
+		<g id="group5-20" transform="translate(11.3986,-70.0757)">
+			<title>Tabelle.5</title>
+		</g>
+		<g id="shape16-21" transform="translate(235.336,-203.304)">
+			<title>Rectangle.16</title>
+			<desc>Transport Layer Factory</desc>
+			<rect x="0" y="257.222" width="65.1969" height="87.874" class="st6" />
+			<text x="4.36" y="298.76" class="st2">Transport Layer <tspan x="19.26" dy="1.2em" class="st7">Factory</tspan>
+			</text>
+		</g>
+		<g id="shape18-25" transform="translate(24.0128,-83.3277)">
+			<title>Rectangle.18</title>
+			<desc>Stream Grabber Event Grabber Chunk Parser</desc>
+			<rect x="0" y="308.529" width="128.976" height="36.5669" class="st4" />
+			<text x="35.81" y="319.61" class="st2">Stream Grabber <tspan x="38.47" dy="1.2em" class="st7">Event Grabber </tspan>
+				<tspan x="40.03" dy="1.2em" class="st7">Chunk Parser</tspan>
+			</text>
+		</g>
+		<g id="shape29-30" transform="translate(167.304,-75.745)">
+			<title>Rectangle.29</title>
+			<desc>GenApi GcBase (GenICam)</desc>
+			<rect x="0" y="129.663" width="62.3622" height="215.433" class="st8" />
+			<text x="17.84" y="230.18" class="st2">GenApi <tspan x="16.95" dy="1.2em" class="st7">GcBase </tspan>
+				<tspan x="11.4" dy="1.2em" class="st7">(</tspan>GenICam)</text>
+		</g>
+		<g id="shape7-35" transform="translate(450.769,-27.2726) scale(-1,1)">
+			<title>Rectangle</title>
+			<desc>pylon Drivers</desc>
+			<rect x="0" y="322.136" width="450.709" height="22.9606" class="st5" />
+			<text x="-248.69" y="336.02" transform="scale(-1,1)" class="st2">pylon Drivers</text>
+		</g>
+		<g id="shape9-38" transform="translate(0.06,-0.06)">
+			<title>Rectangle.9</title>
+			<desc>Camera Devices</desc>
+			<rect x="0" y="322.419" width="450.709" height="22.6772" class="st5" />
+			<text x="195.79" y="336.16" class="st2">Camera Devices</text>
+		</g>
+		<g id="shape34-41" transform="translate(424.9,294.863) rotate(90) scale(-1,1)">
+			<title>60 degree single</title>
+			<path d="M0 336.97 L4.69 328.84 L4.69 334.2 L25.51 334.2 L25.51 339.73 L4.69 339.73 L4.69 345.1 L0 336.97 Z" class="st1" />
+		</g>
+		<g id="shape35-43" transform="translate(604.9,294.789) rotate(90) scale(-1,1)">
+			<title>60 degree single.35</title>
+			<path d="M0 336.97 L4.69 328.84 L4.69 334.2 L25.5 334.2 L25.5 339.73 L4.69 339.73 L4.69 345.1 L0 336.97 Z" class="st1" />
+		</g>
+		<g id="shape10-45" transform="translate(306.202,-75.745)">
+			<title>Rectangle.10</title>
+			<desc>Image Handling Support</desc>
+			<rect x="0" y="129.663" width="130.394" height="215.433" class="st3" />
+			<text x="22.06" y="140.86" class="st2">Image Handling Support</text>
+		</g>
+		<g id="shape11-48" transform="translate(314.706,-247.95)">
+			<title>Rectangle.11</title>
+			<desc>pylon Image</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="34.9" y="336.16" class="st2">pylon Image</text>
+		</g>
+		<g id="shape21-51" transform="translate(314.706,-221.021)">
+			<title>Rectangle.21</title>
+			<desc>AVI/Video Writer</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="27.13" y="336.16" class="st2">AVI/Video Writer</text>
+		</g>
+		<g id="shape22-54" transform="translate(314.706,-193.808)">
+			<title>Rectangle.22</title>
+			<desc>pylon Bitmap Image</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="21.34" y="336.16" class="st2">pylon Bitmap Image</text>
+		</g>
+		<g id="shape32-57" transform="translate(314.706,-166.029)">
+			<title>Rectangle.32</title>
+			<desc>pylon Image Window</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="19.56" y="336.16" class="st2">pylon Image Window</text>
+		</g>
+		<g id="shape33-60" transform="translate(314.706,-138.816)">
+			<title>Rectangle.33</title>
+			<desc>Image Format Converter</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="13.12" y="336.16" class="st2">Image Format Converter</text>
+		</g>
+		<g id="shape36-63" transform="translate(314.706,-111.462)">
+			<title>Rectangle.36</title>
+			<desc>Image Persistence</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="23.57" y="336.16" class="st2">Image Persistence</text>
+		</g>
+		<g id="shape37-66" transform="translate(314.706,-84.249)">
+			<title>Rectangle.37</title>
+			<desc>Image Decompressor</desc>
+			<rect x="0" y="322.419" width="113.386" height="22.6772" class="st6" />
+			<text x="18.46" y="336.16" class="st2">Image Decompressor</text>
+		</g>
+		<g id="group51-69" transform="translate(235.336,-75.745)">
+			<title>Tabelle.51</title>
+			<g id="shape50-70" transform="translate(5.66929,5.68434E-14)">
+				<title>Rectangle.50</title>
+				<rect x="0" y="228.943" width="59.5276" height="116.154" class="st9" />
+			</g>
+			<g id="shape49-74" transform="translate(2.83465,-2.86799)">
+				<title>Rectangle.49</title>
+				<rect x="0" y="228.943" width="59.5276" height="116.154" class="st9" />
+			</g>
+			<g id="shape13-77" transform="translate(0,-5.73599)">
+				<title>Rectangle.13</title>
+				<desc>Transport Layers (GigE, USB, CoaXPress, ...)</desc>
+				<rect x="0" y="228.943" width="59.5276" height="116.154" class="st9" />
+				<text x="12.65" y="265.42" class="st2">Transport <tspan x="17.76" dy="1.2em" class="st7">Layers</tspan>
+					<tspan x="18.43" dy="1.2em" class="st7">(</tspan>GigE,<tspan x="20.43" dy="1.2em" class="st7">USB</tspan>, <tspan x="8.42" dy="1.2em" class="st7">CoaXPress</tspan>,<tspan x="25.1" dy="1.2em" class="st7">...)</tspan>
+				</text>
+			</g>
+		</g>
+	</g>
+</svg>

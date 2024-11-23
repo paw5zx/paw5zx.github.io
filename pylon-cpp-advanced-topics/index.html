@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="paw5zx">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://paw5zx.github.io/pylon-cpp-advanced-topics/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Pylon编程手册，自看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pylon C++ Advanced Topics">
+<meta property="og:url" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/index.html">
+<meta property="og:site_name" content="Paw5zx">
+<meta property="og:description" content="Pylon编程手册，自看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/pylon3_0_cpp_api.svg">
+<meta property="og:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/grab_strategy_one_by_one.svg">
+<meta property="og:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/grab_strategy_latest.svg">
+<meta property="og:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/grab_strategy_latest.svg">
+<meta property="og:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/grab_strategy_upcoming.svg">
+<meta property="article:published_time" content="2024-11-20T08:04:35.000Z">
+<meta property="article:modified_time" content="2024-11-23T15:13:15.861Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://paw5zx.github.io/pylon-cpp-advanced-topics/pylon3_0_cpp_api.svg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/logos/O7_allmode.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/O7_allmode.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/logos/O7_allmode.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Pylon C++ Advanced Topics | Paw5zx
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"paw5zx.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":4,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]},"pangu_js":false},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Paw5zx's Blog"},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Paw5zx's Blog","subtitle":{"text":["C++爱好者","APEX低手","精通中华田园敏捷开发"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/paw5zx","instagram":null,"zhihu":null,"twitter":null,"email":null,"bilibili":"https://space.bilibili.com/11411875"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Links":{"icon":"fa-regular fa-link","submenus":{"Itanium C++ ABI":"https://itanium-cxx-abi.github.io/cxx-abi/","C++ Standard Draft":"https://eel.is/c++draft/","Compiler Explorer":"https://gcc.godbolt.org/"}},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":4,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/11 23:23:23"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Paw5zx&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Paw5zx
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">
+                                                    ITANIUM C++ ABI
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://eel.is/c++draft/">
+                                                    C++ STANDARD DRAFT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://gcc.godbolt.org/">
+                                                    COMPILER EXPLORER
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">ITANIUM C++ ABI</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://eel.is/c++draft/">C++ STANDARD DRAFT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://gcc.godbolt.org/">COMPILER EXPLORER</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">42</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Pylon C++ Advanced Topics</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/logos/O7_allmode.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">paw5zx</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-20 16:04:35</span>
+        <span class="mobile">2024-11-20 16:04:35</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-23 23:13:15</span>
+            <span class="mobile">2024-11-23 23:13:15</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%96%87%E6%A1%A3%E6%B1%89%E5%8C%96/">文档汉化</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E6%96%87%E6%A1%A3%E6%B1%89%E5%8C%96/Basler/">Basler</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>13.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>57 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="Architecture-of-pylon"><a href="#Architecture-of-pylon" class="headerlink" title="Architecture of pylon"></a>Architecture of pylon</h1><p>本节将对pylon C++ API的最重要概念做简短的介绍<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/pylon-cpp-advanced-topics/pylon3_0_cpp_api.svg"
+                     
+                ></p>
+<h2 id="Transport-Layers"><a href="#Transport-Layers" class="headerlink" title="Transport Layers"></a>Transport Layers</h2><p>传输层一词用作物理接口（如USB、GigE或Camera Link）的抽象。对于这些接口中的任意一个，都有对应的驱动程序提供对相机设备的访问。pylon目前包括几种不同的传输层：</p>
+<ul>
+<li>BaslerGigE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:用于使用GigE Vision协议的千兆以太网相机</li>
+<li>BaslerUsb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:用于符合USB3 Vision的相机</li>
+<li>BaslerGenTlCxp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:用于符合CoaXPress 2.0的相机（在Linux ARM上不可用）</li>
+<li>BaslerCamEmu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:用于相机仿真支持</li>
+<li>BaslerCameraLink:用于使用CL串行接口的Camera Link相机（仅限于相机配置，仅在Windows上可用）</li>
+</ul>
+<p><a href="">传输层对象</a>是<a href="">设备工厂</a>，用于：</p>
+<ul>
+<li>发现设备（此过程也称为设备枚举）</li>
+<li>创建用于访问相机设备的pylon设备</li>
+<li>销毁pylon设备</li>
+<li>访问特定于传输层的参数</li>
+</ul>
+<h2 id="Transport-Layer-Factory"><a href="#Transport-Layer-Factory" class="headerlink" title="Transport Layer Factory"></a>Transport Layer Factory</h2><p>应用程序不直接访问传输层实现。<a href="">传输层工厂</a>用于创建传输层对象，每个传输层对象代表一个传输层。此外，传输层工厂还可以用作设备工厂，为所有传输层创建和销毁pylon设备。</p>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>每个传输层对象通常是针对一种相机接口设计的，例如程序中可以通过BaslerGigE传输层对象创建GigE相机设备对象。</p>
+<br>
+
+<p>这可以加入框架的设计思路。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="GenApi-Node-Maps"><a href="#GenApi-Node-Maps" class="headerlink" title="GenApi Node Maps"></a>GenApi Node Maps</h2><p>为了配置相机和访问其他参数，pylon API使用由欧洲机器视觉协会（EMVA）主持的GenICam标准定义的技术。<a class="link"   target="_blank" rel="noopener" href="http://www.genicam.org/" >GenICam规范 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>定义了相机描述文件的格式。这些文件描述了符合GenICam标准的相机的配置接口。描述文件采用XML编写，描述了相机寄存器、它们之间的相互依赖关系，以及通过低级寄存器读写操作访问高级特征（如增益、曝光时间或图像格式）所需的所有其他信息。</p>
+<p>相机描述文件中的元素被表示为称为节点的软件对象。例如，一个节点可以代表一个单独的相机寄存器，一个像<code>Gain</code>的相机参数，一组可用的参数值等。每个节点都实现了<a href="">GenApi::INode</a>接口。</p>
+<p>这些节点通过<a class="link"   target="_blank" rel="noopener" href="http://www.genicam.org/" >GenApi标准文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中解释的不同关系相互连接。所有节点的完整集合存储在一个称为节点映射(<code>node map</code>)的数据结构中。在运行时，节点映射是从一个XML描述中实例化的。</p>
+<p>在pylon中，节点映射不仅用于表示相机设备参数。其他pylon对象（如传输层对象或图像格式转换器）的参数也通过GenApi节点映射暴露。</p>
+<p>示例：</p>
+<ul>
+<li><a href="">Pylon::CInstantCamera</a>类具有<a href="">Pylon::CInstantCamera::GetNodeMap()</a>方法，该方法返回一个<code>node map</code>，包含代表全部相机参数的所有GenApi节点。 </li>
+<li><a href="">Pylon::CImageFormatConverter::GetNodeMap()</a>方法用于访问图像格式转换器的参数。</li>
+</ul>
+<h2 id="Low-Level-API"><a href="#Low-Level-API" class="headerlink" title="Low Level API"></a>Low Level API</h2><p>所有传输层都实现了Low Level API接口。这意味着对于所有传输层，事件可以用相同的方式处理。<a href="">Low Level API部分</a>列出了所有Low Level API类。</p>
+<h3 id="Low-Level-API-pylon-Devices"><a href="#Low-Level-API-pylon-Devices" class="headerlink" title="Low Level API pylon Devices"></a>Low Level API pylon Devices</h3><p>在pylon中，物理相机设备由<a href="">pylon Devices</a>表示。</p>
+<h3 id="Stream-Grabbers"><a href="#Stream-Grabbers" class="headerlink" title="Stream Grabbers"></a>Stream Grabbers</h3><p>pylon架构允许相机对象提供一个或多个图像数据流。要从流中抓取图像，需要一个流抓取器对象。流抓取器对象不能直接由应用程序创建。它们由相机对象管理。</p>
+<h3 id="Event-Grabbers"><a href="#Event-Grabbers" class="headerlink" title="Event Grabbers"></a>Event Grabbers</h3><p>Basler GigE Vision和USB3 Vision相机可以发送事件消息。事件抓取器对象用于接收事件消息。</p>
+<h3 id="Chunk-Parsers"><a href="#Chunk-Parsers" class="headerlink" title="Chunk Parsers"></a>Chunk Parsers</h3><p>如果所谓的数据块模式被激活，Basler相机可以发送附加到图像数据上的额外信息。在数据块模式下，相机发送一个扩展的数据流，该数据流由图像数据和额外信息（如帧号或时间戳）组成。扩展数据流是自描述的。pylon数据块解析器对象用于解析扩展数据流并提供对添加的信息的访问。</p>
+<h2 id="Instant-Camera-Classes"><a href="#Instant-Camera-Classes" class="headerlink" title="Instant Camera Classes"></a>Instant Camera Classes</h2><p><a href="">即时相机</a>为相机设备提供便利的访问，同时具有高度的可定制性。它允许通过几行代码抓取图像，提供对从相机设备抓取的图像的即时访问。其内部使用了一个pylon设备。需要创建一个pylon设备并将其绑定到即时相机对象上以进行操作。额外的<a href="">CBaslerUniversalInstantCamera</a>类为相机的参数提供了更便捷的访问方式。此外，<a href="">Instant Camera Array classes</a>类简化了从多个相机设备抓取图像的编程工作。</p>
+<h2 id="Image-Handling-Support"><a href="#Image-Handling-Support" class="headerlink" title="Image Handling Support"></a>Image Handling Support</h2><p>除了用于抓取图像的即时相机类之外，pylon还提供了额外的图像处理支持，用于处理抓取到的图像。这包括一个图像类、一个图像格式转换器、图像的加载和保存、Windows位图图像支持、一个图像窗口、一个AVI写入器、一个视频写入器和一个图像解压器。</p>
+<h1 id="Enumerating-and-Creating-pylon-Devices"><a href="#Enumerating-and-Creating-pylon-Devices" class="headerlink" title="Enumerating and Creating pylon Devices"></a>Enumerating and Creating pylon Devices</h1><p>pylon提供了两种方法来枚举和创建pylon设备。第一种方法使用传输层工厂来枚举多个传输层的相机。第二种方法让一个传输层对象为特定的传输层枚举和创建 pylon设备。在描述不同的枚举方案之前，首先介绍“设备类”和“设备信息对象”的概念。</p>
+<h2 id="Device-Classes"><a href="#Device-Classes" class="headerlink" title="Device Classes"></a>Device Classes</h2><p>每个传输层可以创建特定类型的pylon设备。例如，PylonGigE传输层将创建代表GigE Vision相机的pylon设备。每种类型的设备都与一个称为设备类的唯一标识符字符串相关联。设备类标识符可以在<code>DeviceClass.h</code>头文件中找到。</p>
+<h2 id="Device-Info-Objects"><a href="#Device-Info-Objects" class="headerlink" title="Device Info Objects"></a>Device Info Objects</h2><p>设备枚举程序返回设备信息对象列表。设备信息对象的基类是<a href="">Pylon::CDeviceInfo</a>。设备信息对象唯一地描述了一个相机设备。设备信息对象被传输层和传输层工厂用来创建对应设备的相机对象。</p>
+<p><code>Pylon::CDeviceInfo</code>对象存储了一组字符串属性。值的数据类型为<a href="">Pylon::String_t</a>。以下属性适用于所有设备信息对象：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FriendlyName</td>
+<td>设备的人类可读名称（例如相机的型号名称）。友好名称不是唯一的。</td>
+</tr>
+<tr>
+<td>FullName</td>
+<td>设备的唯一标识符。没有两个设备的全名会相同。</td>
+</tr>
+<tr>
+<td>VendorName</td>
+<td>制造商名称。</td>
+</tr>
+<tr>
+<td>DeviceClass</td>
+<td>每个传输层可以创建特定类型（或类）的相机设备（例如USB或GigE Vision设备）。设备类型由<code>Device Class</code>属性标识。</td>
+</tr>
+<tr>
+<td>SerialNumber</td>
+<td>设备的序列号。在枚举过程中，设备序列号的可用性不能保证，因此序列号属性可能未定义。</td>
+</tr>
+<tr>
+<td>UserDefinedName</td>
+<td>对于某些设备类别，可以为相机设备分配用户定义的名称。此属性的值可能不是唯一的。</td>
+</tr>
+<tr>
+<td>DeviceFactory</td>
+<td>传输层对象的唯一全名。</td>
+</tr>
+</tbody></table>
+<p>此外，特定的传输层将需要额外的属性。这些属性可以通过使用<a href="">Pylon::IProperties</a>接口以通用方式访问。</p>
+<h2 id="Using-the-Transport-Layer-Factory-for-Enumerating-Cameras"><a href="#Using-the-Transport-Layer-Factory-for-Enumerating-Cameras" class="headerlink" title="Using the Transport Layer Factory for Enumerating Cameras"></a>Using the Transport Layer Factory for Enumerating Cameras</h2><p><a href="">Pylon::CTlFactory::EnumerateDevices()</a>方法用于检索所有可用设备的列表，不论使用哪种传输层来访问设备。该列表包含要创建相机对象必需的设备信息对象。</p>
+<p>返回的列表是<a href="">Pylon::DeviceInfoList_t</a>类型的，使用方式类似于C++标准库的std::vector类。</p>
+<p>以下示例打印出所有已连接设备的唯一名称：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PylonAutoInitTerm autoInitTerm;</span><br><span class="line"></span><br><span class="line">    CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line">    DeviceInfoList_t lstDevices;</span><br><span class="line">    TlFactory.<span class="built_in">EnumerateDevices</span>( lstDevices );</span><br><span class="line">    <span class="keyword">if</span> ( ! lstDevices.<span class="built_in">empty</span>() ) &#123;</span><br><span class="line">        DeviceInfoList_t::const_iterator it;</span><br><span class="line">        <span class="keyword">for</span> ( it = lstDevices.<span class="built_in">begin</span>(); it != lstDevices.<span class="built_in">end</span>(); ++it )</span><br><span class="line">            cout &lt;&lt; it-&gt;<span class="built_in">GetFullName</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;No devices found!&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>传输层工厂提供设备信息对象，并可用于创建相机对象。以下示例说明如何为设备列表中的第一个元素创建一个相机对象：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( TlFactory.CreateDevice( lstDevices[<span class="number">0</span>] ) )</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>永远不要对传输层工厂创建的<a href="">Pylon::IPylonDevice</a>指针调用<code>free</code>或<code>delete</code>。而是要用<a href="">Pylon::CTlFactory::DestroyDevice()</a>方法来删除一个<code>IPylonDevice</code>指针。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Using-the-Transport-Layer-Factory-to-Create-a-Transport-Layer"><a href="#Using-the-Transport-Layer-Factory-to-Create-a-Transport-Layer" class="headerlink" title="Using the Transport Layer Factory to Create a Transport Layer"></a>Using the Transport Layer Factory to Create a Transport Layer</h2><p>可以通过调用[Pylon::CTlFactory::EnumerateTls()]方法获取所有可用传输层的列表。列表条目为传输层信息对象（<a href="">Pylon::CTlInfo</a>）。这些数据结构与设备信息对象非常相似。传输层信息对象被用作<a href="">Pylon::CTlFactory::CreateTl()</a>的参数，该方法创建传输层对象并返回一个<a href="">Pylon::ITransportLayer</a>类型的指针。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>永远不要对传输层工厂创建的[ITransportLayer]指针调用<code>free</code>或<code>delete</code>。而是应使用<a href="">Pylon::CTlFactory::ReleaseTl()</a>方法来释放传输层对象。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Using-a-Transport-Layer-Object-for-Enumerating-Cameras"><a href="#Using-a-Transport-Layer-Object-for-Enumerating-Cameras" class="headerlink" title="Using a Transport Layer Object for Enumerating Cameras"></a>Using a Transport Layer Object for Enumerating Cameras</h2><p>传输层对象可用于枚举所有可通过相应传输层访问的设备。传输层对象由传输层工厂创建。以下示例演示了为<code>PylonGigE</code>传输层创建传输层对象的过程：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PylonAutoInitTerm autoInitTerm;</span><br><span class="line"></span><br><span class="line">    CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line">    ITransportLayer* pTl = TlFactory.<span class="built_in">CreateTl</span>( BaslerGigEDeviceClass );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>如上所述，传输层对象也可以通过传入一个传输层信息对象来创建。</p>
+<p>现在使用传输层对象来枚举它可以访问的所有设备：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DeviceInfoList_t lstDevices;</span><br><span class="line">pTl-&gt;<span class="built_in">EnumerateDevices</span>( lstDevices );</span><br><span class="line"><span class="keyword">if</span> ( lstDevices.<span class="built_in">empty</span>() ) &#123;</span><br><span class="line">    cerr &lt;&lt;  <span class="string">&quot;No devices found&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><a href="">Pylon::ITransportLayer::EnumerateDevices</a>将发现的设备添加到设备信息列表(<code>lstDevices</code>)中。</p>
+<p>现在使用传输层对象来创建一个相机对象。在以下示例中，为第一个枚举出的相机设备创建了一个相机对象：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( pTl-&gt;CreateDevice( lstDevices[<span class="number">0</span>] ))</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>永远不要对由传输层工厂创建的<a href="">Pylon::IPylonDevice</a>指针调用<code>free</code>或<code>delete</code>。而是应使用<a href="">Pylon::CTlFactory::DestroyDevice()</a>方法来删除<code>IPylonDevice</code>指针。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Applying-a-Filter-when-Enumerating-Cameras"><a href="#Applying-a-Filter-when-Enumerating-Cameras" class="headerlink" title="Applying a Filter when Enumerating Cameras"></a>Applying a Filter when Enumerating Cameras</h2><p>要枚举具有特定属性的一系列设备，可以使用<code>EnumerateDevices</code>方法。要定义属性，可以传递一个带有设备信息对象的过滤器列表。如果相机具有过滤器列表中至少一个设备信息对象的属性，则会被枚举。以下示例枚举了过滤器列表中符合<code>model name</code>的所有相机：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PylonAutoInitTerm autoInitTerm;</span><br><span class="line"></span><br><span class="line">    CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">    DeviceInfoList_t filter;</span><br><span class="line">    filter.<span class="built_in">push_back</span>( <span class="built_in">CDeviceInfo</span>().<span class="built_in">SetModelName</span>( <span class="string">&quot;acA1920-40uc&quot;</span> ));</span><br><span class="line">    filter.<span class="built_in">push_back</span>( <span class="built_in">CDeviceInfo</span>().<span class="built_in">SetModelName</span>( <span class="string">&quot;acA2500-14gm&quot;</span> ));</span><br><span class="line"></span><br><span class="line">    DeviceInfoList_t lstDevices;</span><br><span class="line">    TlFactory.<span class="built_in">EnumerateDevices</span>( lstDevices, filter );</span><br><span class="line">    <span class="keyword">if</span> ( ! lstDevices.<span class="built_in">empty</span>() ) &#123;</span><br><span class="line">        DeviceInfoList_t::const_iterator it;</span><br><span class="line">        <span class="keyword">for</span> ( it = lstDevices.<span class="built_in">begin</span>(); it != lstDevices.<span class="built_in">end</span>(); ++it )</span><br><span class="line">            cout &lt;&lt; it-&gt;<span class="built_in">GetFullName</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cerr &lt;&lt; <span class="string">&quot;No devices found!&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Creating-Specific-Cameras"><a href="#Creating-Specific-Cameras" class="headerlink" title="Creating Specific Cameras"></a>Creating Specific Cameras</h2><p>为了创建一个具体的特定设备，必须使用这个设备的属性设置一个信息对象。在下面的示例中，使用序列号和设备类别来识别相机。指定设备类别可以将搜索限制在正确的传输层上。这将节省在使用传输层工厂时的计算时间。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line">CDeviceInfo di;</span><br><span class="line">di.<span class="built_in">SetSerialNumber</span>( <span class="string">&quot;20399956&quot;</span> );</span><br><span class="line">di.<span class="built_in">SetDeviceClass</span>( BaslerUsbDeviceClass );</span><br><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( TlFactory.CreateDevice( di ) )</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>上述示例也等价于：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( CTlFactory::GetInstance().CreateDevice( CDeviceInfo().SetDeviceClass( BaslerUsbDeviceClass ).SetSerialNumber( <span class="string">&quot;20399956&quot;</span> )) )</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>当多个设备符合提供的属性时，<a href="">CreateDevice</a>方法将失败。如果需要创建多个设备中的任何一个，则可以使用<a href="">CreateFirstDevice</a>方法。</p>
+<p>以下示例展示了如何为具有特定IP地址的GigE相机创建一个设备对象：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//....</span></span><br><span class="line"></span><br><span class="line">CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line">CDeviceInfo di;</span><br><span class="line">di.<span class="built_in">SetIpAddress</span>( <span class="string">&quot;192.168.0.101&quot;</span>);</span><br><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( TlFactory.CreateDevice( di ) )</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>通过设备信息对象<code>CDeviceInfo</code>传入实例化相机对象所需的信息，而不是仅传入单一（如仅传入序列号字符串），可能有以下考虑：</p>
+<ul>
+<li>扩展性：</li>
+</ul>
+<br>
+
+<p>这可以加入框架的设计思路。</p>
+
+    </div>
+  </div>
+
+<h1 id="Grab-Strategies"><a href="#Grab-Strategies" class="headerlink" title="Grab Strategies"></a>Grab Strategies</h1><p>以下抓取策略涉及到相机设备的触发。根据相机设备的配置，支持以下触发模式：</p>
+<ul>
+<li>外部触发（<code>external trigger</code>）：例如通过数字I&#x2F;O触发。</li>
+<li>软件触发（<code>software trigger</code>）：软件命令触发。</li>
+<li>内部触发（<code>internal trigger</code>）：所谓的自由运行模式。</li>
+</ul>
+<p>有关此话题的更多信息可以在代码示例<a href="">Grab_Strategies</a>和参数文档<a href="">Instant Camera</a>中找到。</p>
+<h2 id="One-by-One-Grab-Strategy"><a href="#One-by-One-Grab-Strategy" class="headerlink" title="One by One Grab Strategy"></a>One by One Grab Strategy</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/pylon-cpp-advanced-topics/grab_strategy_one_by_one.svg"
+                     
+                ></p>
+<p>使用<code>One By One</code>抓取策略时，图像按照它们被采集的顺序进行处理。</p>
+<ul>
+<li>即时相机抓取引擎从空缓冲区队列中取出缓冲区，并将空缓冲区入队Low Level API流抓取器(1)；</li>
+<li>相机设备被触发(2)。一个图像被相机设备获取，并被传输到计算机，然后被抓取到一个空缓冲区中；</li>
+<li>即时相机抓取引擎线程收到通知：有已填充的缓冲区可用。已填充的缓冲区由抓取引擎线程检索(3)并放入输出队列；</li>
+<li>等待（阻塞）在<a href="">RetrieveResult()</a>的应用程序线程得到通知，它停止等待抓取结果，并检索已填充的缓冲区(4)作为抓取结果数据对象的一部分；</li>
+<li>抓取结果数据对象由抓取结果智能指针持有。应用程序处理完图像数据后，已填充的缓冲区被返回到空缓冲区队列(5)。这是通过抓取结果智能指针的析构函数或当抓取结果数据对象被显式释放时完成的。返回的缓冲区将再次用于抓取。</li>
+</ul>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <ul>
+<li>对于(1)的描述，原文是：<blockquote>
+<p>The Instant Camera grab engine unqueues buffers from the Empty Buffer Queue and queues the empty buffers at the Low Level API stream grabber (1).</p>
+</blockquote>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;个人认为这里的<code>queues the empty buffers</code>不是指Low Level API stream grabber具有队列结构，而是指<code>empty buffers</code>被按序分配给stream grabber。</p>
+<ul>
+<li><p>对于(3)，是抓取引擎线程检索</p>
+</li>
+<li><p>对于(4)，是应用程序检索</p>
+</li>
+</ul>
+<p>上述描述对理解后面的抓取策略比较有用，若我理解错了，麻烦指出。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Latest-Image-Only-Grab-Strategy"><a href="#Latest-Image-Only-Grab-Strategy" class="headerlink" title="Latest Image Only Grab Strategy"></a>Latest Image Only Grab Strategy</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/pylon-cpp-advanced-topics/grab_strategy_latest.svg"
+                     
+                ></p>
+<p><code>Latest Image Only</code>抓取策略与<code>One By One</code>抓取策略的不同之处在于输出队列的大小。<code>Latest Image Only</code>抓取策略的输出队列的大小只有一个缓冲区。每当一个新的缓冲区(称为A)被抓取后（当新的图像数据被相机捕获并被写入到Low Level API Stream Grabber内部的缓冲区中后，这个缓冲区被认为是被抓取的），pylon会检查输出队列，如果输出队列已经有一个缓冲区(称为B)在等待（被应用程序检索），那么这个缓冲区B将会自动移回到空缓冲区队列(4.1).然后，缓冲区A被放入输出队列。这确保了始终提供的是最新抓取的图像。自动移回到空缓冲区队列的图像被称为<code>skipped images</code>。</p>
+<h2 id="Latest-Images-Strategy"><a href="#Latest-Images-Strategy" class="headerlink" title="Latest Images Strategy"></a>Latest Images Strategy</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/pylon-cpp-advanced-topics/grab_strategy_latest.svg"
+                     
+                ></p>
+<p><code>Latest Images</code>抓取策略扩展了<code>Latest Image Only</code>抓取策略。它允许用户通过设置<a href="">CInstantCamera::OutputQueueSize</a>来调整输出队列的大小。如果一个新的缓冲区被抓取且输出队列已满，输出队列中的第一个缓冲区将自动返回到空缓冲区队列(4.1)。然后，新填充的缓冲区被放置进输出队列末尾。这确保应用程序总是能获得最新抓取的图像（图像都是最新抓取的，但是由于存在输出队列，相较于应用程序检索时，可能没有那么新）。自动返回到空缓冲区队列的图像被称为<code>skipped images</code>。</p>
+<ul>
+<li>当将输出队列大小设置为1时，此策略等价于<code>Latest Image Only</code>抓取策略。</li>
+<li>当将输出队列大小设置为[Pylon::CInstantCamera::MaxNumBuffer]时，此策略等价于<code>One By One</code>抓取策略。</li>
+</ul>
+<h2 id="Upcoming-Image-Grab-Strategy"><a href="#Upcoming-Image-Grab-Strategy" class="headerlink" title="Upcoming Image Grab Strategy"></a>Upcoming Image Grab Strategy</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/pylon-cpp-advanced-topics/grab_strategy_upcoming.svg"
+                     
+                ></p>
+<p><code>Upcoming Image</code>抓取策略可用于确保获取的是在调用<a href="">RetrieveResult()</a>之后抓取的图像。</p>
+<ul>
+<li>在调用<code>RetrieveResult()</code>之前，Low Level API流抓取器不会接收空缓冲区。当应用程序调用<code>RetrieveResult()</code>(1)时，一个空缓冲区会从空缓冲区队列中出队，然后该空缓冲区被传递给Low Level API流抓取器(2)。</li>
+<li>相机设备被触发(3)。相机设备采集图像，图像数据被传输到计算机并存储到空缓冲区中。</li>
+<li>现在已填充的缓冲区作为由抓取结果智能指针持有的抓取结果数据对象的一部分返回(4)(1)。</li>
+<li>应用程序处理完图像数据后，填充的缓冲区被返回到空缓冲区队列(5)。这一操作是通过以下两种情况中任意一个完成的：①抓取结果智能指针的析构②抓取结果数据对象被显式释放。如果<code>RetrieveResult()</code>超时，则空缓冲区也会被返回到空缓冲区队列。</li>
+</ul>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p><code>Upcoming Image</code>抓取策略不能与USB相机设备一起使用。有关更多信息，请参阅<a href="">Differences in Image Transport</a>和以下部分。</p>
+
+    </div>
+  </div>
+
+<h1 id="Getting-Informed-About-Camera-Device-Removal"><a href="#Getting-Informed-About-Camera-Device-Removal" class="headerlink" title="Getting Informed About Camera Device Removal"></a>Getting Informed About Camera Device Removal</h1><p>要获取关于相机设备移除的通知，可以查询<a href="">IsCameraDeviceRemoved()</a>方法或注册一个<a href="">配置事件处理程序</a>。如果相机设备被移除，虚函数<a href="">OnCameraDeviceRemoved()</a>将被调用。设备移除只有在即时相机及其绑定的<a href="">pylon设备</a>打开时才能检测到。设备移除后需要销毁附加的pylon设备。这可以通过使用<a href="">DestroyDevice()</a>方法来完成。</p>
+<p>以下是一个处理相机设备移除的配置事件处理程序的示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Example of a configuration event handler that handles device removal events.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CSampleConfigurationEventHandler</span> : <span class="keyword">public</span> Pylon::CConfigurationEventHandler</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// This method is called from a different thread when the camera device removal has been detected.</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnCameraDeviceRemoved</span><span class="params">( CInstantCamera&amp; <span class="comment">/*camera*/</span> )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;CSampleConfigurationEventHandler::OnCameraDeviceRemoved called.&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>以下示例显示了如何在循环中访问相机以检测设备移除。<code>IsCameraDeviceRemoved()</code>方法可以用来是否是在访问相机设备时因设备移除而引起了异常。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Declare a local counter used for waiting.</span></span><br><span class="line"><span class="type">int</span> loopCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get the transport layer factory.</span></span><br><span class="line">CTlFactory&amp; tlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create an instant camera object with the camera device found first.</span></span><br><span class="line"><span class="function">CInstantCamera <span class="title">camera</span><span class="params">( tlFactory.CreateFirstDevice() )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Print the camera information.</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Using device &quot;</span> &lt;&lt; camera.<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetModelName</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Friendly Name: &quot;</span> &lt;&lt; camera.<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetFriendlyName</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Full Name    : &quot;</span> &lt;&lt; camera.<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetFullName</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;SerialNumber : &quot;</span> &lt;&lt; camera.<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetSerialNumber</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// For demonstration purposes only, register another configuration event handler that handles device removal.</span></span><br><span class="line">camera.<span class="built_in">RegisterConfiguration</span>( <span class="keyword">new</span> CSampleConfigurationEventHandler, RegistrationMode_Append, Cleanup_Delete );</span><br><span class="line"></span><br><span class="line"><span class="comment">// For demonstration purposes only, add a sample configuration event handler to print out information</span></span><br><span class="line"><span class="comment">// about camera use.</span></span><br><span class="line">camera.<span class="built_in">RegisterConfiguration</span>( <span class="keyword">new</span> CConfigurationEventPrinter, RegistrationMode_Append, Cleanup_Delete );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the camera. Camera device removal is only detected while the camera is open.</span></span><br><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Now, try to detect that the camera has been removed:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Ask the user to disconnect a device</span></span><br><span class="line">loopCount = c_loopCounterInitialValue;</span><br><span class="line">cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;Please disconnect the device (timeout &quot;</span> &lt;&lt; loopCount / <span class="number">4</span> &lt;&lt; <span class="string">&quot;s) &quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Get a camera parameter using generic parameter access.</span></span><br><span class="line">    <span class="function">CIntegerParameter <span class="title">width</span><span class="params">( camera.GetNodeMap(), <span class="string">&quot;Width&quot;</span> )</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// The following loop accesses the camera. It could also be a loop that is</span></span><br><span class="line">    <span class="comment">// grabbing images. The device removal is handled in the exception handler.</span></span><br><span class="line">    <span class="keyword">while</span> (loopCount &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Print a &quot;.&quot; every few seconds to tell the user we&#x27;re waiting for the callback.</span></span><br><span class="line">        <span class="keyword">if</span> (--loopCount % <span class="number">4</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;.&quot;</span>;</span><br><span class="line">            cout.<span class="built_in">flush</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        WaitObject::<span class="built_in">Sleep</span>( <span class="number">250</span> );</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Change the width value in the camera depending on the loop counter.</span></span><br><span class="line">        <span class="comment">// Any access to the camera like setting parameters or grabbing images</span></span><br><span class="line">        <span class="comment">// will fail throwing an exception if the camera has been disconnected.</span></span><br><span class="line">        width.<span class="built_in">SetValue</span>( width.<span class="built_in">GetMax</span>() - (width.<span class="built_in">GetInc</span>() * (loopCount % <span class="number">2</span>)) );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">catch</span> (<span class="type">const</span> GenericException&amp; e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// An exception occurred. Is it because the camera device has been physically removed?</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Known issue: Wait until the system safely detects a possible removal.</span></span><br><span class="line">    WaitObject::<span class="built_in">Sleep</span>( <span class="number">1000</span> );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (camera.<span class="built_in">IsCameraDeviceRemoved</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// The camera device has been removed. This caused the exception.</span></span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;The camera has been removed from the computer.&quot;</span> &lt;&lt; endl;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;The camera device removal triggered an expected exception:&quot;</span> &lt;&lt; endl</span><br><span class="line">            &lt;&lt; e.<span class="built_in">GetDescription</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// An unexpected error has occurred.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// In this example it is handled by exiting the program.</span></span><br><span class="line">        <span class="keyword">throw</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!camera.<span class="built_in">IsCameraDeviceRemoved</span>())</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;Timeout expired&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Destroy the Pylon Device representing the detached camera device.</span></span><br><span class="line"><span class="comment">// It can&#x27;t be used anymore.</span></span><br><span class="line">camera.<span class="built_in">DestroyDevice</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>上述代码片段可以在示例<a href="">DeviceRemovalHandling</a>中找到。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p><code>OnCameraDeviceRemoved()</code>调用是从另一个单独的线程中进行的。</p>
+
+    </div>
+  </div>
+
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>对于<code>IsCameraDeviceRemoved()</code>，本节给出的描述是：</p>
+<blockquote>
+<p>The <code>IsCameraDeviceRemoved()</code> method can be used to check whether the removal of the camera device has caused an exception while accessing the camera device, e.g. for grabbing.</p>
+</blockquote>
+<p>可能是尝试说明其内部的判断逻辑，但是在<a href="">IsCameraDeviceRemoved()函数介绍文档中</a>仅说明了：</p>
+<blockquote>
+<p>True if the camera device removal from the PC has been detected.</p>
+</blockquote>
+<p>并没有强调其内部判断相机设备移除的逻辑是否与异常等相关。作为学习和使用者，我就暂时不考虑了。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="Accessing-Chunk-Features"><a href="#Accessing-Chunk-Features" class="headerlink" title="Accessing Chunk Features"></a>Accessing Chunk Features</h1><p>Basler相机可以发送附加到图像数据的额外信息，例如帧计数器、时间戳和CRC校验和。如果块模式被激活，这些数据块会被即时相机类自动解析。以下示例展示了如何使用<a href="">CBaslerUniversalInstantCamera</a>类来实现这一功能。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable chunks in general.</span></span><br><span class="line"><span class="keyword">if</span> (!camera.ChunkModeActive.<span class="built_in">TrySetValue</span>( <span class="literal">true</span> ))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="built_in">RUNTIME_EXCEPTION</span>( <span class="string">&quot;The camera doesn&#x27;t support chunk features&quot;</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable time stamp chunks.</span></span><br><span class="line">camera.ChunkSelector.<span class="built_in">SetValue</span>( ChunkSelector_Timestamp );</span><br><span class="line">camera.ChunkEnable.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable frame counter chunks?</span></span><br><span class="line"><span class="keyword">if</span> (camera.ChunkSelector.<span class="built_in">TrySetValue</span>( ChunkSelector_Framecounter ))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// USB camera devices provide generic counters.</span></span><br><span class="line">    <span class="comment">// An explicit FrameCounter value is not provided by USB camera devices.</span></span><br><span class="line">    <span class="comment">// Enable frame counter chunks.</span></span><br><span class="line">    camera.ChunkEnable.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable CRC checksum chunks.</span></span><br><span class="line">camera.ChunkSelector.<span class="built_in">SetValue</span>( ChunkSelector_PayloadCRC16 );</span><br><span class="line">camera.ChunkEnable.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br></pre></td></tr></table></figure></div>
+
+<p>数据块数据可以通过<a href="">CBaslerUniversalGrabResultPtr</a>数据类的参数成员或使用提供的数据块数据节点图（未展示）访问。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">// Camera.StopGrabbing() is called automatically by the RetrieveResult() method</span></span><br><span class="line">        <span class="comment">// when c_countOfImagesToGrab images have been retrieved.</span></span><br><span class="line">        <span class="keyword">while</span> (camera.<span class="built_in">IsGrabbing</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// Wait for an image and then retrieve it. A timeout of 5000 ms is used.</span></span><br><span class="line">            <span class="comment">// RetrieveResult calls the image event handler&#x27;s OnImageGrabbed method.</span></span><br><span class="line">            camera.<span class="built_in">RetrieveResult</span>( <span class="number">5000</span>, ptrGrabResult, TimeoutHandling_ThrowException );</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;GrabSucceeded: &quot;</span> &lt;&lt; ptrGrabResult-&gt;<span class="built_in">GrabSucceeded</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Image grabbed successfully?</span></span><br><span class="line">            <span class="keyword">if</span> (ptrGrabResult-&gt;<span class="built_in">GrabSucceeded</span>())</span><br><span class="line">            &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> PYLON_WIN_BUILD</span></span><br><span class="line">                <span class="comment">// Display the image</span></span><br><span class="line">                Pylon::<span class="built_in">DisplayImage</span>( <span class="number">1</span>, ptrGrabResult );</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// The result data is automatically filled with received chunk data.</span></span><br><span class="line">                <span class="comment">// (Note:  This is not the case when using the low-level API)</span></span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;SizeX: &quot;</span> &lt;&lt; ptrGrabResult-&gt;<span class="built_in">GetWidth</span>() &lt;&lt; endl;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;SizeY: &quot;</span> &lt;&lt; ptrGrabResult-&gt;<span class="built_in">GetHeight</span>() &lt;&lt; endl;</span><br><span class="line">                <span class="type">const</span> <span class="type">uint8_t</span>* pImageBuffer = (<span class="type">uint8_t</span>*) ptrGrabResult-&gt;<span class="built_in">GetBuffer</span>();</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;Gray value of first pixel: &quot;</span> &lt;&lt; (<span class="type">uint32_t</span>) pImageBuffer[<span class="number">0</span>] &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Check to see if a buffer containing chunk data has been received.</span></span><br><span class="line">                <span class="keyword">if</span> (PayloadType_ChunkData != ptrGrabResult-&gt;<span class="built_in">GetPayloadType</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="built_in">RUNTIME_EXCEPTION</span>( <span class="string">&quot;Unexpected payload type received.&quot;</span> );</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Since we have activated the CRC Checksum feature, we can check</span></span><br><span class="line">                <span class="comment">// the integrity of the buffer first.</span></span><br><span class="line">                <span class="comment">// Note: Enabling the CRC Checksum feature is not a prerequisite for using</span></span><br><span class="line">                <span class="comment">// chunks. Chunks can also be handled when the CRC Checksum feature is deactivated.</span></span><br><span class="line">                <span class="keyword">if</span> (ptrGrabResult-&gt;<span class="built_in">HasCRC</span>() &amp;&amp; ptrGrabResult-&gt;<span class="built_in">CheckCRC</span>() == <span class="literal">false</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="built_in">RUNTIME_EXCEPTION</span>( <span class="string">&quot;Image was damaged!&quot;</span> );</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// Access the chunk data attached to the result.</span></span><br><span class="line">                <span class="comment">// Before accessing the chunk data, you should check to see</span></span><br><span class="line">                <span class="comment">// if the chunk is readable. When it is readable, the buffer</span></span><br><span class="line">                <span class="comment">// contains the requested chunk data.</span></span><br><span class="line">                <span class="keyword">if</span> (ptrGrabResult-&gt;ChunkTimestamp.<span class="built_in">IsReadable</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;TimeStamp (Result): &quot;</span> &lt;&lt; ptrGrabResult-&gt;ChunkTimestamp.<span class="built_in">GetValue</span>() &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// USB camera devices provide generic counters. An explicit FrameCounter value is not provided by USB camera devices.</span></span><br><span class="line">                <span class="keyword">if</span> (ptrGrabResult-&gt;ChunkFramecounter.<span class="built_in">IsReadable</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;FrameCounter (Result): &quot;</span> &lt;&lt; ptrGrabResult-&gt;ChunkFramecounter.<span class="built_in">GetValue</span>() &lt;&lt; endl;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                cout &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;Error: &quot;</span> &lt;&lt; std::hex &lt;&lt; ptrGrabResult-&gt;<span class="built_in">GetErrorCode</span>() &lt;&lt; std::dec &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; ptrGrabResult-&gt;<span class="built_in">GetErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码片段可以在示例<a href="">Grab_ChunkImage</a>中找到。</p>
+<h1 id="Handling-Camera-Events"><a href="#Handling-Camera-Events" class="headerlink" title="Handling Camera Events"></a>Handling Camera Events</h1><p>Basler GigE Vision和USB3 Vision相机可以发送事件消息。例如，当传感器曝光结束时，相机可以向计算机发送曝光结束事件。这个事件可以在完成曝光的图像数据完全传输之前被计算机接收到。这种机制有很多作用，例如：通过事件消息得知曝光的结束，然后可以更早地开始后续的动作或处理步骤，比如移动被拍摄的物体到下一个位置，从而优化整个成像流程的效率。</p>
+<p>事件消息由即时相机类自动检索和处理。事件消息携带的信息以节点的形式暴露在相机节点图中，并可以像普通的相机参数一样被访问。当接收到相机事件时，这些节点会更新。您可以注册相机事件处理器对象，它将在当接收到事件数据时触发。</p>
+<p>以下是一个相机事件处理的示例，用于在屏幕上打印事件数据：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Example handler for camera events.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CSampleCameraEventHandler</span> : <span class="keyword">public</span> CBaslerUniversalCameraEventHandler</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Only very short processing tasks should be performed by this method. Otherwise, the event notification will block the</span></span><br><span class="line">    <span class="comment">// processing of images.</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">OnCameraEvent</span><span class="params">( CBaslerUniversalInstantCamera&amp; camera, <span class="type">intptr_t</span> userProvidedId, GenApi::INode* <span class="comment">/* pNode */</span> )</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">switch</span> (userProvidedId)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> eMyExposureEndEvent: <span class="comment">// Exposure End event</span></span><br><span class="line">                <span class="keyword">if</span> (camera.EventExposureEndFrameID.<span class="built_in">IsReadable</span>()) <span class="comment">// Applies to cameras based on SFNC 2.0 or later, e.g, USB cameras</span></span><br><span class="line">                &#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;Exposure End event. FrameID: &quot;</span> &lt;&lt; camera.EventExposureEndFrameID.<span class="built_in">GetValue</span>() &lt;&lt; <span class="string">&quot; Timestamp: &quot;</span> &lt;&lt; camera.EventExposureEndTimestamp.<span class="built_in">GetValue</span>() &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;Exposure End event. FrameID: &quot;</span> &lt;&lt; camera.ExposureEndEventFrameID.<span class="built_in">GetValue</span>() &lt;&lt; <span class="string">&quot; Timestamp: &quot;</span> &lt;&lt; camera.ExposureEndEventTimestamp.<span class="built_in">GetValue</span>() &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> eMyEventOverrunEvent:  <span class="comment">// Event Overrun event</span></span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;Event Overrun event. FrameID: &quot;</span> &lt;&lt; camera.EventOverrunEventFrameID.<span class="built_in">GetValue</span>() &lt;&lt; <span class="string">&quot; Timestamp: &quot;</span> &lt;&lt; camera.EventOverrunEventTimestamp.<span class="built_in">GetValue</span>() &lt;&lt; std::endl &lt;&lt; std::endl;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>默认情况下，处理相机事件功能被禁用，需要首先激活：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于区分不同事件的枚举。</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">MyEvents</span></span><br><span class="line">&#123;</span><br><span class="line">    eMyExposureEndEvent = <span class="number">100</span>,</span><br><span class="line">    eMyEventOverrunEvent = <span class="number">200</span></span><br><span class="line">    <span class="comment">// 这里可以添加更多事件。</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基于 SFNC 2.0 或更高版本的相机，例如 USB 相机</span></span><br><span class="line"><span class="keyword">if</span> (camera.<span class="built_in">GetSfncVersion</span>() &gt;= Sfnc_2_0_0)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 为曝光结束事件注册一个事件处理程序</span></span><br><span class="line">    <span class="comment">// 对于每种事件类型，都有一个代表事件的“数据”节点</span></span><br><span class="line">    <span class="comment">// 事件携带的实际数据由数据节点的子节点持有。</span></span><br><span class="line">    <span class="comment">// 在曝光结束事件的情况下，子节点包括EventExposureEndFrameID和EventExposureEndTimestamp。</span></span><br><span class="line">    <span class="comment">// CSampleCameraEventHandler展示了如何在触发父数据节点的回调中访问这些子节点</span></span><br><span class="line">    <span class="comment">// 用户提供的ID eMyExposureEndEvent可用于区分多个事件（未展示）。</span></span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler1, <span class="string">&quot;EventExposureEndData&quot;</span>, eMyExposureEndEvent, RegistrationMode_ReplaceAll, Cleanup_None );</span><br><span class="line">    <span class="comment">// 处理程序同时注册了 EventExposureEndFrameID 和 EventExposureEndTimestamp 节点</span></span><br><span class="line">    <span class="comment">// 这些节点代表了曝光结束事件携带的数据</span></span><br><span class="line">    <span class="comment">// 对于收到的每一个曝光结束事件，处理程序将被调用两次，一次是针对帧 ID，另一次是针对时间戳。</span></span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler2, <span class="string">&quot;EventExposureEndFrameID&quot;</span>, eMyExposureEndEvent, RegistrationMode_Append, Cleanup_None );</span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler2, <span class="string">&quot;EventExposureEndTimestamp&quot;</span>, eMyExposureEndEvent, RegistrationMode_Append, Cleanup_None );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 为曝光结束事件注册一个事件处理程序</span></span><br><span class="line">    <span class="comment">// 对于每种事件类型，都有一个代表事件的“数据”节点</span></span><br><span class="line">    <span class="comment">// 事件携带的实际数据由数据节点的子节点持有</span></span><br><span class="line">    <span class="comment">// 在曝光结束事件的情况下，子节点包括ExposureEndEventFrameID、ExposureEndEventTimestamp和ExposureEndEventStreamChannelIndex</span></span><br><span class="line">    <span class="comment">// CSampleCameraEventHandler展示了如何在为父数据节点触发的回调中访问这些子节点。</span></span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler1, <span class="string">&quot;ExposureEndEventData&quot;</span>, eMyExposureEndEvent, RegistrationMode_ReplaceAll, Cleanup_None );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为第二个事件注册相同的处理程序</span></span><br><span class="line">    <span class="comment">// 用户提供的 ID 可用于区分事件</span></span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler1, <span class="string">&quot;EventOverrunEventData&quot;</span>, eMyEventOverrunEvent, RegistrationMode_Append, Cleanup_None );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为ExposureEndEventFrameID和ExposureEndEventTimestamp节点注册处理程序。这些节点代表曝光结束事件携带的数据。</span></span><br><span class="line">    <span class="comment">// 每收到一个曝光结束事件，处理程序将被调用两次，一次用于帧ID，一次用于时间戳。</span></span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler2, <span class="string">&quot;ExposureEndEventFrameID&quot;</span>, eMyExposureEndEvent, RegistrationMode_Append, Cleanup_None );</span><br><span class="line">    camera.<span class="built_in">RegisterCameraEventHandler</span>( pHandler2, <span class="string">&quot;ExposureEndEventTimestamp&quot;</span>, eMyExposureEndEvent, RegistrationMode_Append, Cleanup_None );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>必须在相机中启用感兴趣的事件。然后在等待图像时通过<a href="">RetrieveResult()</a>调用处理事件。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable sending of Exposure End events.</span></span><br><span class="line"><span class="comment">// Select the event to receive.</span></span><br><span class="line">camera.EventSelector.<span class="built_in">SetValue</span>( EventSelector_ExposureEnd );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable it.</span></span><br><span class="line"><span class="keyword">if</span> (!camera.EventNotification.<span class="built_in">TrySetValue</span>( EventNotification_On ))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// scout-f, scout-g, and aviator GigE cameras use a different value</span></span><br><span class="line">    camera.EventNotification.<span class="built_in">SetValue</span>( EventNotification_GenICamEvent );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable event notification for the EventOverrun event, if available</span></span><br><span class="line"><span class="keyword">if</span> (camera.EventSelector.<span class="built_in">TrySetValue</span>( EventSelector_EventOverrun ))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Enable it.</span></span><br><span class="line">    <span class="keyword">if</span> (!camera.EventNotification.<span class="built_in">TrySetValue</span>( EventNotification_On ))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// scout-f, scout-g, and aviator GigE cameras use a different value</span></span><br><span class="line">        camera.EventNotification.<span class="built_in">SetValue</span>( EventNotification_GenICamEvent );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Start the grabbing of c_countOfImagesToGrab images.</span></span><br><span class="line">camera.<span class="built_in">StartGrabbing</span>( c_countOfImagesToGrab );</span><br><span class="line"></span><br><span class="line"><span class="comment">// This smart pointer will receive the grab result data.</span></span><br><span class="line">CGrabResultPtr ptrGrabResult;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Camera.StopGrabbing() is called automatically by the RetrieveResult() method</span></span><br><span class="line"><span class="comment">// when c_countOfImagesToGrab images have been retrieved.</span></span><br><span class="line"><span class="keyword">while</span> (camera.<span class="built_in">IsGrabbing</span>())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Execute the software trigger. Wait up to 1000 ms for the camera to be ready for trigger.</span></span><br><span class="line">    <span class="keyword">if</span> (camera.<span class="built_in">WaitForFrameTriggerReady</span>( <span class="number">1000</span>, TimeoutHandling_ThrowException ))</span><br><span class="line">    &#123;</span><br><span class="line">        camera.<span class="built_in">ExecuteSoftwareTrigger</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Retrieve grab results and notify the camera event and image event handlers.</span></span><br><span class="line">    camera.<span class="built_in">RetrieveResult</span>( <span class="number">5000</span>, ptrGrabResult, TimeoutHandling_ThrowException );</span><br><span class="line">    <span class="comment">// Nothing to do here with the grab result, the grab results are handled by the registered event handler.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码片段可以在示例<a href="">Grab_CameraEvents</a>中找到。</p>
+<h1 id="Getting-Informed-About-Parameter-Changes"><a href="#Getting-Informed-About-Parameter-Changes" class="headerlink" title="Getting Informed About Parameter Changes"></a>Getting Informed About Parameter Changes</h1><p>GenICam API提供了注册回调函数的功能，当参数的值或状态（例如访问模式或值范围）发生变化时，这些回调函数将被调用。可以注册一个C函数或一个C++类成员函数作为回调。</p>
+<p>每个回调都为特定参数安装。如果该参数本身被修改了，或者其他可能影响该参数状态的另一个参数发生了变化，回调将被触发。</p>
+<p>以下示例演示如何为<code>Width</code>参数注册回调：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/gige/BaslerGigEInstantcamera.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C callback function</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">staticcallback</span><span class="params">(GenApi::INode* pNode )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Perhaps the value or state of &quot;</span> &lt;&lt; pNode-&gt;<span class="built_in">GetName</span>() &lt;&lt; <span class="string">&quot;has changed.&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">if</span> ( GenApi::<span class="built_in">IsReadable</span>( pNode ) ) &#123;</span><br><span class="line">    <span class="function">GenApi::CValuePtr <span class="title">ptrValue</span><span class="params">( pNode )</span></span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The current value is &quot;</span> &lt;&lt; ptrValue-&gt;<span class="built_in">ToString</span>() &lt;&lt; endl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// Member function as callback function</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">membercallback</span><span class="params">(GenApi::INode* pNode )</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Perhaps the value or state of &quot;</span> &lt;&lt; pNode-&gt;<span class="built_in">GetName</span>() &lt;&lt; <span class="string">&quot;has changed.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">if</span> ( GenApi::<span class="built_in">IsReadable</span>( pNode ) ) &#123;</span><br><span class="line">      <span class="function">GenApi::CValuePtr <span class="title">ptrValue</span><span class="params">( pNode )</span></span>;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;The current value is &quot;</span> &lt;&lt; ptrValue-&gt;<span class="built_in">ToString</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  PylonAutoInitTerm autoInitTerm;</span><br><span class="line"></span><br><span class="line">  C cb;  <span class="comment">// c.membercallback() will be installed as callback</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Only look for cameras supported by Camera_t.</span></span><br><span class="line">  CDeviceInfo info;</span><br><span class="line">  info.<span class="built_in">SetDeviceClass</span>( Camera_t::<span class="built_in">DeviceClass</span>());</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Create an Instant Camera object with the first found camera device matching the specified device class.</span></span><br><span class="line">  <span class="function">CBaslerGigEInstantCamera_t <span class="title">camera</span><span class="params">( CTlFactory::GetInstance().CreateFirstDevice( info))</span></span>;</span><br><span class="line">  camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Install the C-function as callback</span></span><br><span class="line">  GenApi::CallbackHandleType h1 =</span><br><span class="line">    GenApi::<span class="built_in">Register</span>( camera.Width.<span class="built_in">GetNode</span>(), &amp;staticcallback );</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Install a member function as callback</span></span><br><span class="line">  GenApi::CallbackHandleType h2 =</span><br><span class="line">    GenApi::<span class="built_in">Register</span>( camera.Width.<span class="built_in">GetNode</span>(), cb, &amp;C::membercallback );</span><br><span class="line"></span><br><span class="line">  <span class="comment">// This will trigger the callback functions</span></span><br><span class="line">  camera.Width.<span class="built_in">SetValue</span>( <span class="number">128</span> );</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Uninstall the callback functions</span></span><br><span class="line">  camera.Width.<span class="built_in">GetNode</span>()-&gt;<span class="built_in">DeregisterCallback</span>(h2);</span><br><span class="line">  camera.Width.<span class="built_in">GetNode</span>()-&gt;<span class="built_in">DeregisterCallback</span>(h1);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Close the camera object</span></span><br><span class="line">  camera.<span class="built_in">Close</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>对于<code>node map</code>中的节点，可以选择使用相机事件处理程序来得到参数变化的通知。这是因为当注册相机事件处理程序时，会为由节点名称标识的节点内部注册一个GenApi节点回调。这种回调触发对<a href="">CCameraEventHandler::OnCameraEvent()</a>方法的调用。使用相机事件处理程序可能更方便。有关如何注册相机事件处理程序的更多信息，请参见示例<a href="">Grab_CameraEvents</a>。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="Instant-Camera-Class-and-User-Provided-Buffers"><a href="#Instant-Camera-Class-and-User-Provided-Buffers" class="headerlink" title="Instant Camera Class and User Provided Buffers"></a>Instant Camera Class and User Provided Buffers</h1><p>可以将缓冲区工厂绑定到即时相机对象上，以使用用户提供的缓冲区。使用缓冲区工厂是可选的，仅适用于高级用例。缓冲区工厂类必须派生自<a href="">Pylon::IBufferFactory</a>。可以通过调用<a href="">SetBufferFactory()</a>将缓冲区工厂对象绑定到即时相机类的实例上。当调用<code>StartGrabbing</code>时，将分配缓冲区。在缓冲区工厂绑定到相机对象上时，不能删除缓冲区工厂；在最后一个缓冲区被释放之前，不能删除缓冲区工厂。要释放所有缓冲区，需要停止抓取且所有抓取结果都要被释放或销毁。示例<a href="">Grab_UsingBufferFactory</a>展示了缓冲区工厂的使用。</p>
+<h1 id="Initialization-Uninitialization-of-the-pylon-Runtime-Library-in-MFC-Applications"><a href="#Initialization-Uninitialization-of-the-pylon-Runtime-Library-in-MFC-Applications" class="headerlink" title="Initialization&#x2F;Uninitialization of the pylon Runtime Library in MFC Applications"></a>Initialization&#x2F;Uninitialization of the pylon Runtime Library in MFC Applications</h1><p>略</p>
+<h1 id="GigE-Multicast-Broadcast-Grab-Images-of-One-Camera-on-Multiple-Computers"><a href="#GigE-Multicast-Broadcast-Grab-Images-of-One-Camera-on-Multiple-Computers" class="headerlink" title="GigE Multicast&#x2F;Broadcast: Grab Images of One Camera on Multiple Computers"></a>GigE Multicast&#x2F;Broadcast: Grab Images of One Camera on Multiple Computers</h1><p>Basler GigE相机可以配置为发送图像数据流到多个目的地。可以使用IP组播或IP广播。</p>
+<h2 id="The-Controlling-Application-and-the-Monitoring-Application"><a href="#The-Controlling-Application-and-the-Monitoring-Application" class="headerlink" title="The Controlling Application and the Monitoring Application"></a>The Controlling Application and the Monitoring Application</h2><p>当不同计算机上的多个应用程序期望从同一台相机接收数据流时，其中一个应用程序负责配置相机以及开始和停止数据采集。这个应用程序被称为控制应用程序。其他也期望接收数据流的应用程序被称为监控应用程序。这些应用程序必须以只读模式连接到相机，可以读取所有相机参数，但不能更改它们。</p>
+<p>设备枚举和设备创建过程对于控制应用程序和监控应用程序是相同的。每种应用程序类型都必须为其将要接收数据的相机设备创建一个相机对象。组播设备的创建方式与单播设置相同（见前面的解释）。</p>
+<p>配置即时相机作为监控者的示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.MonitorModeActive = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>在使用Low Level API时，传递给相机对象的<a href="">Pylon::CBaslerGigECamera::Open()</a>方法的参数（<a href="">设备访问模式</a>）决定了应用程序是作为控制应用程序还是监控应用程序。以下代码片段展示了监控应用程序如何调用<code>Pylon::CBaslerGigECamera::Open()</code>方法：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Low Level-API only</span></span><br><span class="line"><span class="comment">// Open the camera in stream mode to receive multicast packets (monitoring mode)</span></span><br><span class="line"><span class="comment">// In this mode the camera must be controlled by another application that must be in controlling mode</span></span><br><span class="line">camera.<span class="built_in">Open</span>(Stream);</span><br></pre></td></tr></table></figure></div>
+
+<p>在使用Low Level API时，控制应用程序可以调用<code>Pylon::CBaslerGigECamera::Open()</code>方法而不传入任何参数（<code>Pylon::CBaslerGigECamera::Open()</code>方法的默认参数确保了设备将以控制和流模式打开），或者可以明确指定<code>Pylon::CBaslerGigECamera::Open()</code>方法的访问模式为控制和流模式：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Open the camera in controlling mode but without setting the Exclusive flag for the access mode</span></span><br><span class="line">camera.<span class="built_in">Open</span>(Stream | Control);</span><br></pre></td></tr></table></figure></div>
+
+<p>重要的是，控制应用程序不应设置访问模式的<code>Exclusive</code>标志。使用<code>Exclusive</code>标志将阻止监控应用程序完全访问相机。当控制应用程序希望接收相机事件时，必须将<code>Events</code>标志添加到访问模式参数中。</p>
+<p>控制应用程序和监控应用程序必须以与单播设置相同的方式创建流抓取对象。配置流抓取器用于组播或广播将在接下来的部分中解释。</p>
+<h2 id="Setting-Up-the-Controlling-Application-for-Enabling-Multicast-and-Broadcast"><a href="#Setting-Up-the-Controlling-Application-for-Enabling-Multicast-and-Broadcast" class="headerlink" title="Setting Up the Controlling Application for Enabling Multicast and Broadcast"></a>Setting Up the Controlling Application for Enabling Multicast and Broadcast</h2><p>GigE流抓取类的<a href="">TransmissionType</a>参数可以用来配置相机是向单一目的地发送数据流还是向多个目的地发送。</p>
+<p>当相机使用有限广播(<code>limited broadcasts</code>)发送图像数据时，相机向地址<code>255.255.255.255</code>发送数据，数据会发送到本地网络中的所有设备。“有限”意味着数据不会被发送到路由器后面的目的地，例如互联网中的计算机。要启用有限广播，控制应用程序必须将<code>TransmissionType</code>参数设置为<code>TransmissionType_LimitedBroadcast</code>。相机将数据发送到特定端口。关于设置接收相机数据的目的地端口，请参见<a href="">PortSelection</a>部分。</p>
+<p>当相机使用子网定向广播(<code>subnet directed broadcasts</code>)发送图像数据时，相机向与相机处于同一子网的所有设备发送数据。要启用子网定向广播，将<code>TransmissionType</code>参数设置为<code>TransmissionType_SubnetDirectedBroadcast</code>。关于设置接收相机数据的目的地端口的信息，请参见<code>PortSelection</code>部分。</p>
+<p>使用广播的缺点是相机将数据发送给网络中的所有接收者，无论这些设备是否需要数据。网络流量会造成一定的CPU负载，并消耗不需要流数据的设备的网络带宽。</p>
+<p>当相机使用组播(<code>multicasts</code>)发送图像数据时，数据仅发送给期望接收数据流的设备。设备通过加入所谓的组播组(<code>multicast group</code>)来声明其接收数据的意愿。组播组由组播地址范围（<code>224.0.0.0</code>至<code>239.255.255.255</code>）中的一个IP地址定义。特定组播组的成员只接收为该组准备的数据。其他组的数据不会被接收。通常，网络适配器和网络交换机能够在硬件级别有效地过滤网络包，防止由于网络中那些不属于组播组的设备的组播网络流量而导致的CPU负载。</p>
+<p>当为pylon启用组播时，pylon会自动处理加入和离开由目的地IP地址定义的组播组。请注意，组播地址范围中的一些地址是为一般用途保留的。由RFC 2365 指定的地址范围从<code>239.255.0.0</code>到<code>239.255.255.255</code>是由本地管理的地址空间。如果您不确定，请使用此范围内的地址。</p>
+<p>要启用组播流，控制应用程序必须将<code>TransmissionType</code>参数设置为<code>TransmissionType_Multicast</code>并将<a href="">DestinationAddr</a>参数设置为有效的组播IP地址。除了地址外，还必须指定端口。关于设置接收相机数据的目的地端口，请参见<a href="">Selecting a Destination Port</a>。</p>
+<p>使用<a href="">CBaslerUniversalInstantCamera</a>类的示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">camera.<span class="built_in">GetStreamGrabberParams</span>().DestinationAddr = <span class="string">&quot;239.0.0.1&quot;</span>;</span><br><span class="line">camera.<span class="built_in">GetStreamGrabberParams</span>().DestinationPort = <span class="number">49154</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>示例(Low Level):</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StreamGrabber.DestinationAddr = <span class="string">&quot;239.0.0.1&quot;</span>;</span><br><span class="line">StreamGrabber.DestinationPort = <span class="number">49154</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>在协议层面上，组播涉及所谓的IGMP消息（IGMP &#x3D; Internet Group Management Protocol）。要从组播中受益，应使用管理型网络交换机。这些管理型网络交换机支持IGMP协议，只有当连接了加入相应组播组的设备时，才转发组播包。如果交换机不支持IGMP协议，组播等同于广播。</p>
+<p>当多个相机在同一网络中进行组播时，每个相机应该向不同的组播组进行流媒体传输。如果使用的网络交换机支持IGMP协议，向不同的组播组流媒体传输可以减少CPU负载并节省网络带宽。</p>
+<h2 id="Setting-Up-the-Monitoring-Application-for-Receiving-Multicast-and-Broadcast-Streams"><a href="#Setting-Up-the-Monitoring-Application-for-Receiving-Multicast-and-Broadcast-Streams" class="headerlink" title="Setting Up the Monitoring Application for Receiving Multicast and Broadcast Streams"></a>Setting Up the Monitoring Application for Receiving Multicast and Broadcast Streams</h2><p>必须区分两种情况：</p>
+<ul>
+<li>监控应用程序在控制应用程序已经为广播或组播设置了流抓取器后打开流抓取器。</li>
+<li>监控应用程序在控制应用程序打开其流抓取器之前打开流抓取器。</li>
+</ul>
+<p>对于第一种情况，为监控应用程序设置流抓取器相对简单。由于控制应用程序已经配置了相机（即目的地地址和端口已由控制应用程序设置），这些设置可以很容易地从相机中读取。为了让监控应用程序的流抓取器从相机读取设置，监控应用程序必须将流抓取器的<a href="">TransmissionType</a>参数设置为<a href="">TransmissionType_UseCameraConfig</a>，然后调用流抓取器的<code>Open()</code>方法。</p>
+<p>使用<a href="">CBaslerUniversalInstantCamera</a>类的示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Select transmission type. If the camera is already controlled by another application</span></span><br><span class="line"><span class="comment">// and configured for multicast or broadcast, the active camera configuration can be used</span></span><br><span class="line"><span class="comment">// (IP Address and Port will be auto set).</span></span><br><span class="line">camera.<span class="built_in">GetStreamGrabberParams</span>().TransmissionType = TransmissionType_UseCameraConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Start grabbing...</span></span><br></pre></td></tr></table></figure></div>
+
+<p>Low Level示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Select transmission type. If the camera is already controlled by another application</span></span><br><span class="line"><span class="comment">// and configured for multicast or broadcast, the active camera configuration can be used</span></span><br><span class="line"><span class="comment">// (IP Address and Port will be auto set).</span></span><br><span class="line">StreamGrabber.TransmissionType = TransmissionType_UseCameraConfig;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the stream grabber</span></span><br><span class="line">StreamGrabber.<span class="built_in">Open</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>对于第二种情况，当监控应用程序在控制应用程序打开其流抓取器之前打开流抓取器时，不能使用<code>TransmissionType_UseCameraConfig</code>。相反，控制应用程序和所有监控应用程序必须对以下与IP目的地相关的参数使用相同的设置：</p>
+<ul>
+<li><a href="">TransmissionType</a></li>
+<li><a href="">DestinationAddr</a></li>
+<li><a href="">DestinationPort</a></li>
+</ul>
+<p>请注意，当使用广播时，<code>DestinationAddr</code>参数是只读的。Pylon将配置相机以使用正确的广播地址。</p>
+<p>当控制应用程序和监控应用程序显式设置与目的地相关的参数时，哪个应用程序首先打开流抓取器并不重要。</p>
+<h2 id="Selecting-a-Destination-Port"><a href="#Selecting-a-Destination-Port" class="headerlink" title="Selecting a Destination Port"></a>Selecting a Destination Port</h2><p>相机数据的目的地由目的地IP地址和目的地IP端口指定。对于组播，监控应用程序和控制应用程序必须为相同的组播IP地址配置流抓取器。相应地，对于广播，监控应用程序和控制应用程序必须使用由pylon自动设置的相同的广播IP地址。</p>
+<p>在这两种情况下，控制应用程序和监控应用程序都必须指定相同的目的地端口。所有应用程序必须使用一个在接收数据流的所有计算机上未被占用的端口。目的地端口通过使用流抓取器的<a href="">DestinationPort</a>参数来设置。</p>
+<p>当监控应用程序将<a href="">TransmissionType</a>参数设置为<code>TransmissionType_UseCameraConfig</code>时，它会自动使用控制应用程序已经写入相应相机寄存器的端口。在这种情况下，控制应用程序必须使用一个在运行监控应用程序的所有计算机上都未被使用的端口。Basler不建议使用这种自动选择机制来选择广播或组播端口。</p>
+<p>当<a href="">DestinationPort</a>参数设置为0时，pylon会自动选择一个未使用的端口。这对于只使用单播流的应用程序非常方便。在组播或广播的情况下，只有当监控应用程序对<a href="">TransmissionType</a>参数使用<code>TransmissionType_UseCameraConfig</code>值时，控制应用程序才可以使用参数值0。因为控制应用程序自动选择的端口可能已经在运行监控应用程序的计算机上被使用，所以我们不推荐使用这种自动选择机制来为广播或组播选择端口。</p>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>这里应该是想表达，在配置端口时要尽量避免使用自动端口选择机制，特别是在组播和广播设置中。自动选择可能导致在不同接收设备之间出现端口冲突。</p>
+<br>
+
+<p>关于网络的知识还要学习…</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Receiving-Image-Data"><a href="#Receiving-Image-Data" class="headerlink" title="Receiving Image Data"></a>Receiving Image Data</h2><p>对于广播或组播，抓取图像的方式与单播设置相同。控制和监控应用程序必须为抓取分配内存，将缓冲区注册到流抓取器，缓冲区入队并从流抓取器中检索它们。监控应用程序和控制应用程序之间唯一的区别是，只有控制应用程序负责启动和停止相机中的图像采集。</p>
+<h2 id="Sample-Program"><a href="#Sample-Program" class="headerlink" title="Sample Program"></a>Sample Program</h2><p>pylon SDK包含一个名为<a href="">Grab_MultiCast</a>的简单示例程序。此示例演示了如何为组播设置控制应用程序和监控应用程序。</p>
+<h1 id="GigE-Action-Commands"><a href="#GigE-Action-Commands" class="headerlink" title="GigE Action Commands"></a>GigE Action Commands</h1><p>动作命令(<code>action command</code>)特征允许您使用单个广播协议消息（无需额外布线）同时或在定义的时间点（计划操作命令）触发多个GigE设备（例如相机）中的动作。动作命令的使用方式与数字输入线等相同。</p>
+<p>在为操作命令设置所需的相机参数后，可以使用<a href="">Pylon::IGigETransportLayer::IssueActionCommand</a>或<a href="">Pylon::IGigETransportLayer::IssueScheduledActionCommand</a>方法来触发动作命令。这在示例 <a href="">Grab_UsingActionCommand</a>中有所展示。示例中使用<a href="">Pylon::CActionTriggerConfiguration</a>来设置所需的相机参数。<a href="">CActionTriggerConfiguration</a>以头文件形式提供。这样可以看到相机的哪些参数被更改。可以复制并修改代码以创建自己的配置类。</p>
+<h1 id="Saving-and-Restoring-Camera-Features-to-from-Files"><a href="#Saving-and-Restoring-Camera-Features-to-from-Files" class="headerlink" title="Saving and Restoring Camera Features to&#x2F;from Files"></a>Saving and Restoring Camera Features to&#x2F;from Files</h1><p>本节描述了如何将那些可读写的相机特征的当前值写入文件。还展示了如何将已保存的特征值写回设备。使用<a href="">Pylon::CFeaturePersistence</a>类来执行保存和恢复相机特征的操作。</p>
+<h2 id="Writing-the-Camera-Features-to-a-File"><a href="#Writing-the-Camera-Features-to-a-File" class="headerlink" title="Writing the Camera Features to a File"></a>Writing the Camera Features to a File</h2><p>使用静态方法<a href="">Pylon::CFeaturePersistence::Save()</a>来将相机当前特征的值保存至文件</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonUtilityIncludes.h&gt;</span></span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> Filename[] = <span class="string">&quot;NodeMap.pfs&quot;</span>; <span class="comment">// Pylon Feature Stream</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the camera</span></span><br><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Save the content of the camera&#x27;s node map into the file</span></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">CFeaturePersistence::<span class="built_in">Save</span>( Filename, &amp;camera.<span class="built_in">GetNodeMap</span>() );</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">catch</span> (Pylon::GenericException &amp;e)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// Error handling</span></span><br><span class="line">cerr &lt;&lt; <span class="string">&quot;An exception occurred!&quot;</span> &lt;&lt; endl &lt;&lt; e.<span class="built_in">GetDescription</span>() &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Writing-the-Feature-Values-Back-to-the-Camera"><a href="#Writing-the-Feature-Values-Back-to-the-Camera" class="headerlink" title="Writing the Feature Values Back to the Camera"></a>Writing the Feature Values Back to the Camera</h2><p>使用静态方法<a href="">Pylon::CFeaturePersistence::Load()</a>将相机特征值从文件中恢复。（使用配置文件配置相机特征参数）</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonUtilityIncludes.h&gt;</span></span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> Filename[] = <span class="string">&quot;NodeMap.pfs&quot;</span>;          <span class="comment">// Pylon Feature Stream</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the camera</span></span><br><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Read the content of the file back to the camera&#x27;s node map with validation on</span></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">CFeaturePersistence::<span class="built_in">Load</span>( Filename, &amp;camera.<span class="built_in">GetNodeMap</span>(), <span class="literal">true</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">catch</span> (Pylon::GenericException &amp;e)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// Error handling</span></span><br><span class="line">cerr &lt;&lt; <span class="string">&quot;An exception occurred!&quot;</span> &lt;&lt; endl &lt;&lt; e.<span class="built_in">GetDescription</span>() &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>代码截取自示例<a href="">ParametrizeCamera_LoadAndSave</a></p>
+<h1 id="Transferring-Shading-Data-to-the-Camera"><a href="#Transferring-Shading-Data-to-the-Camera" class="headerlink" title="Transferring Shading Data to the Camera"></a>Transferring Shading Data to the Camera</h1><p>本节描述了如何使用GenICam FileIO功能将增益校正数据(<code>gain shading data</code>)传输到相机。</p>
+<p>支持增益校正功能的相机设备会将校正数据作为文件存储在相机的内部文件系统中。这些文件通过在<a href="">GenApi&#x2F;Filestream.h</a>头文件中提供的GenICam <a href="">Filestream</a>类进行访问。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Include files to use the PYLON API</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"></span><br><span class="line"><span class="comment">// for file upload</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GenApi/Filestream.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Create the camera object of the first available camera</span></span><br><span class="line"><span class="comment">// The camera object is used to set and get all available</span></span><br><span class="line"><span class="comment">// camera features.</span></span><br><span class="line"><span class="function">Camera_t <span class="title">Camera</span><span class="params">(pTl-&gt;CreateDevice(devices[ <span class="number">0</span> ]))</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the camera</span></span><br><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></div>
+
+<p>GenICam定义了两个基于字符的流类，用于简化读写操作。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> ODevFileStreamBase&lt;<span class="type">char</span>, std::char_traits&lt;<span class="type">char</span>&gt; &gt; ODevFileStream;</span><br><span class="line"><span class="keyword">typedef</span> IDevFileStreamBase&lt;<span class="type">char</span>, std::char_traits&lt;<span class="type">char</span>&gt; &gt; IDevFileStream;</span><br></pre></td></tr></table></figure></div>
+
+<p><code>ODevFileStream</code>类用于将数据上传到相机的文件系统。<code>IDevFileStream</code>类用于从相机的文件系统下载数据。</p>
+<p>在内部，这些类使用<a href="">GenApi::FileProtocolAdapter</a>类。<a href="">GenApi::FileProtocolAdapter</a>类定义了像打开、关闭、读取和写入这样的基于文件的操作。</p>
+<p>这些操作的一个常见参数是要在设备文件系统上使用的文件名。文件名必须对应设备文件系统中的现有文件。要检索已连接相机支持的有效文件名列表，请读取<a href="">FileSelector</a>枚举特征的条目。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">GenApi::CEnumerationPtr ptrFileSelector = camera.<span class="built_in">GetNodeMap</span>().<span class="built_in">GetNode</span>(<span class="string">&quot;FileSelector&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> ( ptrFileSelector.<span class="built_in">IsValid</span>() ) &#123;</span><br><span class="line">  <span class="keyword">try</span></span><br><span class="line">  &#123;</span><br><span class="line">    GenApi::NodeList_t entries;</span><br><span class="line">    ptrFileSelector-&gt;<span class="built_in">GetEntries</span>( entries );</span><br><span class="line">    <span class="keyword">for</span> ( GenApi::NodeList_t::iterator it = entries.<span class="built_in">begin</span>(); it != entries.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">      <span class="keyword">if</span> (GenApi::<span class="built_in">IsAvailable</span>(*it)) &#123;</span><br><span class="line">        GenApi::CEnumEntryPtr pEntry = (*it);</span><br><span class="line">        <span class="keyword">if</span> ( <span class="literal">NULL</span> != pEntry ) &#123;</span><br><span class="line">          GenApi::INode* pNode = pEntry-&gt;<span class="built_in">GetNode</span>();</span><br><span class="line">          GenICam::gcstring strFilename = pEntry-&gt;<span class="built_in">GetSymbolic</span>().<span class="built_in">c_str</span>();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Do with strFilename whatever you want (e.g. adding to a list)</span></span><br><span class="line">          <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="comment">// if</span></span><br><span class="line">      &#125; <span class="comment">// if</span></span><br><span class="line">    &#125; <span class="comment">// for</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">catch</span> (Pylon::GenericException &amp;e)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Handle error</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="comment">// if</span></span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Upload-Shading-Data-to-the-Camera"><a href="#Upload-Shading-Data-to-the-Camera" class="headerlink" title="Upload Shading Data to the Camera"></a>Upload Shading Data to the Camera</h2><p>相机设备将增益校正数据存储在名为“UserGainShading1”、“UserGainShading2”等的文件中。</p>
+<p>要将增益校正数据上传到相机，请使用<a href="">ODevFileStream</a>类。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Name of the file in the camera where shading data is stored</span></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">char</span> CameraFilename[] = <span class="string">&quot;UserGainShading1&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Read data from local file into pBuf</span></span><br><span class="line"><span class="type">char</span> *pBuf = <span class="keyword">new</span> <span class="type">char</span>[Size];</span><br><span class="line"><span class="type">size_t</span> read = <span class="built_in">fread</span>(pBuf, <span class="number">1</span>, Size, fp);</span><br><span class="line"><span class="built_in">fclose</span>(fp);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (read != Size) &#123;</span><br><span class="line">    <span class="built_in">RUNTIME_EXCEPTION</span>(<span class="string">&quot;Failed to read from file &#x27;%s&#x27;\n&quot;</span>, pLocalFilename);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Transfer data to camera</span></span><br><span class="line"><span class="function">ODevFileStream <span class="title">stream</span><span class="params">(&amp;camera.GetNodeMap(), CameraFilename)</span></span>;</span><br><span class="line">stream.<span class="built_in">write</span>(pBuf, <span class="built_in">streamsize</span>(Size));</span><br><span class="line"><span class="keyword">if</span> (stream.<span class="built_in">fail</span>()) &#123;</span><br><span class="line">    <span class="comment">// Do some error handling</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stream.<span class="built_in">close</span>();</span><br><span class="line"><span class="keyword">delete</span>[] pBuf;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></div>
+<p>上述代码截取自示例<a href="">ParametrizeCamera_Shading</a></p>
+<h2 id="Download-Shading-Data-From-the-Camera"><a href="#Download-Shading-Data-From-the-Camera" class="headerlink" title="Download Shading Data From the Camera"></a>Download Shading Data From the Camera</h2><p>从相机下载增益校正数据到缓冲区上跟上传过程一样简单：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> FILEBUFFSIZE 1024   <span class="comment">// size of receive buffer!</span></span></span><br><span class="line"><span class="comment">// Name of the file in the camera where shading data is stored</span></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">char</span> CameraFilename[] = <span class="string">&quot;UserGainShading1&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> *pBuffer = <span class="keyword">new</span> <span class="type">char</span>[FILEBUFFSIZE];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Transfer data from camera</span></span><br><span class="line"><span class="function">IDevFileStream <span class="title">stream</span><span class="params">(&amp;camera.GetNodeMap(), CameraFilename)</span></span>;</span><br><span class="line"><span class="keyword">if</span> (stream.<span class="built_in">fail</span>()) &#123;</span><br><span class="line">  <span class="built_in">RUNTIME_EXCEPTION</span>(<span class="string">&quot;Failed to open camerafile file &#x27;%s&#x27;\n&quot;</span>, CameraFilename);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> nBytesRead = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (stream.<span class="built_in">is_open</span>()) &#123;</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    stream.<span class="built_in">read</span>(pBuffer, FILEBUFFSIZE); <span class="comment">// read max. FILEBUFFSIZE number of bytes from camera</span></span><br><span class="line">    nBytesRead = stream.<span class="built_in">gcount</span>();     <span class="comment">// get number of bytes read</span></span><br><span class="line">    <span class="keyword">if</span> (nBytesRead &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// Do something with the received bytes in pBuffer e.g. writing to disk</span></span><br><span class="line">      <span class="comment">// file.write(pBuffer, nBytesRead);</span></span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">while</span> (nBytesRead == FILEBUFFSIZE);   <span class="comment">// if nBytesRead == FILEBUFFSIZE maybe there are more data to receive</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stream.<span class="built_in">close</span>();</span><br><span class="line"><span class="keyword">delete</span> [] pBuffer;</span><br></pre></td></tr></table></figure></div>
+
+
+<h1 id="Waiting-for-Multiple-Events"><a href="#Waiting-for-Multiple-Events" class="headerlink" title="Waiting for Multiple Events"></a>Waiting for Multiple Events</h1><h2 id="Wait-Objects"><a href="#Wait-Objects" class="headerlink" title="Wait Objects"></a>Wait Objects</h2><p>在应用程序中，一般会有一个单独的线程专门用于抓取图像。通常，这个抓取线程必须与应用程序的其他线程同步。例如，应用程序可能想要通知抓取线程终止。</p>
+<p>可以使用等待对象(<code>Wait Objects</code>)来同步线程。等待对象的概念允许您获取关于事件的信息，例如抓取到的图像。</p>
+<p>等待对象是操作系统特定对象的抽象，可以是有信号的或无信号的。等待对象提供了一种等待操作，该操作会阻塞直到等待对象被标记为有信号状态。</p>
+<p>虽然pylon接口返回<a href="">Pylon::WaitObject</a>类型的对象，但pylon还提供了<a href="">Pylon::WaitObjectEx</a>类，用户应用程序需要实例化这个类。使用静态工厂方法<a href="">WaitObjectEx::Create()</a>来创建这些等待对象。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="function">WaitObjectEx <span class="title">wo</span><span class="params">( WaitObjectEx::Create() )</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<p><a href="">WaitObjectEx::Signal()</a>方法用于标记一个等待对象。<a href="">WaitObjectEx::Reset()</a>方法可以用来将等待对象置为无信号状态。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Put w0 into the signaled state</span></span><br><span class="line">w<span class="number">0.</span><span class="built_in">Signal</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Put w0 into the non-signaled state</span></span><br><span class="line">w<span class="number">0.</span><span class="built_in">Reset</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>对于Windows操作系统，<a href="">Pylon::WaitObject</a>和<a href="">Pylon::WaitObjectEx</a>类是对原生Win32对象的封装。可以创建这些类的实例来封装已存在的句柄：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create or retrieve a handle for a Win32 object that can be signaled and used</span></span><br><span class="line"><span class="comment">// to wait for, e.g., an event or mutex.</span></span><br><span class="line">HANDLE h = <span class="built_in">CreateOrGetAHandle</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a wait object from a given handle</span></span><br><span class="line"><span class="function">WaitObjectEx <span class="title">wo</span><span class="params">(h)</span></span>;  <span class="comment">// When wo is destroyed, the handle remains valid!</span></span><br></pre></td></tr></table></figure></div>
+
+<p>默认情况下，封装的句柄会被复制。但也可以让<a href="">WaitObjectEx</a>接管句柄的所有权：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create or retrieve a handle for a Win32 object that can be signaled and used</span></span><br><span class="line"><span class="comment">// to wait for, e.g., an event or mutex.</span></span><br><span class="line">HANDLE h = <span class="built_in">CreateOrGetAHandle</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a wait object from a given handle</span></span><br><span class="line"><span class="function">WaitObjectEx <span class="title">wo</span><span class="params">(h, <span class="literal">true</span>)</span></span>;    <span class="comment">// When wo is destroyed, the handle will be closed!</span></span><br></pre></td></tr></table></figure></div>
+
+<p><a href="">WaitObjectEx</a>类适用于封装那些可以触发信号操作的对象的句柄。这不适用于线程句柄或可等待计时器。要封装这种对象（线程句柄或可等待计时器），使用<a href="">WaitObject</a>类代替。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create or retrieve a handle for a Win32 object whose handle can be used</span></span><br><span class="line"><span class="comment">// to wait for but can&#x27;t be signaled, e.g. a thread, or waitable timer</span></span><br><span class="line">HANDLE h = <span class="built_in">CreateOrGetAHandle</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create wait object that can&#x27;t be signaled from a given handle</span></span><br><span class="line"><span class="function">WaitObject <span class="title">wo</span><span class="params">(h)</span></span>;    <span class="comment">// When wo is destroyed, the handle remains valid!</span></span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>在Linux中，Pylon的<code>WaitObject</code>是基于文件描述符实现的，其等待操作是使用<code>poll()</code>实现的。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Container-for-Wait-Objects"><a href="#Container-for-Wait-Objects" class="headerlink" title="Container for Wait Objects"></a>Container for Wait Objects</h2><p><a href="">Pylon::WaitObjects</a>类是一个用于存储等待对象的容器，提供了两种等待容器中等待对象的方法：</p>
+<ul>
+<li><a href="">Pylon::WaitObjects::WaitForAny()</a>方法在容器中至少有一个对象被标记为“已通知”时返回。</li>
+<li><a href="">Pylon::WaitObjects::WaitForAll()</a>方法在容器中所有对象都被标记为“已通知”时返回。</li>
+</ul>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a container and insert two wait objects</span></span><br><span class="line">WaitObjects waitObjects;</span><br><span class="line">waitObjects.<span class="built_in">Add</span>(w0);</span><br><span class="line">waitObjects.<span class="built_in">Add</span>(w1);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Wait for three seconds until any of the wait objects get signaled</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> index;</span><br><span class="line"><span class="keyword">if</span> ( waitObjects.<span class="built_in">WaitForAny</span>( <span class="number">3000</span>, &amp;index) ) &#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;WaitObject w&quot;</span> &lt;&lt; index &lt;&lt; <span class="string">&quot; has been signaled&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Timeout occurred when waiting for wait objects&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Wait for three seconds until all of the wait objects are signaled</span></span><br><span class="line"><span class="keyword">if</span> ( waitObjects.<span class="built_in">WaitForAll</span>(<span class="number">3000</span>) ) &#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;All wait objects are signaled&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;Timeout occurred when waiting for wait objects&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>以下代码片段演示了如何在抓取线程中使用<a href="">WaitForAny()</a>方法同时等待缓冲区和终止请求。</p>
+<p>准备抓取后，应用程序的主线程启动抓取线程并休眠5秒。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 启动抓取线程。抓取线程开始图像采集并抓取图像</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Going to start the grab thread&quot;</span> &lt;&lt; endl;</span><br><span class="line"><span class="built_in">StartThread</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 让线程抓取图像5秒</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> defined(PYLON_WIN_BUILD)</span></span><br><span class="line"><span class="built_in">Sleep</span>(<span class="number">5000</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">elif</span> defined(PYLON_UNIX_BUILD)</span></span><br><span class="line"><span class="built_in">sleep</span>(<span class="number">5</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">error</span> unsupported platform</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>抓取线程设置了一个等待对象容器，包括StreamGrabber的等待对象和一个<a href="">Pylon::WaitObjectEx</a>。后者被主线程用来请求终止抓取：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建并准备等待对象容器</span></span><br><span class="line">WaitObjects waitObjects;</span><br><span class="line"></span><br><span class="line">waitObjects.<span class="built_in">Add</span>(camera.<span class="built_in">GetGrabResultWaitObject</span>());  <span class="comment">// 获取抓取结果通知</span></span><br><span class="line">waitObjects.<span class="built_in">Add</span>(m_TerminationEvent); <span class="comment">// 获取终止请求通知</span></span><br></pre></td></tr></table></figure></div>
+
+<p>然后抓取线程进入一个无限循环，开始等待任何一个等待对象：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CGrabResultPtr result;   <span class="comment">// 抓取结果</span></span><br><span class="line"><span class="type">bool</span> terminate = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">while</span> (!terminate) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!waitObjects.<span class="built_in">WaitForAny</span>(INFINITE, &amp;index)) &#123;</span><br><span class="line">    <span class="comment">// 发生超时，当使用INFINITE时永不发生</span></span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Timeout occurred????&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当<a href="">WaitForAny()</a>方法返回<code>true</code>时，<code>index</code>的值用于判断是缓冲区已被抓取还是存在一个终止抓取的请求：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (index)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:  <span class="comment">// 一个已抓取的缓冲区可用</span></span><br><span class="line">  <span class="keyword">if</span> (m_Camera.<span class="built_in">RetrieveResult</span>(<span class="number">0</span>, result, TimeoutHandling_Return)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (result-&gt;<span class="built_in">GrabSucceeded</span>()) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;Successfully grabbed image &quot;</span> &lt;&lt; ++nSucc &lt;&lt; endl;</span><br><span class="line">      <span class="type">unsigned</span> <span class="type">char</span>* pPixel = (<span class="type">unsigned</span> <span class="type">char</span>*) result-&gt;<span class="built_in">GetBuffer</span>();</span><br><span class="line">      <span class="comment">// 处理缓冲区......</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Failed to retrieve result&quot;</span> &lt;&lt; endl;</span><br><span class="line">    terminate = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:  <span class="comment">// 收到一个终止请求</span></span><br><span class="line">  terminate = <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">break</span>;</span><br><span class="line">&#125; <span class="comment">// switch</span></span><br></pre></td></tr></table></figure></div>
+
+<p>主线程通过调用<a href="">WaitObjectEx</a>的<a href="">Signal()</a>方法向抓取线程发出终止信号：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 发出终止请求</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Going to issue termination request&quot;</span> &lt;&lt; endl;</span><br><span class="line">m_TerminationEvent.<span class="built_in">Signal</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>主线程等待直到抓取线程终止。如何从原生Win32线程句柄创建一个<a href="">Pylon::WaitObject</a>展示如下，该<a href="">WaitObject</a>用于等待。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与线程同步，即等待它终止</span></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Going to join with the thread&quot;</span> &lt;&lt; endl;</span><br><span class="line"><span class="function">WaitObject <span class="title">woThread</span><span class="params">(m_hThread)</span></span>;</span><br><span class="line">woThread.<span class="built_in">Wait</span>(INFINITE);  <span class="comment">// 等待直到线程终止</span></span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p><code>WaitObject</code>是pylon中很有意思的设计，后续有时间可以深入了解一下。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Interruptible-Wait-Operation"><a href="#Interruptible-Wait-Operation" class="headerlink" title="Interruptible Wait Operation"></a>Interruptible Wait Operation</h2><p>在上节中展示了如何使用<a href="">Pylon::WaitObjectEx</a>来通知线程终止。</p>
+<p>作为使用专用等待对象获取外部事件通知的替代方法，可以使用<a href="">WaitObject::WaitEx()</a>方法进行等待。这种等待操作可以被中断。对于pylon的Windows版本，<a href="">WaitEx()</a>可以通过排队的APC（异步过程调用）或I&#x2F;O完成例程来中断。对于pylon的Linux和macOS版本，<a href="">WaitEx()</a>可以通过信号来中断。</p>
+<p>对应于<a href="">WaitObject::WaitEx()</a>方法，<a href="">Pylon::WaitObjects</a>类提供了可中断的<a href="">WaitForAnyEx()</a>和<a href="">WaitForAllEx()</a>方法。</p>
+<h1 id="Application-Settings-for-High-Performance"><a href="#Application-Settings-for-High-Performance" class="headerlink" title="Application Settings for High Performance"></a>Application Settings for High Performance</h1><p>对于需要以恒定帧率和低抖动进行图像处理的应用，推荐以下设置：</p>
+<ul>
+<li>数据包大小应调整为网络适配器和网络设置支持的最高值，例如，数据包大小调整到8092字节。</li>
+<li>抓取循环线程应该将其优先级设置在实时优先级范围内。抓取循环线程是调用<a href="">RetrieveResult()</a>方法的线程。推荐的值为24或更高。线程优先级可以使用<a href="">SetRTThreadPriority</a>方法调整。由即时相机对象可选地提供的抓取循环线程的优先级可以通过<a href="">GrabLoopThreadPriorityOverride</a>和<a href="">GrabLoopThreadPriority</a>参数进行调整。</li>
+<li>内部即时相机抓取引擎线程的优先级应设置在实时优先级范围内。推荐的值为25或更高。默认优先级为25。抓取引擎线程的优先级必须高于抓取循环线程的优先级。抓取引擎线程的优先级可以通过<a href="">InternalGrabEngineThreadPriorityOverride</a>和<a href="">InternalGrabEngineThreadPriority</a>参数进行调整。</li>
+</ul>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>在使用实时线程优先级时，要非常小心，确保没有高优先级的线程会消耗所有可用的CPU时间。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="Programming-Using-the-pylon-Low-Level-API"><a href="#Programming-Using-the-pylon-Low-Level-API" class="headerlink" title="Programming Using the pylon Low Level API"></a>Programming Using the pylon Low Level API</h1><p>Instant Camera类使用Low Level API进行操作。这意味着之前的API，现在称为Low Level API，仍然是pylon C++ API的一部分，并将在未来继续存在。Low Level API可用于现有的应用程序以及那些无法通过使用Instant Camera类解决的罕见的高级用例。关于如何使用Low Level API编程的更多信息，可以在<a href="">此处</a>找到。</p>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>虽然Instant Camera类提供了简化和抽象的接口，但若需要进行定制操作，可以通过Low Level API来实现更精细的控制。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="Migrating-Existing-Code-for-Using-SFNC-2-x-Based-Camera-Devices"><a href="#Migrating-Existing-Code-for-Using-SFNC-2-x-Based-Camera-Devices" class="headerlink" title="Migrating Existing Code for Using SFNC 2.x-Based Camera Devices"></a>Migrating Existing Code for Using SFNC 2.x-Based Camera Devices</h1><p>略</p>
+<h1 id="Camera-Emulator"><a href="#Camera-Emulator" class="headerlink" title="Camera Emulator"></a>Camera Emulator</h1><p>Pylon提供了一个相机仿真传输层，与其他传输层类似。这个相机仿真传输层可以创建简单的相机仿真设备，允许您在没有将物理相机设备连接到计算机的情况下开发应用程序。虽然仿真器的功能有限，但它能够为不同的位深生成测试图像。</p>
+<p>可以通过设置环境变量<code>&lt;⁠PYLON_CAMEMU&gt;</code>来控制可用的仿真器设备数量。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PYLON_CAMEMU=2</span><br></pre></td></tr></table></figure></div>
+
+<p>这将提供两个仿真器设备。这些设备可以通过pylon API和pylon Viewer程序访问。</p>
+<p>当未设置<code>&lt;⁠PYLON_CAMEMU&gt;</code>时，不提供仿真器设备。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>支持的最大仿真设备数量为256个。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="Image-Decompression"><a href="#Image-Decompression" class="headerlink" title="Image Decompression"></a>Image Decompression</h1><p>暂略</p>
+<h1 id="Multi-Component-Grab-Results"><a href="#Multi-Component-Grab-Results" class="headerlink" title="Multi-Component Grab Results"></a>Multi-Component Grab Results</h1><p>暂略</p>
+<h1 id="Static-Defect-Pixel-Correction"><a href="#Static-Defect-Pixel-Correction" class="headerlink" title="Static Defect Pixel Correction"></a>Static Defect Pixel Correction</h1><p>暂略</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Pylon C++ Advanced Topics</li>
+        <li><strong>作者:</strong> paw5zx</li>
+        <li><strong>创建于
+                :</strong> 2024-11-20 16:04:35</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2024-11-23 23:13:15
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://paw5zx.github.io/pylon-cpp-advanced-topics/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-cpp-programmer-guide/" title="Pylon C++ Programmer's Guide" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Programmer's Guide" class="!max-w-none">
+  <span class="title">Pylon C++ Programmer's Guide</span>
+</a><a class="recommended-article-item" href="/pylon-camera-events-handling/" title="Pylon事件通知机制的实现" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon事件通知机制的实现" class="!max-w-none">
+  <span class="title">Pylon事件通知机制的实现</span>
+</a><a class="recommended-article-item" href="/aravis-multiple-acquisition-main-thread/" title="开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread" class="!max-w-none">
+  <span class="title">开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-cpp-programmer-guide/" title="Pylon C++ Programmer's Guide" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Programmer's Guide" class="!max-w-none">
+  <span class="title">Pylon C++ Programmer's Guide</span>
+</a><a class="recommended-article-item" href="/pylon-camera-events-handling/" title="Pylon事件通知机制的实现" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon事件通知机制的实现" class="!max-w-none">
+  <span class="title">Pylon事件通知机制的实现</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/pylon-cpp-programmer-guide/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Pylon C++ Programmer&#39;s Guide</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'paw5zx/Blog-discussion',
+                'data-repo-id': 'R_kgDOMnAVmg',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMnAVms4Ch3WS',
+                'data-mapping': 'pathname',
+                'data-strict': '1',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">Pylon C++ Advanced Topics</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture-of-pylon"><span class="nav-text">Architecture of pylon</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transport-Layers"><span class="nav-text">Transport Layers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transport-Layer-Factory"><span class="nav-text">Transport Layer Factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GenApi-Node-Maps"><span class="nav-text">GenApi Node Maps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-Level-API"><span class="nav-text">Low Level API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Low-Level-API-pylon-Devices"><span class="nav-text">Low Level API pylon Devices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stream-Grabbers"><span class="nav-text">Stream Grabbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Grabbers"><span class="nav-text">Event Grabbers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chunk-Parsers"><span class="nav-text">Chunk Parsers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instant-Camera-Classes"><span class="nav-text">Instant Camera Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Handling-Support"><span class="nav-text">Image Handling Support</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumerating-and-Creating-pylon-Devices"><span class="nav-text">Enumerating and Creating pylon Devices</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Device-Classes"><span class="nav-text">Device Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Device-Info-Objects"><span class="nav-text">Device Info Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-Transport-Layer-Factory-for-Enumerating-Cameras"><span class="nav-text">Using the Transport Layer Factory for Enumerating Cameras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-the-Transport-Layer-Factory-to-Create-a-Transport-Layer"><span class="nav-text">Using the Transport Layer Factory to Create a Transport Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-a-Transport-Layer-Object-for-Enumerating-Cameras"><span class="nav-text">Using a Transport Layer Object for Enumerating Cameras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Applying-a-Filter-when-Enumerating-Cameras"><span class="nav-text">Applying a Filter when Enumerating Cameras</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Specific-Cameras"><span class="nav-text">Creating Specific Cameras</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Grab-Strategies"><span class="nav-text">Grab Strategies</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#One-by-One-Grab-Strategy"><span class="nav-text">One by One Grab Strategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latest-Image-Only-Grab-Strategy"><span class="nav-text">Latest Image Only Grab Strategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latest-Images-Strategy"><span class="nav-text">Latest Images Strategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upcoming-Image-Grab-Strategy"><span class="nav-text">Upcoming Image Grab Strategy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getting-Informed-About-Camera-Device-Removal"><span class="nav-text">Getting Informed About Camera Device Removal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Accessing-Chunk-Features"><span class="nav-text">Accessing Chunk Features</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Handling-Camera-Events"><span class="nav-text">Handling Camera Events</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getting-Informed-About-Parameter-Changes"><span class="nav-text">Getting Informed About Parameter Changes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Instant-Camera-Class-and-User-Provided-Buffers"><span class="nav-text">Instant Camera Class and User Provided Buffers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Initialization-Uninitialization-of-the-pylon-Runtime-Library-in-MFC-Applications"><span class="nav-text">Initialization&#x2F;Uninitialization of the pylon Runtime Library in MFC Applications</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GigE-Multicast-Broadcast-Grab-Images-of-One-Camera-on-Multiple-Computers"><span class="nav-text">GigE Multicast&#x2F;Broadcast: Grab Images of One Camera on Multiple Computers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Controlling-Application-and-the-Monitoring-Application"><span class="nav-text">The Controlling Application and the Monitoring Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-Up-the-Controlling-Application-for-Enabling-Multicast-and-Broadcast"><span class="nav-text">Setting Up the Controlling Application for Enabling Multicast and Broadcast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-Up-the-Monitoring-Application-for-Receiving-Multicast-and-Broadcast-Streams"><span class="nav-text">Setting Up the Monitoring Application for Receiving Multicast and Broadcast Streams</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selecting-a-Destination-Port"><span class="nav-text">Selecting a Destination Port</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Receiving-Image-Data"><span class="nav-text">Receiving Image Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sample-Program"><span class="nav-text">Sample Program</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GigE-Action-Commands"><span class="nav-text">GigE Action Commands</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Saving-and-Restoring-Camera-Features-to-from-Files"><span class="nav-text">Saving and Restoring Camera Features to&#x2F;from Files</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-the-Camera-Features-to-a-File"><span class="nav-text">Writing the Camera Features to a File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-the-Feature-Values-Back-to-the-Camera"><span class="nav-text">Writing the Feature Values Back to the Camera</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transferring-Shading-Data-to-the-Camera"><span class="nav-text">Transferring Shading Data to the Camera</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-Shading-Data-to-the-Camera"><span class="nav-text">Upload Shading Data to the Camera</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-Shading-Data-From-the-Camera"><span class="nav-text">Download Shading Data From the Camera</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Waiting-for-Multiple-Events"><span class="nav-text">Waiting for Multiple Events</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wait-Objects"><span class="nav-text">Wait Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-for-Wait-Objects"><span class="nav-text">Container for Wait Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interruptible-Wait-Operation"><span class="nav-text">Interruptible Wait Operation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Application-Settings-for-High-Performance"><span class="nav-text">Application Settings for High Performance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Programming-Using-the-pylon-Low-Level-API"><span class="nav-text">Programming Using the pylon Low Level API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Migrating-Existing-Code-for-Using-SFNC-2-x-Based-Camera-Devices"><span class="nav-text">Migrating Existing Code for Using SFNC 2.x-Based Camera Devices</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Camera-Emulator"><span class="nav-text">Camera Emulator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Image-Decompression"><span class="nav-text">Image Decompression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multi-Component-Grab-Results"><span class="nav-text">Multi-Component Grab Results</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Static-Defect-Pixel-Correction"><span class="nav-text">Static Defect Pixel Correction</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.8; --fa-beat-fade-scale: 1.00;"></i>&nbsp;&nbsp;<a href="/">paw5zx</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 42 篇文章
+                    </span>
+                    
+                        <span>
+                            共 73.5k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

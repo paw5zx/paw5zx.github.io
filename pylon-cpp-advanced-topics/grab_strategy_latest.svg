@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" width="3.428in" height="2.60009in" viewBox="0 0 246.816 187.207" xml:space="preserve" color-interpolation-filters="sRGB" class="st11">
+	<style type="text/css"><![CDATA[
+		.st1 {fill:#f2f2f2;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st2 {fill:#000000;font-family:Arial;font-size:0.666664em}
+		.st3 {fill:#b9e2b8;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st4 {fill:#d8d86d;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st5 {font-size:1em}
+		.st6 {fill:#cdcdcd;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st7 {fill:#e6e6e6;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.12}
+		.st8 {marker-end:url(#mrkr4-40);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.72}
+		.st9 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.28571428571429}
+		.st10 {fill:#b3b3b3;stroke:#4d4d4d;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.24}
+		.st11 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]></style>
+	<defs id="Markers">
+		<g id="lend4">
+			<path d="M 2 1 L 0 0 L 2 -1 L 2 1 " style="stroke:none" />
+		</g>
+		<marker id="mrkr4-40" class="st9" refX="-6.5" orient="auto" markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend4" transform="scale(-3.5,-3.5) " />
+		</marker>
+	</defs>
+	<g>
+		<title>Zeichenblatt-1</title>
+		<g id="shape20-1" transform="translate(0.06,-164.469)">
+			<title>Rectangle.20</title>
+			<desc>Application</desc>
+			<rect x="0" y="164.529" width="215.433" height="22.6772" class="st1" />
+			<text x="88.15" y="178.27" class="st2">Application</text>
+		</g>
+		<g id="shape14-4" transform="translate(0.06,-106.359)">
+			<title>Rectangle.14</title>
+			<desc>Instant Camera Grab Engine</desc>
+			<rect x="0" y="144.687" width="215.433" height="42.5197" class="st3" />
+			<text x="56.8" y="155.89" class="st2">Instant Camera Grab Engine</text>
+		</g>
+		<g id="shape18-7" transform="translate(0.06,-56.7529)">
+			<title>Rectangle.18</title>
+			<desc>Low Level API (pylon Device Stream Grabber)</desc>
+			<rect x="0" y="164.529" width="215.433" height="22.6772" class="st4" />
+			<text x="82.15" y="173.47" class="st2">Low Level API <tspan x="52.36" dy="1.2em" class="st5">(</tspan>pylon Device Stream Grabber)</text>
+		</g>
+		<g id="shape7-11" transform="translate(0.06,-28.4065)">
+			<title>Rectangle</title>
+			<desc>pylon Driver</desc>
+			<rect x="0" y="164.529" width="215.433" height="22.6772" class="st1" />
+			<text x="86.38" y="178.27" class="st2">pylon Driver</text>
+		</g>
+		<g id="shape9-14" transform="translate(0.06,-0.06)">
+			<title>Rectangle.9</title>
+			<desc>Camera Device</desc>
+			<rect x="0" y="164.529" width="215.433" height="22.6772" class="st1" />
+			<text x="80.15" y="178.27" class="st2">Camera Device</text>
+		</g>
+		<g id="shape34-17" transform="translate(194.07,56.7529) rotate(90) scale(-1,1)">
+			<title>60 degree single</title>
+			<desc>5</desc>
+			<path d="M0 167.36 L11.46 147.52 L11.46 160.62 L34.02 160.62 L34.02 174.11 L11.46 174.11 L11.46 187.21 L0 167.36 Z" class="st6" />
+			<text x="14.78" y="-164.96" transform="scale(1,-1)" class="st2">5</text>
+		</g>
+		<g id="shape3-20" transform="translate(123.084,-113.446)">
+			<title>Rectangle.3</title>
+			<desc>Output Queue</desc>
+			<rect x="0" y="170.199" width="85.0394" height="17.0079" class="st7" />
+			<text x="17.39" y="181.4" class="st2">Output Queue</text>
+		</g>
+		<g id="shape4-23" transform="translate(6.86315,-113.446)">
+			<title>Rectangle.4</title>
+			<desc>Empty Buffer Queue</desc>
+			<rect x="0" y="170.199" width="85.0394" height="17.0079" class="st7" />
+			<text x="6.28" y="181.4" class="st2">Empty Buffer Queue</text>
+		</g>
+		<g id="shape40-26" transform="translate(20.9164,22.7372) rotate(-90) scale(-1,1)">
+			<title>60 degree single.40</title>
+			<desc>4</desc>
+			<path d="M0 167.36 L11.46 147.52 L11.46 160.62 L34.02 160.62 L34.02 174.11 L11.46 174.11 L11.46 187.21 L0 167.36 Z" class="st6" />
+			<text x="-19.23" y="169.76" transform="scale(-1,1)" class="st2">4</text>
+		</g>
+		<g id="shape1-29" transform="translate(194.07,107.777) rotate(90) scale(-1,1)">
+			<title>60 degree single.1</title>
+			<desc>1</desc>
+			<path d="M0 167.36 L11.46 147.52 L11.46 160.62 L34.02 160.62 L34.02 174.11 L11.46 174.11 L11.46 187.21 L0 167.36 Z" class="st6" />
+			<text x="14.78" y="-164.96" transform="scale(1,-1)" class="st2">1</text>
+		</g>
+		<g id="shape12-32" transform="translate(20.9164,73.7608) rotate(-90) scale(-1,1)">
+			<title>60 degree single.12</title>
+			<desc>3</desc>
+			<path d="M0 167.36 L11.46 147.52 L11.46 160.62 L34.02 160.62 L34.02 174.11 L11.46 174.11 L11.46 187.21 L0 167.36 Z" class="st6" />
+			<text x="-19.23" y="169.76" transform="scale(-1,1)" class="st2">3</text>
+		</g>
+		<g id="shape21-35" transform="translate(294.983,77.7293) rotate(90) scale(-1,1)">
+			<title>Loop on center.21</title>
+			<path d="M-0 183.2 A6.37795 6.37795 0 1 1 4.46 193.56 L4.14 193.4" class="st8" />
+		</g>
+		<g id="shape19-41" transform="translate(375.771,17.0679) rotate(90) scale(-1,1)">
+			<title>Loop on center.19</title>
+			<path d="M-0 183.2 A6.37795 6.37795 0 1 1 4.46 193.56 L4.14 193.4" class="st8" />
+		</g>
+		<g id="shape41-46" transform="translate(91.9025,236.589) scale(1,-1)">
+			<title>60 degree single.19</title>
+			<desc>4.1</desc>
+			<path d="M0 175.87 L6.55 164.53 L6.55 172.01 L31.18 172.01 L31.18 179.72 L6.55 179.72 L6.55 187.21 L0 175.87 Z" class="st6" />
+			<text x="10.03" y="-173.47" transform="scale(1,-1)" class="st2">4.1</text>
+		</g>
+		<g id="shape42-49" transform="translate(305.835,302.858) rotate(-45) scale(1,-1)">
+			<title>60 degree single.42</title>
+			<desc>2</desc>
+			<path d="M0 175.87 L6.55 164.53 L6.55 172.01 L19.84 172.01 L19.84 179.72 L6.55 179.72 L6.55 187.21 L0 175.87 Z" class="st10" />
+			<text x="7.7" y="-173.47" transform="scale(1,-1)" class="st2">2</text>
+		</g>
+	</g>
+</svg>
