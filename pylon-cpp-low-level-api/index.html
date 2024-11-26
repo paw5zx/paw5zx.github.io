@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="paw5zx">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://paw5zx.github.io/pylon-cpp-low-level-api/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Pylon Low Level API，一般不使用，但是阅读此文档有助于理解Pylon的底层设计思路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pylon C++ Low Level API">
+<meta property="og:url" content="http://paw5zx.github.io/pylon-cpp-low-level-api/index.html">
+<meta property="og:site_name" content="Paw5zx">
+<meta property="og:description" content="Pylon Low Level API，一般不使用，但是阅读此文档有助于理解Pylon的底层设计思路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-24T12:49:00.000Z">
+<meta property="article:modified_time" content="2024-11-26T05:49:11.129Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/logos/O7_allmode.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/O7_allmode.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/logos/O7_allmode.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Pylon C++ Low Level API | Paw5zx
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"paw5zx.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":4,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]},"pangu_js":false},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Paw5zx's Blog"},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Paw5zx's Blog","subtitle":{"text":["C++爱好者","APEX低手","精通中华田园敏捷开发"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/paw5zx","instagram":null,"zhihu":null,"twitter":null,"email":null,"bilibili":"https://space.bilibili.com/11411875"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Links":{"icon":"fa-regular fa-link","submenus":{"Itanium C++ ABI":"https://itanium-cxx-abi.github.io/cxx-abi/","C++ Standard Draft":"https://eel.is/c++draft/","Compiler Explorer":"https://gcc.godbolt.org/"}},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":4,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/11 23:23:23"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Paw5zx&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Paw5zx
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">
+                                                    ITANIUM C++ ABI
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://eel.is/c++draft/">
+                                                    C++ STANDARD DRAFT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://gcc.godbolt.org/">
+                                                    COMPILER EXPLORER
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">ITANIUM C++ ABI</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://eel.is/c++draft/">C++ STANDARD DRAFT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://gcc.godbolt.org/">COMPILER EXPLORER</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">21</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">43</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Pylon C++ Low Level API</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/logos/O7_allmode.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">paw5zx</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-24 20:49</span>
+        <span class="mobile">2024-11-24 20:49</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-26 13:49:11</span>
+            <span class="mobile">2024-11-26 13:49:11</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%96%87%E6%A1%A3%E6%B1%89%E5%8C%96/">文档汉化</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E6%96%87%E6%A1%A3%E6%B1%89%E5%8C%96/Basler/">Basler</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>6.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>29 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>Low Level API应仅用于现有应用程序以及使用Instant Camera类无法解决问题的少数高级用例。</p>
+
+    </div>
+  </div>
+
+<p>请尽可能使用Instant Camera类而不是Low Level API。</p>
+<h1 id="Low-Level-Camera-Classes-deprecated"><a href="#Low-Level-Camera-Classes-deprecated" class="headerlink" title="Low Level Camera Classes (deprecated)"></a>Low Level Camera Classes (deprecated)</h1><p>Low Level API相机对象封装了一个pylon设备，通过使用GenApi参数类，为相机(<code>Camera</code>)、流抓取器(<code>Stream Grabber</code>)、事件抓取器(<code>Event Grabber</code>)和传输层(<code>Transport Layer</code>)的参数提供了更便利的访问方式。</p>
+<p>下表显示了当前可用的类：</p>
+<table>
+<thead>
+<tr>
+<th>Transport Layer</th>
+<th>Name of Class</th>
+<th>Kind of Devices</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PylonGigE</td>
+<td><a href="">Pylon::CBaslerGigECamera</a></td>
+<td>GigE Vision compliant cameras</td>
+</tr>
+<tr>
+<td>PylonUsb</td>
+<td><a href="">Pylon::CBaslerUsbCamera</a></td>
+<td>USB3 Vision compliant cameras</td>
+</tr>
+<tr>
+<td>PylonCLSer</td>
+<td><a href="">Pylon::CBaslerCameraLinkCamera</a></td>
+<td>Serial Camera Link cameras</td>
+</tr>
+</tbody></table>
+<h1 id="Grabbing-Images"><a href="#Grabbing-Images" class="headerlink" title="Grabbing Images"></a>Grabbing Images</h1><h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><h3 id="Acquire-Transfer-and-Grab-Images"><a href="#Acquire-Transfer-and-Grab-Images" class="headerlink" title="Acquire, Transfer, and Grab Images"></a>Acquire, Transfer, and Grab Images</h3><p>在本文档中，我们区分图像采集、图像数据传输和图像抓取三个过程。</p>
+<ul>
+<li>我们将相机内部的过程称为图像采集。当相机开始图像采集时，传感器会被曝光。曝光完成后，图像数据从传感器中读出。</li>
+<li>采集的图像数据通过如USB或千兆以太网等接口从相机的内存传输到计算机。</li>
+<li>将图像数据写入计算机主内存的过程称为“抓取”图像。</li>
+</ul>
+<h3 id="Image-Data-Stream-and-Stream-Grabber"><a href="#Image-Data-Stream-and-Stream-Grabber" class="headerlink" title="Image Data Stream and Stream Grabber"></a>Image Data Stream and Stream Grabber</h3><p>一个相机可能提供不同的图像数据来源，每个来源都可以传送一个图像数据流。在pylon中，所谓的Stream Grabber对象负责管理从数据流中抓取数据的过程，即将数据写入计算机的主内存。</p>
+<p>一个Stream Grabber只从一个数据流中抓取图像。要从多个数据流中抓取数据，需要多个Stream Grabber。</p>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <blockquote>
+<p>A camera may provide different sources for image data, where each source can deliver a stream of image data.</p>
+</blockquote>
+<p>暂时不太理解一个相机中的多个不同的sources指的是什么。</p>
+
+    </div>
+  </div>
+
+<h2 id="Using-Stream-Grabbers"><a href="#Using-Stream-Grabbers" class="headerlink" title="Using Stream Grabbers"></a>Using Stream Grabbers</h2><p>以下部分将描述Stream Grabber对象的使用。本节的介绍顺序反映了一个典型抓取应用程序使用Stream Grabber对象的顺序。</p>
+<h3 id="Getting-a-Stream-Grabber"><a href="#Getting-a-Stream-Grabber" class="headerlink" title="Getting a Stream Grabber"></a>Getting a Stream Grabber</h3><p>Stream Grabber对象由Camera对象管理。可以通过相机对象的<a href="">IPylonDevice::GetNumStreamGrabberChannels()</a>方法确定可用的Stream Grabber数量。<a href="">IPylonDevice::GetStreamGrabber()</a>方法返回指向<a href="">Pylon::IStreamGrabber</a>对象的指针。在检索Stream Grabber对象之前，必须先打开Camera对象。您应该检查<a href="">IPylonDevice::GetNumStreamGrabberChannels()</a>返回的值，以确定在调用<a href="">IPylonDevice::GetStreamGrabber()</a>时可以使用哪个索引参数。Stream Grabber对象本身在使用前也必须被打开。一些相机对象，例如Camera Link，可能不支持Stream Grabbers，并在调用<a href="">IPylonDevice::GetNumStreamGrabberChannels()</a>时返回0。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// get the number of stream grabbers available</span></span><br><span class="line"><span class="type">const</span> <span class="type">unsigned</span> <span class="type">int</span> numGrabbers = camera.<span class="built_in">GetNumStreamGrabberChannels</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (numGrabbers &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  IStreamGrabber* pGrabber = camera.<span class="built_in">GetStreamGrabber</span>(<span class="number">0</span>);</span><br><span class="line">  pGrabber-&gt;<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// use the grabber</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">  pGrabber-&gt;<span class="built_in">Close</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>永远不要尝试对从Camera对象检索到的Stream Grabber指针调用delete或free。Camera对象保留对Stream Grabber对象的所有权，并管理其生命周期。</p>
+
+    </div>
+  </div>
+
+<h3 id="Configuring-a-Stream-Grabber"><a href="#Configuring-a-Stream-Grabber" class="headerlink" title="Configuring a Stream Grabber"></a>Configuring a Stream Grabber</h3><p>独立于所使用的传输层，每个Stream Grabber都提供两个必需的参数：</p>
+<ul>
+<li><code>MaxBufferSize</code>：用于抓取图像的缓冲区的最大字节数</li>
+<li><code>MaxNumBuffer</code>：用于抓取图像的缓冲区的最大数量</li>
+</ul>
+<p>抓取应用程序<strong>必须</strong>在抓取开始之前设置上述两个参数。</p>
+<p>根据传输层的不同，Stream Grabber提供进一步的参数，例如与流相关的超时参数。所有这些参数都被设置为默认值，可以在不调整默认设置的情况下执行图像抓取。</p>
+<p>访问Stream Grabber参数有两种方式：</p>
+<p>最舒适的方式是使用Stream Grabber对象的具体类。每个Camera类提供了对应的Stream Grabber类的<code>typedef</code>。Stream Grabber类拥有通过<a href="">GetStreamGrabber()</a>方法返回的<a href="">IStreamGrabber</a>指针的所有权。Stream Grabber类具有访问Stream Grabber对象参数的成员。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"><span class="keyword">if</span> (camera.<span class="built_in">GetNumStreamGrabberChannels</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="comment">// device doesn&#x27;t support stream grabbers</span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IStreamGrabber* pGrabber = camera.<span class="built_in">GetStreamGrabber</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function">CBaslerGigECamera::StreamGrabber_t <span class="title">StreamGrabber</span><span class="params">( pGrabber )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// First open the stream grabber</span></span><br><span class="line">StreamGrabber.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set the maximum buffer size according to the amount of data</span></span><br><span class="line"><span class="comment">// the camera will send</span></span><br><span class="line">StreamGrabber.MaxBufferSize = camera.<span class="built_in">PayloadSize</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// We are going to use 10 buffers</span></span><br><span class="line">StreamGrabber.MaxNumBuffer = <span class="number">10</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>当使用泛型编程方法(<code>generic programming approach</code>)，即使用<a href="">Pylon::IPylonDevice</a>和<a href="">Pylon::IStreamGrabber</a>接口而不是Camera和Stream Grabber类时，必须使用<a href="">IStreamGrabber::GetNodeMap()</a>方法检索持有Stream Grabber参数的GenApi节点图(<code>node map</code>)。</p>
+<p>Stream Grabber节点图的使用方式与Camera对象的节点图相同。Camera对象的节点图的使用在<a href="">Accessing Parameters</a>部分有描述。</p>
+<h3 id="Preparing-a-Stream-Grabber-for-Grabbing"><a href="#Preparing-a-Stream-Grabber-for-Grabbing" class="headerlink" title="Preparing a Stream Grabber for Grabbing"></a>Preparing a Stream Grabber for Grabbing</h3><p>根据用于抓取图像的传输层，所需的系统资源不同，例如：</p>
+<ul>
+<li>DMA资源</li>
+<li>存储驱动程序数据结构的内存</li>
+</ul>
+<p>Stream Grabber的<a href="">PrepareGrab()</a>方法用于分配所需资源。</p>
+<p>除了资源分配外，调用<a href="">PrepareGrab()</a>还会导致相机对象执行状态更改。通常，在调用<a href="">PrepareGrab()</a>后，控制图像大小的相机参数（AOI、像素格式、二次采样等）将变为只读。这些参数必须在调用<a href="">PrepareGrab()</a>之前设置，并且在图像抓取活动期间不得更改。</p>
+<h3 id="Providing-Memory-for-Grabbing"><a href="#Providing-Memory-for-Grabbing" class="headerlink" title="Providing Memory for Grabbing"></a>Providing Memory for Grabbing</h3><p>所有的pylon传输层都可以将图像数据抓取到由用户应用程序分配的内存缓冲区中。用户分配的内存缓冲区必须在Stream Grabber对象上注册（使用<a href="">IStreamGrabber::RegisterBuffer()</a>）。处于性能原因，需要注册步骤，注册过程允许Stream Grabber准备并缓存用于处理用户提供的内存的内部数据结构。</p>
+<p>缓冲区注册过程返回已注册缓冲区的句柄，这些句柄将在缓冲区注册后的步骤中使用。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">StreamGrabber.<span class="built_in">Open</span>();</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> bufferSize = (<span class="type">int</span>) camera.<span class="built_in">PayloadSize</span>();</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> numBuffers = <span class="number">10</span>;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span>* ppBuffers[numBuffers];</span><br><span class="line">StreamBufferHandle handles[numBuffers];</span><br><span class="line"></span><br><span class="line">StreamGrabber.MaxBufferSize = bufferSize;</span><br><span class="line">StreamGrabber.MaxNumBuffer = numBuffers;</span><br><span class="line"></span><br><span class="line">StreamGrabber.<span class="built_in">PrepareGrab</span>();</span><br><span class="line"><span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numBuffers; ++i ) &#123;</span><br><span class="line">  ppBuffers[i] = <span class="keyword">new</span> <span class="type">unsigned</span> <span class="type">char</span>[bufferSize];</span><br><span class="line">  handles[i] = StreamGrabber.<span class="built_in">RegisterBuffer</span>( ppBuffers[i], bufferSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>缓冲区注册机制限制了缓冲区的所有权。虽然已注册缓冲区的内容可以由用户应用程序更改，但应用程序不得删除已注册的内存缓冲区的内存。只有在使用<a href="">IStreamGrabber::DeregisterBuffer()</a>注销缓冲区后，才允许释放内存。</p>
+<h3 id="Feeding-the-Stream-Grabber’s-Input-Queue"><a href="#Feeding-the-Stream-Grabber’s-Input-Queue" class="headerlink" title="Feeding the Stream Grabber’s Input Queue"></a>Feeding the Stream Grabber’s Input Queue</h3><p>每个Stream Grabber维护两个不同的缓冲区队列。待填充的缓冲区必须被送入Grabber的输入队列。抓取（被抓取到的图像数据填充）的缓冲区可以从Grabber的输出队列中检索。</p>
+<p><a href="">IStreamGrabber::QueueBuffer()</a>方法用于将一个缓冲区放入Grabber的输入队列。<a href="">QueueBuffer()</a>方法接受两个参数，一个缓冲区句柄和一个可选的，用户提供的指向用户提供的上下文信息的指针。当从Grabber的输出队列检索抓取结果时，上下文指针与缓冲区一起被传回给用户。Stream Grabber永远不会改变上下文指针所指向的内存。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MyContext context[numBuffers];</span><br><span class="line"><span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numBuffers; ++i ) &#123;</span><br><span class="line">  <span class="comment">// Enqueue image buffers and use the buffer&#x27;s index as context</span></span><br><span class="line">  <span class="comment">// information</span></span><br><span class="line">  StreamGrabber.<span class="built_in">QueueBuffer</span>( handles[i], &amp; context[i] );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>Stream Grabber临时拥有排队缓冲区的所有权。当缓冲区被放入Stream Grabber的输入队列时，永远不要尝试修改或删除缓冲区。</p>
+
+    </div>
+  </div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>将缓冲区加入到Stream Grabber的输入队列并不会使相机开始采集图像！在缓冲区入队之后，Stream Grabber准备好从相机抓取数据到队列的缓冲区中。图像采集必须显式启动。</p>
+
+    </div>
+  </div>
+
+
+<h3 id="Starting-and-Stopping-Image-Acquisition"><a href="#Starting-and-Stopping-Image-Acquisition" class="headerlink" title="Starting and Stopping Image Acquisition"></a>Starting and Stopping Image Acquisition</h3><p>要启动图像采集，请使用Camera对象的<a href="">Pylon::CBaslerGigECamera::AcquisitionStart</a>参数。<a href="">Pylon::CBaslerGigECamera::AcquisitionStart</a>是一个命令参数，即，调用<a href="">Pylon::CBaslerGigECamera::AcquisitionStart</a>参数的<a href="">Execute()</a>方法会向相机发送一个开始采集的命令。</p>
+<p>相机设备通常提供两种采集模式：</p>
+<ul>
+<li>单帧模式：相机采集一张图像。</li>
+<li>连续模式：相机持续不断地采集和传输图像，直到停止采集。</li>
+</ul>
+<p>准确地说，开始采集的命令并不一定立即启动相机内部的采集。当配置为外部触发或软件触发时，开始采集的命令会让相机准备进行图像采集。实际的采集是在相机感应到外部触发信号或收到软件触发命令时开始的。</p>
+<p>当启用相机的连续采集模式时，使用<a href="">Pylon::CBaslerGigECamera::AcquisitionStop</a>参数来停止图像采集。</p>
+<p>通常，相机会在开始采集后尽可能快地开始传输图像，不需要特殊命令来启动图像传输。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Basler_GigECameraParams;</span><br><span class="line">camera.AcquisitionMode.<span class="built_in">SetValue</span>( AcquisitionMode_Continuous );</span><br><span class="line">camera.AcquisitionStart.<span class="built_in">Execute</span>();</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="Retrieving-Grabbed-Images"><a href="#Retrieving-Grabbed-Images" class="headerlink" title="Retrieving Grabbed Images"></a>Retrieving Grabbed Images</h3><p>传输到PC的图像数据被写入到Stream Grabber输入队列中的缓冲区。当缓冲区被抓取的图像数据填满时，Stream Grabber会将其放入输出队列，用户应用程序可以从中检索到被填满的缓冲区。</p>
+<p>有一个等待对象与Stream Grabber的输出队列关联。这个等待对象允许应用程序等待，直到抓取的图像到达输出队列或超时过期。</p>
+<p>当等待操作成功返回时，可以使用Stream Grabber对象的<a href="">RetrieveResult()</a>方法返回抓取的缓冲区。<a href="">RetrieveResult()</a>方法填充一个<a href="">Pylon::GrabResult</a>对象。该对象包含以下信息：</p>
+<ul>
+<li>抓取的状态（成功、取消、失败）</li>
+<li>缓冲区的句柄</li>
+<li>指向缓冲区的指针</li>
+<li>用户提供的上下文指针</li>
+<li>AOI和图像格式</li>
+<li>如果抓取失败了，则提供错误号和错误描述</li>
+</ul>
+<p>从Stream Grabber的输出队列获取缓冲区时，缓冲区的所有权转移给应用程序。从输出队列检索到的缓冲区不会被覆写，直到它再次被放入Stream Grabber的输入队列。</p>
+<p>请记住，从输出队列检索的缓冲区必须在其内存被释放前取消注册（先注销再释放）。</p>
+<p>我们建议使用Grab Result对象中的缓冲区句柄将缓冲区重新入队到Stream Grabber的输入队列。</p>
+<p>当相机不发送数据时，缓冲区将一直留在Stream Grabber的输入队列中，直到调用Stream Grabber对象的<a href="">CancelGrab()</a>方法。<a href="">CancelGrab()</a>将输入队列中的所有缓冲区放到输出队列，包括任何当前正在填充的缓冲区。通过检查Grab Result对象的状态，您可以确定一个缓冲区是否已被取消。</p>
+<p>以下示例展示了一个典型的抓取循环：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> numGrabs = <span class="number">100</span>;</span><br><span class="line">GrabResult Result;</span><br><span class="line"><span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numGrabs; ++i ) &#123;</span><br><span class="line">  <span class="comment">// Wait for the grabbed image with a timeout of 3 seconds</span></span><br><span class="line">  <span class="keyword">if</span> ( StreamGrabber.<span class="built_in">GetWaitObject</span>().<span class="built_in">Wait</span>( <span class="number">3000</span> )) &#123;</span><br><span class="line">     <span class="comment">// Get an item from the grabber&#x27;s output queue</span></span><br><span class="line">     <span class="keyword">if</span> ( ! StreamGrabber.<span class="built_in">RetrieveResult</span>( Result ) ) &#123;</span><br><span class="line">       cerr &lt;&lt; <span class="string">&quot;Failed to retrieve an item from the output queue&quot;</span> &lt;&lt; endl;</span><br><span class="line">       <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> ( Result.<span class="built_in">Succeeded</span>() ) &#123;</span><br><span class="line">       <span class="comment">// Grabbing was successful. Process the image.</span></span><br><span class="line">       <span class="built_in">ProcessImage</span>( (<span class="type">unsigned</span> <span class="type">char</span>*) Result.<span class="built_in">Buffer</span>() );</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       cerr &lt;&lt; <span class="string">&quot;Grab failed: &quot;</span> &lt;&lt; Result.<span class="built_in">GetErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">       <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// Requeue the buffer</span></span><br><span class="line">     <span class="keyword">if</span> ( i + numBuffers &lt; numGrabs )</span><br><span class="line">       StreamGrabber.<span class="built_in">QueueBuffer</span>( Result.<span class="built_in">Handle</span>(), Result.<span class="built_in">Context</span>() );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;timeout occurred when waiting for a grabbed image&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="Finish-Grabbing"><a href="#Finish-Grabbing" class="headerlink" title="Finish Grabbing"></a>Finish Grabbing</h3><p>如果相机设置为连续采集模式，首先应该停止采集：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">camera.AcquisitionStop.<span class="built_in">Execute</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>如果您不确定Stream Grabber的输入队列是否真的为空，应该使用Stream Grabber对象的<a href="">CancelGrab()</a>方法来清空输入队列。之后，被取消的缓冲区在Stream Grabber的输出队列中可用。</p>
+<p>应用程序应在关闭Stream Grabber对象之前，从Stream Grabber的输出队列中检索所有条目。</p>
+<p>先注销缓冲区，再释放他们的内存。</p>
+<p>当所有缓冲区都已取消注册后，调用Stream Grabber对象的<a href="">FinishGrab()</a>方法以释放与抓取相关的所有资源。当Stream Grabber的输入队列中还有缓冲区时，不能调用<a href="">FinishGrab()</a>！</p>
+<p>当抓取完成后，应该关闭Stream Grabber对象。</p>
+<p>示例：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The camera is in continuous mode, stop the image acquisition</span></span><br><span class="line">camera.AcquisitionStop.<span class="built_in">Execute</span>();</span><br><span class="line"><span class="comment">// Flush the input queue</span></span><br><span class="line">StreamGrabber.<span class="built_in">CancelGrab</span>();</span><br><span class="line"><span class="comment">// Consume all items from the output queue</span></span><br><span class="line"><span class="keyword">while</span> ( StreamGrabber.<span class="built_in">GetWaitObject</span>().<span class="built_in">Wait</span>(<span class="number">0</span>) ) &#123;</span><br><span class="line">  <span class="keyword">if</span> ( ! StreamGrabber.<span class="built_in">RetrieveResult</span>( Result ) ) &#123;</span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;Faile to retrieve item from output queueu&quot;</span> &lt;&lt; endl;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ( Result.<span class="built_in">Status</span>() == Canceled ) &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;Got canceled buffer&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numBuffers; ++i ) &#123;</span><br><span class="line">  StreamGrabber.<span class="built_in">DeregisterBuffer</span>(handles[i]);</span><br><span class="line">  <span class="keyword">delete</span> [] ppBuffers[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">StreamGrabber.<span class="built_in">FinishGrab</span>();</span><br><span class="line">StreamGrabber.<span class="built_in">Close</span>();</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Complete-Sample-program"><a href="#Complete-Sample-program" class="headerlink" title="Complete Sample program"></a>Complete Sample program</h2><p>下面是在连续模式下从GigE相机获取图像的完整示例程序：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/PylonIncludes.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pylon/gige/BaslerGigECamera.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Pylon;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Basler_GigECameraParams;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> CBaslerGigECamera Camera_t;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ProcessImage</span><span class="params">( <span class="type">unsigned</span> <span class="type">char</span>* pImage, <span class="type">int</span> imageSizeX, <span class="type">int</span> imageSizeY )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Do something with the image data</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">MyContext</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// Define some application specific context information here</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  PylonAutoInitTerm autoInitTerm;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Enumerate GigE cameras</span></span><br><span class="line">    CTlFactory&amp; TlFactory = CTlFactory::<span class="built_in">GetInstance</span>();</span><br><span class="line">    ITransportLayer *pTl = TlFactory.<span class="built_in">CreateTl</span>( Camera_t::<span class="built_in">DeviceClass</span>() );</span><br><span class="line">    DeviceInfoList_t devices;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="number">0</span> == pTl-&gt;<span class="built_in">EnumerateDevices</span>( devices ) ) &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;No camera present!&quot;</span> &lt;&lt; endl;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Create a camera object</span></span><br><span class="line">    <span class="function">Camera_t <span class="title">camera</span> <span class="params">( pTl-&gt;CreateDevice( devices[ <span class="number">0</span> ] ) )</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Open the camera object</span></span><br><span class="line">    camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Parameterize the camera</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Mono8 pixel format</span></span><br><span class="line">    camera.PixelFormat.<span class="built_in">SetValue</span>( PixelFormat_Mono8 );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Maximized AOI</span></span><br><span class="line">    camera.OffsetX.<span class="built_in">SetValue</span>( <span class="number">0</span> );</span><br><span class="line">    camera.OffsetY.<span class="built_in">SetValue</span>( <span class="number">0</span> );</span><br><span class="line">    camera.Width.<span class="built_in">SetValue</span>( camera.Width.<span class="built_in">GetMax</span>() );</span><br><span class="line">    camera.Height.<span class="built_in">SetValue</span>( camera.Height.<span class="built_in">GetMax</span>() );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Continuous mode, no external trigger used</span></span><br><span class="line">    camera.TriggerSelector.<span class="built_in">SetValue</span>( TriggerSelector_AcquisitionStart );</span><br><span class="line">    camera.TriggerMode.<span class="built_in">SetValue</span>( TriggerMode_Off );</span><br><span class="line">    camera.AcquisitionMode.<span class="built_in">SetValue</span>( AcquisitionMode_Continuous );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Configure exposure time and mode</span></span><br><span class="line">    camera.ExposureMode.<span class="built_in">SetValue</span>( ExposureMode_Timed );</span><br><span class="line">    camera.ExposureTimeRaw.<span class="built_in">SetValue</span>( <span class="number">100</span> );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// check whether stream grabbers are avalaible</span></span><br><span class="line">    <span class="keyword">if</span> (camera.<span class="built_in">GetNumStreamGrabberChannels</span>() == <span class="number">0</span>) &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;Camera doesn&#x27;t support stream grabbers.&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// Get and open a stream grabber</span></span><br><span class="line">      IStreamGrabber* pGrabber = camera.<span class="built_in">GetStreamGrabber</span>(<span class="number">0</span>);</span><br><span class="line">      <span class="function">CBaslerGigECamera::StreamGrabber_t <span class="title">StreamGrabber</span><span class="params">( camera.GetStreamGrabber(<span class="number">0</span>) )</span></span>;</span><br><span class="line">      StreamGrabber.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Parameterize the stream grabber</span></span><br><span class="line">      <span class="type">const</span> <span class="type">int</span> bufferSize = (<span class="type">int</span>) camera.<span class="built_in">PayloadSize</span>();</span><br><span class="line">      <span class="type">const</span> <span class="type">int</span> numBuffers = <span class="number">10</span>;</span><br><span class="line">      StreamGrabber.MaxBufferSize = bufferSize;</span><br><span class="line">      StreamGrabber.MaxNumBuffer = numBuffers;</span><br><span class="line">      StreamGrabber.<span class="built_in">PrepareGrab</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Allocate and register image buffers, put them into the</span></span><br><span class="line">      <span class="comment">// grabber&#x27;s input queue</span></span><br><span class="line">      <span class="type">unsigned</span> <span class="type">char</span>* ppBuffers[numBuffers];</span><br><span class="line">      MyContext context[numBuffers];</span><br><span class="line">      StreamBufferHandle handles[numBuffers];</span><br><span class="line">      <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numBuffers; ++i )</span><br><span class="line">      &#123;</span><br><span class="line">        ppBuffers[i] = <span class="keyword">new</span> <span class="type">unsigned</span> <span class="type">char</span>[bufferSize];</span><br><span class="line">        handles[i] = StreamGrabber.<span class="built_in">RegisterBuffer</span>( ppBuffers[i], bufferSize);</span><br><span class="line">        StreamGrabber.<span class="built_in">QueueBuffer</span>( handles[i], &amp;context[i] );</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Start image acquisition</span></span><br><span class="line">      camera.AcquisitionStart.<span class="built_in">Execute</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Grab and process 100 images</span></span><br><span class="line">      <span class="type">const</span> <span class="type">int</span> numGrabs = <span class="number">100</span>;</span><br><span class="line">      GrabResult Result;</span><br><span class="line">      <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numGrabs; ++i ) &#123;</span><br><span class="line">        <span class="comment">// Wait for the grabbed image with a timeout of 3 seconds</span></span><br><span class="line">        <span class="keyword">if</span> ( StreamGrabber.<span class="built_in">GetWaitObject</span>().<span class="built_in">Wait</span>( <span class="number">3000</span> )) &#123;</span><br><span class="line">          <span class="comment">// Get an item from the grabber&#x27;s output queue</span></span><br><span class="line">          <span class="keyword">if</span> ( ! StreamGrabber.<span class="built_in">RetrieveResult</span>( Result ) ) &#123;</span><br><span class="line">            cerr &lt;&lt; <span class="string">&quot;Failed to retrieve an item from the output queue&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> ( Result.<span class="built_in">Succeeded</span>() ) &#123;</span><br><span class="line">            <span class="comment">// Grabbing was successful. Process the image.</span></span><br><span class="line">            <span class="built_in">ProcessImage</span>( (<span class="type">unsigned</span> <span class="type">char</span>*) Result.<span class="built_in">Buffer</span>(), Result.<span class="built_in">GetSizeX</span>(), Result.<span class="built_in">GetSizeY</span>() );</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cerr &lt;&lt; <span class="string">&quot;Grab failed: &quot;</span> &lt;&lt; Result.<span class="built_in">GetErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">// Requeue the buffer</span></span><br><span class="line">          <span class="keyword">if</span> ( i + numBuffers &lt; numGrabs )</span><br><span class="line">            StreamGrabber.<span class="built_in">QueueBuffer</span>( Result.<span class="built_in">Handle</span>(), Result.<span class="built_in">Context</span>() );</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          cerr &lt;&lt; <span class="string">&quot;timeout occurred when waiting for a grabbed image&quot;</span> &lt;&lt; endl;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Finished. Stop grabbing and do clean-up</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// The camera is in continuous mode, stop image acquisition</span></span><br><span class="line">      camera.AcquisitionStop.<span class="built_in">Execute</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Flush the input queue, grabbing may have failed</span></span><br><span class="line">      StreamGrabber.<span class="built_in">CancelGrab</span>();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Consume all items from the output queue</span></span><br><span class="line">      <span class="keyword">while</span> ( StreamGrabber.<span class="built_in">GetWaitObject</span>().<span class="built_in">Wait</span>(<span class="number">0</span>) ) &#123;</span><br><span class="line">        StreamGrabber.<span class="built_in">RetrieveResult</span>( Result );</span><br><span class="line">        <span class="keyword">if</span> ( Result.<span class="built_in">Status</span>() == Canceled )</span><br><span class="line">          cout &lt;&lt; <span class="string">&quot;Got canceled buffer&quot;</span> &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Deregister and free buffers</span></span><br><span class="line">      <span class="keyword">for</span> ( <span class="type">int</span> i = <span class="number">0</span>; i &lt; numBuffers; ++i ) &#123;</span><br><span class="line">        StreamGrabber.<span class="built_in">DeregisterBuffer</span>(handles[i]);</span><br><span class="line">        <span class="keyword">delete</span> [] ppBuffers[i];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Clean up</span></span><br><span class="line">      StreamGrabber.<span class="built_in">FinishGrab</span>();</span><br><span class="line">      StreamGrabber.<span class="built_in">Close</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    camera.<span class="built_in">Close</span>();</span><br><span class="line">    TlFactory.<span class="built_in">ReleaseTl</span>( pTl );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">catch</span>( Pylon::GenericException &amp;e )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Error handling</span></span><br><span class="line">    cerr &lt;&lt; <span class="string">&quot;An exception occurred!&quot;</span> &lt;&lt; endl &lt;&lt; e.<span class="built_in">GetDescription</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Quit application</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h1 id="Handling-Camera-Events"><a href="#Handling-Camera-Events" class="headerlink" title="Handling Camera Events"></a>Handling Camera Events</h1><p>Basler GigE Vision和USB3 Vision相机可以发送事件消息。例如，当传感器曝光结束时，相机可以向计算机发送曝光结束事件。在完成曝光的图像数据完全传输之前，计算机可以接收到该事件。本节描述了如何检索和处理事件消息。</p>
+<h2 id="Event-Grabbers"><a href="#Event-Grabbers" class="headerlink" title="Event Grabbers"></a>Event Grabbers</h2><p><a href="">Grabbing Images</a>部分描述了如何使用Stream Grabber对象从相机抓取图像。类似地，<a href="">Event Grabber</a>对象用于从相机接收事件消息。</p>
+<h2 id="Creating-and-Preparing-Event-Grabbers"><a href="#Creating-and-Preparing-Event-Grabbers" class="headerlink" title="Creating and Preparing Event Grabbers"></a>Creating and Preparing Event Grabbers</h2><p>Event Grabber对象由<a href="">Camera</a>对象创建并返回</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get the event grabber</span></span><br><span class="line"><span class="function">Camera_t::EventGrabber_t <span class="title">EventGrabber</span><span class="params">(camera.GetEventGrabber())</span></span>;</span><br><span class="line"><span class="keyword">if</span> ( ! EventGrabber.<span class="built_in">IsAttached</span>() ) &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;The camera does not support event grabbing&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>永远不要尝试对<a href="">IEventGrabber</a>指针调用<code>free</code>或<code>delete</code>。<a href="">Camera</a>对象拥有Event Grabbers并管理它们的生命周期。</p>
+<p>Event Grabbers使用内部内存缓冲区来接收事件消息。可以使用Event Grabber的<a href="">Pylon::CPylonGigEEventGrabber::NumBuffer</a>成员来设置缓冲区的数量：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventGrabber.NumBuffer.<span class="built_in">SetValue</span>(<span class="number">20</span>);</span><br></pre></td></tr></table></figure></div>
+
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>在调用Event Grabber的<a href="">Open()</a>方法之前，必须参数化缓冲区的数量！</p>
+
+    </div>
+  </div>
+
+<p>设备的连接和接收事件所需的所有资源可以通过调用Event Grabber的<a href="">Open()</a>方法分配：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventGrabber.<span class="built_in">Open</span>();</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Enabling-Events"><a href="#Enabling-Events" class="headerlink" title="Enabling Events"></a>Enabling Events</h2><p>要让相机发送事件消息，必须使用Camera对象启用事件消息的发送。</p>
+<p>首先，<a href="">Pylon::CBaslerGigECamera::EventSelector</a>必须设置为要启用的事件类型。在下面的示例中，选择器被设置为曝光结束事件：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Select the Exposure End event</span></span><br><span class="line">camera.EventSelector = EventSelector_ExposureEnd;</span><br></pre></td></tr></table></figure></div>
+
+<p>设置事件选择器后，可以使用<a href="">Pylon::CBaslerGigECamera::EventNotification</a>参数启用所需类型的事件发送：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable sending of events of the selected event type</span></span><br><span class="line">camera.EventNotification.<span class="built_in">SetValue</span>( EventNotification_GenICamEvent );</span><br></pre></td></tr></table></figure></div>
+
+<p>为确保您不会错过任何事件，在启用事件之前应准备事件抓取器（见上文的<a href="">Creating and Preparing Event Grabbers</a>）。</p>
+<p>以下代码片段说明如何禁用发送曝光结束事件：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Select the Exposure End event</span></span><br><span class="line">camera.EventSelector = EventSelector_ExposureEnd;</span><br><span class="line"><span class="comment">// Disable sending of Exposure End events</span></span><br><span class="line">camera.EventNotification.<span class="built_in">SetValue</span>( EventNotification_Off );</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Receiving-Events"><a href="#Receiving-Events" class="headerlink" title="Receiving Events"></a>Receiving Events</h2><p>接收事件与抓取图像的非常相似。Event Grabber提供了一个等待对象，当有事件消息可用时会被触发。当事件消息可用时，可以通过调用Event Grabber的<a href="">RetrieveEvent()</a>方法来检索它。</p>
+<p>与抓取图像不同，接收事件的内存缓冲区不需要由应用程序提供。存储事件消息的内存缓冲区由Event Grabber本身管理。</p>
+<p>在典型的应用程序中，等待抓取的图像和事件消息是在一个循环中完成的。以下代码片段演示了这一点：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add the stream grabber&#x27;s and the event grabber&#x27;s wait objects to a container</span></span><br><span class="line">WaitObjects waitset;</span><br><span class="line">waitset.<span class="built_in">Add</span>( EventGrabber.<span class="built_in">GetWaitObject</span>() );</span><br><span class="line">waitset.<span class="built_in">Add</span>( StreamGrabber.<span class="built_in">GetWaitObject</span>() );</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> ( doGrabbing ) &#123;</span><br><span class="line">  <span class="comment">// Wait for an image or an event to occur (5 sec timeout)</span></span><br><span class="line">  <span class="type">int</span> idx;</span><br><span class="line">  <span class="keyword">if</span> ( waitset.<span class="built_in">WaitForAny</span>( <span class="number">5000</span>, &amp;idx ) ) &#123;</span><br><span class="line">    <span class="comment">// Got event or image</span></span><br><span class="line">    <span class="keyword">switch</span> ( idx )</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>: <span class="comment">// Event available, get the message</span></span><br><span class="line">      &#123;</span><br><span class="line">        EventResult EvResult;</span><br><span class="line">        <span class="keyword">if</span> ( EventGrabber.<span class="built_in">RetrieveEvent</span>( EvResult ) ) &#123;</span><br><span class="line">          <span class="keyword">if</span> ( EvResult.<span class="built_in">Succeeded</span>() ) &#123;</span><br><span class="line">            <span class="comment">// Successfully got the event message.</span></span><br><span class="line">            <span class="comment">// EvResult.Buffer points to the message</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// Error occurred</span></span><br><span class="line">            cerr &lt;&lt; <span class="string">&quot;Error retrieving event:&quot;</span> &lt;&lt; EvResult.<span class="built_in">ErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="comment">// No event available?</span></span><br><span class="line">          <span class="comment">// Should never happen in this sample because the wait object</span></span><br><span class="line">          <span class="comment">// was in signaled state when reaching this point.</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125; <span class="comment">// Case 0</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// Image available, process it</span></span><br><span class="line">      &#123;</span><br><span class="line">        GrabResult GrResult;</span><br><span class="line">        <span class="keyword">if</span> (StreamGrabber.<span class="built_in">RetrieveResult</span>( GrResult )) &#123;</span><br><span class="line">          <span class="keyword">if</span> (GrResult.<span class="built_in">Succeeded</span>()) &#123;</span><br><span class="line">            <span class="comment">// Process the image</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// Reuse the buffer for further grabbing</span></span><br><span class="line">            StreamGrabber.<span class="built_in">QueueBuffer</span>( GrResult.<span class="built_in">Handle</span>(), GrResult.<span class="built_in">Context</span>() );</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// handle error</span></span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="comment">// Case 1</span></span><br><span class="line">    &#125;  <span class="comment">// Switch</span></span><br><span class="line">  &#125; <span class="comment">// if</span></span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// handle timeout</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="comment">// While</span></span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Parsing-and-Dispatching-Events"><a href="#Parsing-and-Dispatching-Events" class="headerlink" title="Parsing and Dispatching Events"></a>Parsing and Dispatching Events</h2><p>上一节解释了如何接收事件消息。本节描述如何解析事件消息。</p>
+<p>事件消息的具体布局取决于事件类型和相机类型。pylon API使用GenICam支持来解析事件消息。这意味着消息布局在相机的XML文件中描述。</p>
+<p>如<a href="">GenApi Node Maps</a>部分所述，一个GenApi节点图是从XML相机描述文件创建的。该节点图包含代表XML文件元素的节点对象。由于事件消息的布局在相机描述文件中有描述，事件消息携带的信息作为节点在节点图中暴露出来。相机对象提供用于访问与事件相关的节点的成员，方式与访问相机参数相关的节点相同。</p>
+<p>例如，一个曝光结束事件携带以下信息：</p>
+<ul>
+<li><code>ExposureEndEventFrameID</code>：表示已曝光的图像帧的编号</li>
+<li><code>ExposureEndEventTimestamp</code>：表示生成事件的时刻</li>
+<li><code>ExposureEndEventStreamChannelIndex</code>：表示用于传输已曝光帧的图像数据流的编号</li>
+</ul>
+<p>示例：使用相机对象的<a href="">Pylon::CBaslerGigECamera::ExposureEndEventFrameID</a>成员来访问事件关联的帧的编号：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int64_t</span> frameNr = camera.ExposureEndEventFrameID.<span class="built_in">GetValue</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>如<a href="">Accessing Parameters</a>部分所述，也可以通过直接使用相机对象的节点图来检索<code>ExposureEndEventFrameID</code>：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GenApi::INodeMap* pNodeMap = pCamera-&gt;<span class="built_in">GetNodeMap</span>();</span><br><span class="line">CIntegerPtr ptrExposureEndFrameId = pNodeMap-&gt;<span class="built_in">GetNode</span>(<span class="string">&quot;ExposureEndFrameId&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> ( ! ptrExposureEndFrameId ) &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;There is no exposure time parameter&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="built_in">exit</span>( <span class="number">1</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int64_t</span> frameNr = ptrExposureEndFrameId-&gt;<span class="built_in">GetValue</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>一个<a href="">Event Adapter</a>对象用于更新相机对象节点图中与事件相关的节点。通过将事件消息传递给Event Adapter来更新节点。</p>
+<p>Event Adapter由相机对象创建：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pylon::IEventAdapter *pEventAdapter = camera.<span class="built_in">CreateEventAdapter</span>();</span><br><span class="line"><span class="keyword">if</span> ( pEventAdapter == <span class="literal">NULL</span> ) &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Failed to create an event adapter&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>要更新与事件相关的节点，对每个接收到的事件消息调用Event Adapter的<a href="">DeliverMessage()</a>方法：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Retrieve the event result</span></span><br><span class="line">EventResult EvResult;</span><br><span class="line"><span class="keyword">if</span> ( EventGrabber.<span class="built_in">RetrieveEvent</span>( EvResult ) ) &#123;</span><br><span class="line">  <span class="keyword">if</span> ( EvResult.<span class="built_in">Succeeded</span>() ) &#123;</span><br><span class="line">     cout &lt;&lt; <span class="string">&quot;Successfully got an event message!&quot;</span> &lt;&lt; endl;</span><br><span class="line">     <span class="comment">// Let the event adapter update the camera object&#x27;s node map</span></span><br><span class="line">     EventAdapter.<span class="built_in">DeliverMessage</span>( EvResult.Buffer, <span class="keyword">sizeof</span> EvResult.Buffer );</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     cerr &lt;&lt; <span class="string">&quot;Error retrieving event:&quot;</span> &lt;&lt; EvResult.<span class="built_in">ErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>仅通过将事件消息传递给Event Adapter，无法确定消息是否包含曝光结束事件。下一节描述如何使用节点回调来了解特定事件的发生情况。</p>
+<h2 id="Event-Callbacks"><a href="#Event-Callbacks" class="headerlink" title="Event Callbacks"></a>Event Callbacks</h2><p>上一节描述了Event Adapter如何用于将事件消息的内容推送到相机对象的节点图中。<a href="">IEventAdapter::DeliverMessages()</a>方法更新传入消息中包含的与事件相关的所有节点。</p>
+<p>如<a href="">Getting Informed About Parameter Changes</a>所述，可以注册回调函数，当节点可能发生变化时触发这些函数。</p>
+<p>这些回调可以用来确定事件消息是否包含某种特定的事件类型。例如，要获取关于曝光结束事件的通知，必须为曝光结束事件相关的节点之一注册回调。以下代码片段演示了如何为<code>ExposureEndFrameId</code>节点注册回调函数：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Member function of this class will be registered as callback</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">CallbackTarget</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">CallbackTarget</span>( Camera_t&amp; camera )</span><br><span class="line">    : <span class="built_in">m_Camera</span>( camera )</span><br><span class="line">  &#123; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Will be fired when an Exposure End event occurs</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">EndOfExposureCallback</span><span class="params">( GenApi::INode* pNode )</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;The message contains an Exposure End event.&quot;</span> &lt;&lt; endl;</span><br><span class="line">      cout &lt;&lt; <span class="string">&quot;Timestamp: &quot;</span> &lt;&lt; m_pCamera-&gt;ExposureEndEventTimestamp.<span class="built_in">GetValue</span>()</span><br><span class="line">           &lt;&lt; <span class="string">&quot;Frame number: &quot;</span> &lt;&lt; m_pCamera-&gt;ExposureEndEventFrameID.<span class="built_in">GetValue</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span> ( Pylon::GenericException&amp; e )</span><br><span class="line">    &#123;</span><br><span class="line">      cerr &lt;&lt; <span class="string">&quot;Failed to get event information. Exception occurred:&quot;</span></span><br><span class="line">           &lt;&lt; e.<span class="built_in">GetDescription</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Camera_t&amp; m_Camera;</span><br><span class="line">&#125; <span class="built_in">callbackTarget</span>( camera );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Register the callback for the ExposureEndEventTimestamp node.</span></span><br><span class="line">GenApi::CallbackHandleType hCb = GenApi::<span class="built_in">Register</span>(</span><br><span class="line">  pCamera-&gt;ExposureEndEventTimestamp.<span class="built_in">GetNode</span>(),</span><br><span class="line">  callbackTarget,</span><br><span class="line">  &amp;CallbackTarget::EndOfExposureCallback );</span><br></pre></td></tr></table></figure></div>
+<p>注册的回调将从<a href="">IEventAdapter::DeliverMessage()</a>函数的上下文中触发。</p>
+
+  <div class="note-large blue">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>注意：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>由于一个事件消息可以聚合多个事件，<code>DeliverMessage</code>在同一类型的多个事件可用时将对回调函数发起多次调用。</p>
+
+    </div>
+  </div>
+
+
+<h2 id="Cleanup"><a href="#Cleanup" class="headerlink" title="Cleanup"></a>Cleanup</h2><p>在关闭和删除Camera对象之前，必须关闭和销毁与事件相关的对象，如下面的代码片段所示：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Disable sending of Exposure End events</span></span><br><span class="line">camera.EventSelector = EventSelector_ExposureEnd;</span><br><span class="line">camera.EventNotification.<span class="built_in">SetValue</span>( EventNotification_Off );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cleanup of event grabber and event adapter</span></span><br><span class="line"><span class="comment">// Deregister the callback first, or else when shutting down the event grabber</span></span><br><span class="line">camera.ExposureEndEventTimestamp.<span class="built_in">GetNode</span>()-&gt;<span class="built_in">DeregisterCallback</span>( hCb );</span><br><span class="line"><span class="comment">// Close the event grabber to tear down the connection</span></span><br><span class="line"><span class="comment">// and free the resources used for receiving events</span></span><br><span class="line">EventGrabber.<span class="built_in">Close</span>();</span><br><span class="line"><span class="comment">// Delete the event adapter object</span></span><br><span class="line">camera.<span class="built_in">DestroyEventAdapter</span>( pEventAdapter );</span><br></pre></td></tr></table></figure></div>
+
+
+<h1 id="Chunk-Parser-Accessing-Chunk-Features"><a href="#Chunk-Parser-Accessing-Chunk-Features" class="headerlink" title="Chunk Parser: Accessing Chunk Features"></a>Chunk Parser: Accessing Chunk Features</h1><p>Basler相机可以将额外信息附加到图像数据中，例如帧计数器、时间戳和CRC校验和。本节将解释如何启用块特征以及如何访问附加的数据。</p>
+<h2 id="Enabling-Chunks"><a href="#Enabling-Chunks" class="headerlink" title="Enabling Chunks"></a>Enabling Chunks</h2><p>在激活生成块数据的特征之前，必须开启相机的块模式(<code>chunk mode</code>)</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Open the camera</span></span><br><span class="line">camera.<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable chunks in general</span></span><br><span class="line"><span class="keyword">if</span> ( GenApi::<span class="built_in">IsWritable</span>( camera.ChunkModeActive ) ) &#123;</span><br><span class="line">  camera.ChunkModeActive.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;The camera does not support chunk features&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当相机处于块模式时，它会传输被划分为多个块的数据块。第一个块总是图像数据。当启用块特征后，图像数据块之后会跟随包含由块特征生成的信息的块。</p>
+<p>一旦块模式被激活，就可以启用块特征：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">camera.ChunkSelector.<span class="built_in">SetValue</span>( ChunkSelector_Timestamp );</span><br><span class="line">camera.ChunkEnable.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Grabbing-Buffers"><a href="#Grabbing-Buffers" class="headerlink" title="Grabbing Buffers"></a>Grabbing Buffers</h2><p>从带有块的图像流抓取与从不带块的图像流抓取非常相似。必须提供足够大的内存缓冲区，以存储图像数据和附加的块数据。</p>
+<p>相机的<code>PayloadSize</code>参数反映所需的缓冲区大小（以字节为单位）：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Ask for the buffer size</span></span><br><span class="line"><span class="type">const</span> <span class="type">size_t</span> ImageSize = (<span class="type">size_t</span>) ( camera.PayloadSize.<span class="built_in">GetValue</span>() );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Allocate buffer(s)</span></span><br><span class="line"><span class="type">uint8_t</span> *pBuffer = <span class="keyword">new</span> <span class="type">uint8_t</span>[ ImageSize ];</span><br><span class="line"></span><br><span class="line"><span class="comment">// Inform the stream grabber about the buffer size</span></span><br><span class="line">StreamGrabber.MaxBufferSize.<span class="built_in">SetValue</span>( ImageSize );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Tell the stream grabber how many buffers will be used</span></span><br><span class="line"><span class="comment">// ( in this example only 1 )</span></span><br><span class="line">StreamGrabber.MaxNumBuffer.<span class="built_in">SetValue</span>( <span class="number">1</span> );</span><br></pre></td></tr></table></figure></div>
+
+<p>现在一个图像和其附加的块可以被抓取：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Allocate resources related to grabbing</span></span><br><span class="line">StreamGrabber.<span class="built_in">PrepareGrab</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Subscribe the buffer</span></span><br><span class="line"><span class="type">const</span> StreamBufferHandle hBuffer =</span><br><span class="line">  StreamGrabber.<span class="built_in">RegisterBuffer</span>( pBuffer, ImageSize );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Put buffer into the grab queue so it will be filled with data</span></span><br><span class="line">StreamGrabber.<span class="built_in">QueueBuffer</span>( hBuffer, <span class="literal">NULL</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Let the camera acquire one image</span></span><br><span class="line">camera.AcquisitionMode.<span class="built_in">SetValue</span>( AcquisitionMode_SingleFrame );</span><br><span class="line">camera.AcquisitionStart.<span class="built_in">Execute</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GrabResult Result;</span><br><span class="line"><span class="comment">// Wait for the buffer to be filled</span></span><br><span class="line"><span class="keyword">if</span> ( StreamGrabber.<span class="built_in">GetWaitObject</span>().<span class="built_in">Wait</span>( <span class="number">3000</span> ) ) &#123;</span><br><span class="line">  <span class="comment">// Get the grab result from the grabber&#x27;s result queue</span></span><br><span class="line">  StreamGrabber.<span class="built_in">RetrieveResult</span>( Result );</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Timeout</span></span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Timeout occurred!&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( ! Result.<span class="built_in">Succeeded</span>() ) &#123;</span><br><span class="line">  <span class="comment">// Error Handling</span></span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;No image acquired!&quot;</span> &lt;&lt; endl;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Error code : 0x&quot;</span> &lt;&lt; hex</span><br><span class="line">    &lt;&lt; Result.<span class="built_in">GetErrorCode</span>() &lt;&lt; endl;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Error description : &quot;</span></span><br><span class="line">    &lt;&lt; Result.<span class="built_in">GetErrorDescription</span>() &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Check if a buffer containing chunk data has been received</span></span><br><span class="line"><span class="keyword">if</span> ( PayloadType_ChunkData != Result.<span class="built_in">GetPayloadType</span> () ) &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Unexpected payload type received&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="Accessing-the-Chunk-Data"><a href="#Accessing-the-Chunk-Data" class="headerlink" title="Accessing the Chunk Data"></a>Accessing the Chunk Data</h2><p>包含图像块和其他块的数据块具有自描述的布局。在访问添加的块中的数据之前，必须使用<a href="">Chunk Parser</a>对象解析数据块。</p>
+<p>相机对象负责创建Chunk Parser：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create ChunkParser</span></span><br><span class="line">IChunkParser &amp;ChunkParser = *camera.<span class="built_in">CreateChunkParser</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>一旦创建了<a href="">Chunk Parser</a>，抓取的缓冲区可以绑定到<a href="">Chunk Parser</a>上。当缓冲区绑定到Chunk Parser时，它将被解析，块数据访问由相机对象的成员提供。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Attach image buffer with chunk data to the parser. The parser extracts</span></span><br><span class="line"><span class="comment">// the included data from the chunk.</span></span><br><span class="line">pChunkParser-&gt;<span class="built_in">AttachBuffer</span>( Result.<span class="built_in">Buffer</span>(), Result.<span class="built_in">GetPayloadSize</span>() );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Access the chunk data.</span></span><br><span class="line"><span class="comment">// Before accessing the chunk data, it should be checked to see</span></span><br><span class="line"><span class="comment">// if the chunk is readable. When it is readable, the buffer</span></span><br><span class="line"><span class="comment">// contains the requested chunk data.</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">IsReadable</span>(camera.ChunkTimestamp) )</span><br><span class="line">  cout &lt;&lt; <span class="string">&quot;TimeStamp : &quot;</span> &lt;&lt; camera.ChunkTimestamp.<span class="built_in">GetValue</span>() &lt;&lt; endl;</span><br></pre></td></tr></table></figure></div>
+
+<p>要检查CRC校验和块特征的结果，请使用Chunk Parser的<a href="">HasCRC()</a>和<a href="">CheckCRC()</a>方法。注意，相机只在启用CRC校验和特征后才会发送CRC。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Enable crc chunks  ( before PrepareGrab()! )</span></span><br><span class="line">camera.ChunkSelector.<span class="built_in">SetValue</span>( ChunkSelector_PayloadCRC16 );</span><br><span class="line">camera.ChunkEnable.<span class="built_in">SetValue</span>( <span class="literal">true</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Check the CRS sum ( after having the buffer attached to the Chunk Parser)</span></span><br><span class="line"><span class="keyword">if</span> ( pChunkParser-&gt;<span class="built_in">HasCRC</span>() &amp;&amp; !pChunkParser-&gt;<span class="built_in">CheckCRC</span>() ) &#123;</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Image was damaged!&quot;</span> &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在重用缓冲区进行抓取之前，必须将缓冲区从Chunk Parser中分离。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// After detaching the buffer, the chunk data is no longer accessible!</span></span><br><span class="line">pChunkParser-&gt;<span class="built_in">DetachBuffer</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>分离缓冲区后，下一个抓取的缓冲区可以附加并读取包含的块数据。</p>
+<p>当你完成抓取后，必须删除Chunk Parser：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Destroy the chunk parser</span></span><br><span class="line">camera.<span class="built_in">DestroyChunkParser</span>( pChunkParser );</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="Getting-Informed-About-Device-Removal"><a href="#Getting-Informed-About-Device-Removal" class="headerlink" title="Getting Informed About Device Removal"></a>Getting Informed About Device Removal</h1><p>可以注册回调函数，当相机设备被移除时触发。一旦调用了相机对象的<a href="">Open()</a>方法，就可以注册C函数或C++类成员函数作为回调。</p>
+<p>注册一个C函数：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">RemovalCallbackFunction</span><span class="params">( IPylonDevice* pDevice )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;Callback function for removal of device &quot;</span></span><br><span class="line">      &lt;&lt; pDevice-&gt;<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetFullName</span>().<span class="built_in">c_str</span>() &lt;&lt; <span class="string">&quot; has been fired&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the camera</span></span><br><span class="line">pCamera-&gt;<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Register a &quot;normal&quot; function</span></span><br><span class="line">DeviceCallbackHandle hCb2 = <span class="built_in">RegisterRemovalCallback</span>( pCamera, &amp;RemovalCallbackFunction);</span><br></pre></td></tr></table></figure></div>
+
+<p>注册一个C++类成员函数：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A class with a member function that can be registered for device removal notifications</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AClass</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">// The member function to be registered</span></span><br><span class="line">  <span class="function"><span class="type">void</span> <span class="title">RemovalCallbackMemberFunction</span><span class="params">( IPylonDevice* pDevice )</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;Member function callback for removal of device &quot;</span></span><br><span class="line">      &lt;&lt; pDevice-&gt;<span class="built_in">GetDeviceInfo</span>().<span class="built_in">GetFullName</span>().<span class="built_in">c_str</span>() &lt;&lt; <span class="string">&quot; has been fired&quot;</span> &lt;&lt; endl;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">  AClass a;  <span class="comment">// A member function of this class will be registered as a removal callback function</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// Open the camera</span></span><br><span class="line">  pCamera-&gt;<span class="built_in">Open</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Register a member function</span></span><br><span class="line">  DeviceCallbackHandle hCb1 = <span class="built_in">RegisterRemovalCallback</span>( pCamera, a, &amp;AClass::RemovalCallbackMemberFunction);</span><br></pre></td></tr></table></figure></div>
+
+<p>所有注册的回调在调用相机对象的<a href="">Close()</a>方法之前必须注销</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( ! pCamera-&gt;<span class="built_in">DeregisterRemovalCallback</span>( hCb1 ) )</span><br><span class="line">  cerr &lt;&lt; <span class="string">&quot;Failed to deregister the callback function&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">pCamera-&gt;<span class="built_in">Close</span>();</span><br></pre></td></tr></table></figure></div>
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Pylon C++ Low Level API</li>
+        <li><strong>作者:</strong> paw5zx</li>
+        <li><strong>创建于
+                :</strong> 2024-11-24 20:49:00</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2024-11-26 13:49:11
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://paw5zx.github.io/pylon-cpp-low-level-api/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-cpp-advanced-topics/" title="Pylon C++ Advanced Topics" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Advanced Topics" class="!max-w-none">
+  <span class="title">Pylon C++ Advanced Topics</span>
+</a><a class="recommended-article-item" href="/pylon-cpp-programmer-guide/" title="Pylon C++ Programmer's Guide" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Programmer's Guide" class="!max-w-none">
+  <span class="title">Pylon C++ Programmer's Guide</span>
+</a><a class="recommended-article-item" href="/aravis-multiple-acquisition-main-thread/" title="开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread" class="!max-w-none">
+  <span class="title">开源相机管理库Aravis例程学习（二）——连续采集multiple-acquisition-main-thread</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-cpp-advanced-topics/" title="Pylon C++ Advanced Topics" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Advanced Topics" class="!max-w-none">
+  <span class="title">Pylon C++ Advanced Topics</span>
+</a><a class="recommended-article-item" href="/pylon-cpp-programmer-guide/" title="Pylon C++ Programmer's Guide" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Programmer's Guide" class="!max-w-none">
+  <span class="title">Pylon C++ Programmer's Guide</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/pylon-cpp-advanced-topics/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Pylon C++ Advanced Topics</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'paw5zx/Blog-discussion',
+                'data-repo-id': 'R_kgDOMnAVmg',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMnAVms4Ch3WS',
+                'data-mapping': 'pathname',
+                'data-strict': '1',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">Pylon C++ Low Level API</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Low-Level-Camera-Classes-deprecated"><span class="nav-text">Low Level Camera Classes (deprecated)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Grabbing-Images"><span class="nav-text">Grabbing Images</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminology"><span class="nav-text">Terminology</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Acquire-Transfer-and-Grab-Images"><span class="nav-text">Acquire, Transfer, and Grab Images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-Data-Stream-and-Stream-Grabber"><span class="nav-text">Image Data Stream and Stream Grabber</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Stream-Grabbers"><span class="nav-text">Using Stream Grabbers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Getting-a-Stream-Grabber"><span class="nav-text">Getting a Stream Grabber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-a-Stream-Grabber"><span class="nav-text">Configuring a Stream Grabber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preparing-a-Stream-Grabber-for-Grabbing"><span class="nav-text">Preparing a Stream Grabber for Grabbing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Providing-Memory-for-Grabbing"><span class="nav-text">Providing Memory for Grabbing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feeding-the-Stream-Grabber%E2%80%99s-Input-Queue"><span class="nav-text">Feeding the Stream Grabber’s Input Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-and-Stopping-Image-Acquisition"><span class="nav-text">Starting and Stopping Image Acquisition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrieving-Grabbed-Images"><span class="nav-text">Retrieving Grabbed Images</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Finish-Grabbing"><span class="nav-text">Finish Grabbing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Complete-Sample-program"><span class="nav-text">Complete Sample program</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Handling-Camera-Events"><span class="nav-text">Handling Camera Events</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Grabbers"><span class="nav-text">Event Grabbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-and-Preparing-Event-Grabbers"><span class="nav-text">Creating and Preparing Event Grabbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enabling-Events"><span class="nav-text">Enabling Events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Receiving-Events"><span class="nav-text">Receiving Events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parsing-and-Dispatching-Events"><span class="nav-text">Parsing and Dispatching Events</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Event-Callbacks"><span class="nav-text">Event Callbacks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cleanup"><span class="nav-text">Cleanup</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chunk-Parser-Accessing-Chunk-Features"><span class="nav-text">Chunk Parser: Accessing Chunk Features</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Enabling-Chunks"><span class="nav-text">Enabling Chunks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grabbing-Buffers"><span class="nav-text">Grabbing Buffers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessing-the-Chunk-Data"><span class="nav-text">Accessing the Chunk Data</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Getting-Informed-About-Device-Removal"><span class="nav-text">Getting Informed About Device Removal</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.8; --fa-beat-fade-scale: 1.00;"></i>&nbsp;&nbsp;<a href="/">paw5zx</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 43 篇文章
+                    </span>
+                    
+                        <span>
+                            共 80.1k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
