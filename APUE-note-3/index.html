@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="paw5zx">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://paw5zx.github.io/apue-note-3/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNIX环境高级编程（三）——文件I&#x2F;O">
+<meta property="og:url" content="http://paw5zx.github.io/APUE-note-3/index.html">
+<meta property="og:site_name" content="Paw5zx">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://paw5zx.github.io/APUE-note-3/file_descriptor.jfif">
+<meta property="og:image" content="http://paw5zx.github.io/APUE-note-3/file_descriptor_process.jfif">
+<meta property="og:image" content="http://paw5zx.github.io/APUE-note-3/dup_file_descriptor.jfif">
+<meta property="article:published_time" content="2025-01-08T16:23:24.000Z">
+<meta property="article:modified_time" content="2025-02-09T01:50:22.277Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://paw5zx.github.io/APUE-note-3/file_descriptor.jfif">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/logos/O7_allmode.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/O7_allmode.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/logos/O7_allmode.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            UNIX环境高级编程（三）——文件I/O | Paw5zx
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"paw5zx.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":4,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]},"pangu_js":false},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":"WenQuanYi Zen Hei Mono","url":"https://example.com/path/to/your/font.css"},"english":{"enable":false,"family":"Cutive Mono","url":"https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Paw5zx's Blog"},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Paw5zx's Blog","subtitle":{"text":["C++爱好者","APEX低手","精通中华田园敏捷开发"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/paw5zx","instagram":null,"zhihu":null,"twitter":null,"email":null,"bilibili":"https://space.bilibili.com/11411875"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"icon":"fa-regular fa-link","submenus":{"Itanium C++ ABI":"https://itanium-cxx-abi.github.io/cxx-abi/","C++ Standard Draft":"https://eel.is/c++draft/","Compiler Explorer":"https://gcc.godbolt.org/"}},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":4,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/11 23:23:23"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Paw5zx&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Paw5zx
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">
+                                                    ITANIUM C++ ABI
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://eel.is/c++draft/">
+                                                    C++ STANDARD DRAFT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://gcc.godbolt.org/">
+                                                    COMPILER EXPLORER
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">ITANIUM C++ ABI</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://eel.is/c++draft/">C++ STANDARD DRAFT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://gcc.godbolt.org/">COMPILER EXPLORER</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">UNIX环境高级编程（三）——文件I/O</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/logos/O7_allmode.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">paw5zx</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-09 00:23:24</span>
+        <span class="mobile">2025-01-09 00:23:24</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-02-09 09:50:22</span>
+            <span class="mobile">2025-02-09 09:50:22</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/APUE/">APUE</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>5.4k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>19 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h1><p>文件描述符是一个非负整数，范围是<code>0~OPEN_MAX-1</code>，用于表征一个已打开的文件。内核用它来标识进程正在访问的文件。</p>
+<p>当进程创建时，操作系统内核默认为它打开了3个文件描述符，它们都链接向终端：</p>
+<ul>
+<li>0：标准输入</li>
+<li>1：标准输出</li>
+<li>2：标准错误</li>
+</ul>
+<p>一般我们应使用<code>STDIN_FILENO</code>，<code>STDOUT_FILENO</code>和<code>STDERR_FILENO</code>来替代这三个幻数，从而提高可读性。这三个常量在&lt;unistd.h&gt;中定义。</p>
+<p>每个进程的标准输入、标准输出和标准错误是独立的，每个进程拥有自己的标准输入输出错误。</p>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>文件描述符是进程级别的资源标识符，由各个进程独立管理。</p>
+<p>Q：如果没有终端（如以守护进程方式启动的服务），且代码中没有显式重定向，此时在进程中向标准输出写入数据会怎样？</p>
+
+    </div>
+  </div>
+
+
+<h1 id="open和openat函数"><a href="#open和openat函数" class="headerlink" title="open和openat函数"></a>open和openat函数</h1><p><code>open</code>和<code>openat</code>函数用于打开或创建一个文件</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回文件描述符；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* path, <span class="type">int</span> oflag,...<span class="comment">/*mode_t mode*/</span>)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">openat</span><span class="params">(<span class="type">int</span> fd, <span class="type">const</span> <span class="type">char</span>*path, <span class="type">int</span> oflag,...<span class="comment">/*mode_t mode */</span>)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>path</code>：要打开或创建的文件的名字</li>
+<li><code>oflag</code>：用于指定文件状态标志，标志决定了文件打开的模式和行为。用下列一个或多个常量进行”或”运算构成<code>oflag</code>参数<ul>
+<li><code>O_RDONLY</code>：只读打开</li>
+<li><code>O_WRONLY</code>：只写打开</li>
+<li><code>O_RDWR</code>：读、写打开</li>
+<li><code>O_EXEC</code>：只执行打开</li>
+<li><code>O_SEARCH</code>：只搜索打开（应用于目录）。不常见，且一般Linux系统通常不实现<code>O_SEARCH</code>标志。<br>上述五个访问模式标志必须指定且只能指定一个<br>下列常量是可选的:</li>
+<li><code>O_APPEND</code>：每次写时都追加到文件的尾端</li>
+<li><code>O_CLOEXEC</code>：将<code>FD_CLOEXEC</code>常量设置为文件描述符标志</li>
+<li><code>O_CREAT</code>：若文件不存在则创建。在使用此选项时，需要同时说明参数mode（指定该文件的访问权限）</li>
+<li><code>O_DIRECTORY</code>：若<code>path</code>引用的不是目录，则出错</li>
+<li><code>O_EXCL</code>：若同时指定了<code>O_CREAT</code>时，且文件已存在则出错。用此可以测试一个文件是否存在。若不存在则创建此文件。这使得测试和创建两者成为一个原子操作</li>
+<li><code>O_NOCTTY</code>：若<code>path</code>引用的是终端设备，则不将该设备分配为此进程的控制终端</li>
+<li><code>O_NOFOLLOW</code>：若<code>path</code>引用的是一个符号链接，则出错</li>
+<li><code>O_NONBLOCK</code>：如果<code>path</code>引用的是一个FIFO、一个块特殊文件或者一个字符特殊文件，则文件本次打开操作和后续的 I&#x2F;O 操作将设为非阻塞模式</li>
+<li><code>O_SYNC</code>：每次<code>write</code>等待物理<code>I/O</code>完成，包括由<code>write</code>操作引起的文件属性更新所需的<code>I/O</code></li>
+<li><code>O_TRUNC</code>： 如果此文件存在，且为<code>O_WRONLY</code>或者<code>O_RDWR</code>成功打开，则将其长度截断为0</li>
+<li><code>O_RSYNC</code>：使每一个以文件描述符作为参数的<code>read</code>操作等待，直到所有对文件同一部分挂起的写操作都完成</li>
+<li><code>O_DSYNC</code>：每次<code>write</code>等待物理<code>I/O</code>完成，但不包括由<code>write</code>操作引起的文件属性更新所需的<code>I/O</code></li>
+</ul>
+</li>
+<li><code>mode</code>：文件访问权限，在<code>&lt;sys/stat.h&gt;</code>中定义<ul>
+<li><code>S_IRUSR</code>：用户读</li>
+<li><code>S_IWUSR</code>：用户写</li>
+<li><code>S_IXUSR</code>：用户执行</li>
+<li><code>S_IRGRP</code>：组读</li>
+<li><code>S_IWGRP</code>：组写</li>
+<li><code>S_IXGRP</code>：组执行</li>
+<li><code>S_IROTH</code>：其他读</li>
+<li><code>S_IWOTH</code>：其他写</li>
+<li><code>S_IXOTH</code>：其他执行</li>
+</ul>
+</li>
+</ul>
+<p>对于<code>openat</code>函数：</p>
+<ul>
+<li>如果<code>path</code>指定的是绝对路径名，则<code>fd</code>被忽略。<code>openat</code>等价于<code>open</code></li>
+<li>如果<code>path</code>指定的是相对路径名，<code>fd</code>是有效的并指向一个目录。那么<code>path</code>将被解释为相对于这个目录的路径。</li>
+<li>如果<code>path</code>指定的是相对路径名，而<code>fd</code>是常量<code>AT_FDCWD</code>，则<code>path</code>被解释为相对于当前工作目录。被打开文件将在当前工作目录中查找。</li>
+</ul>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>虽然逻辑上看起来是先判断<code>path</code>是绝对路径还是相对路径，但实际上在处理<code>openat()</code>调用时，首先是确定<code>fd</code>的状态，因为它决定了如何处理<code>path</code>。如果<code>fd</code>无效，且<code>path</code>不是绝对路径，通常会导致错误。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="creat函数"><a href="#creat函数" class="headerlink" title="creat函数"></a>creat函数</h1><p><code>creat</code>函数用于创建一个新文件</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回以只写方式打开的文件描述符；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">creat</span><span class="params">(<span class="type">const</span> <span class="type">char</span>*path, <span class="type">mode_t</span> mode)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line">open(path, O_WRONLY | O_CREAT | O_TRUNC, mode);</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：类似open函数</p>
+<p>注意</p>
+<ul>
+<li>此函数以只写方式打开文件，如需读取该文件，需要先关闭，然后以读方式打开文件</li>
+<li>若文件已存在则将文件截断为0</li>
+</ul>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>早期<code>open</code>函数不支持创建新文件，因此提供了<code>creat</code>函数。现在<code>open</code>提供了<code>O_CRAET</code>和<code>O_TRUNC</code>，也就不需要单独的<code>creat</code>函数了。</p>
+
+    </div>
+  </div>
+
+
+<h1 id="close函数"><a href="#close函数" class="headerlink" title="close函数"></a>close函数</h1><p><code>close</code>函数用于关闭一个已打开的文件</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回0；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：待关闭文件的文件描述符</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>进程关闭一个文件会释放该进程加在该文件上的所有记录锁。</li>
+<li>当一个进程终止时，内核会自动关闭进程所有的打开的文件。</li>
+</ul>
+<h1 id="文件偏移量"><a href="#文件偏移量" class="headerlink" title="文件偏移量"></a>文件偏移量</h1><p>文件偏移量通常是一个非负整数，用于度量从文件开始处计算的字节数。通常读写操作都从当前文件偏移量处开始。注意：</p>
+<ul>
+<li>当打开一个文件时，除非指定<code>O_APPEND</code>选项，否则文件偏移量被设置为0</li>
+<li>如果文件描述符指向的是一个管道、FIFO、或者网络套接字，则无法设定文件偏移量，<code>lseek</code>将返回-1 ，并且将<code>errno</code>被设置为<code>ESPIPE</code></li>
+<li>对于普通文件，其当前文件偏移量必须是非负整数。但是某些设备可以允许负的偏移量</li>
+<li>当前文件偏移量可以大于文件的当前长度。此时对该文件的下一次写操作将加长该文件，并且在文件中构成一个空洞。空洞中的内容位于文件中但是没有被写过，其字节被读取时都被读为0。这个空洞在文件中占位，但不占用磁盘空间</li>
+</ul>
+<h1 id="lseek函数"><a href="#lseek函数" class="headerlink" title="lseek函数"></a>lseek函数</h1><p><code>lseek</code>函数用于显式地为已打开文件设置偏移量</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回文件的新偏移量；失败返回-1</span></span><br><span class="line"><span class="type">off_t</span> <span class="title function_">lseek</span><span class="params">(<span class="type">int</span> fd, <span class="type">off_t</span> offset, <span class="type">int</span> whence)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：已打开文件的文件描述符</li>
+<li><code>offset</code>：<ul>
+<li>如果<code>whence</code>是<code>SEEK_SET</code>，则将该文件的偏移量设置为距离文件开始处<code>offset</code>个字节</li>
+<li>如果<code>whence</code>是<code>SEEK_CUR</code>，则将该文件的偏移量设置为当前值加上<code>offset</code>个字节，<code>offset</code>可正，可负</li>
+<li>如果<code>whence</code>是<code>SEEK_END</code>，则将该文件的偏移量设置为文件长度加上<code>offset</code>个字节，<code>offset</code>可正，可负</li>
+</ul>
+</li>
+<li><code>whence</code>：必须是<code>SEEK_SET</code>、<code>SEEK_CUR</code>、<code>SEEK_END</code>三个常量之一</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>由于某些设备可以允许负的偏移量，因此对于<code>lseek</code>，不能判断它返回值是否小于0，而是要根据是否等于-1来判断是否出错。</li>
+<li><code>lseek</code>并不会引起任何I&#x2F;O操作，<code>lseek</code>仅仅将当前文件的偏移量记录在内核中。</li>
+</ul>
+<h1 id="read函数"><a href="#read函数" class="headerlink" title="read函数"></a>read函数</h1><p><code>read</code>函数用于从已打开文件中读数据</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回实际读到的字节数；若读取时当前偏移量已位于尾端，则返回0；失败返回-1</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd,<span class="type">void</span> *buf,<span class="type">size_t</span> nbytes)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：已打开文件的文件描述符</li>
+<li><code>buf</code>：存放读取内容的缓冲区的地址（由程序员手动分配）</li>
+<li><code>nbytes</code>：期望读到的字节数</li>
+</ul>
+<p>读操作从文件的当前偏移量开始，在成功返回之前，文件的当前偏移量会增加实际读到的字节数。</p>
+<p>有多种情况可能导致实际读到的字节数少于期望读到的字节数：</p>
+<ul>
+<li>读普通文件时，在读到期望字节数之前到达了文件尾端。例如，到达文件尾端之前有30字节，期望读100字节，则<code>read</code>返回30，再次调用会返回0</li>
+<li>当从终端设备读时，通常一次最多读取一行（终端默认是行缓冲的）</li>
+<li>当从网络读时，网络中的缓存机制可能造成返回值小于期望读到的字节数</li>
+<li>当从管道或者FIFO读时，若管道包含的字节少于所需的数量，则<code>read</code>只返回实际可用的字节数</li>
+<li>当从某些面向记录的设备（如磁带）中读取时，一次最多返回一条记录</li>
+<li>当一个信号造成中断，而已读了部分数据时</li>
+</ul>
+<h1 id="write函数"><a href="#write函数" class="headerlink" title="write函数"></a>write函数</h1><p><code>write</code>函数用于向已打开文件写数据</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回一些的字节数；失败返回-1</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">write</span><span class="params">(<span class="type">int</span> fd,<span class="type">const</span> <span class="type">void</span> *buf,<span class="type">size_t</span> nbytes)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：已打开文件的文件描述符</li>
+<li><code>buf</code>：存放待写入内容的缓冲区的地址（由程序员手动分配）</li>
+<li><code>nbytes</code>：期望写入的字节数</li>
+</ul>
+<p><code>write</code>的返回值通常都是与<code>nbytes</code>相同。否则表示出错。<code>write</code>出错的一个常见原因是磁盘写满，或者超过了一个给定进行的文件长度限制。</p>
+<p>对于普通文件，写操作从文件的当前偏移量处开始。如果打开文件时指定了<code>O_APPEND</code>选项，则每次写操作之前，都会将文件偏移量设置在文件的当前结尾处。在一次成功写之后，该文件偏移量增加实际写的字节数。</p>
+<h1 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h1><p>内核使用三种数据结构表示打开文件。它们之间的关系决定了在文件共享方面，一个进程对另一个进程可能产生的影响。</p>
+<ul>
+<li>每个进程在进程表中都有一个记录项，记录项中包含一个打开文件描述符表，可将其视为矢量，每个文件描述符占用一项。与每个文件描述符相关联的是：<ul>
+<li>文件描述符标志</li>
+<li>指向一个文件表项的指针</li>
+</ul>
+</li>
+<li>内核为所有打开的文件维持一张文件表。每个文件表项包含：<ul>
+<li>文件状态标志（读、写、添写、同步和阻塞等）</li>
+<li>当前文件偏移量</li>
+<li>指向该文件v节点表项的指针</li>
+</ul>
+</li>
+<li>每个打开的文件（或设备）都有一个v节点(vnode)结构。v节点<ul>
+<li>包含文件类型和对此文件进行各种操作函数的指针。</li>
+<li>对于大多数文件，v节点还包含了该文件的i节点(inode)</li>
+</ul>
+</li>
+</ul>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>Linux没有使用vnode，而是使用了通用inode结构。</p>
+<p>Linux文件系统分析请见：<a href=""></a></p>
+
+    </div>
+  </div>
+
+
+<p>下图显示了一个进程对应的三张表之间的关系。该进程有两个不同的打开文件：一个文件从标准输入打开（fd为0），另一个从标准输出打开（fd为1）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/APUE-note-3/file_descriptor.jfif"
+                     
+                ></p>
+<p>现在讨论两个独立的进程各自打开同一个文件的情况。假设进程A在文件描述符3上打开这个文件，进程B在文件描述符2上打开这个文件。则有下图所示的关系</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/APUE-note-3/file_descriptor_process.jfif"
+                     
+                ></p>
+<p>进程A和B都有自己的文件表项，这是因为这样可以使每个进程都有它自己的对该文件的当前偏移量。</p>
+<p>现在再对前面的一些操作做进一步说明：</p>
+<ul>
+<li>进程每次<code>write</code>之后，文件表项中当前文件偏移量即增加所写入的字节数。若这导致当前文件偏移量超过当前文件长度，则修改i节点的当前文件长度，设为当前文件偏移量</li>
+<li>用<code>O_APPEND</code>标志打开一个文件，则相应标志也设置到文件表项的文件状态标志中。每次对具有追加写标志的文件执行写操作时，文件表项中的当前文件偏移量首先被置为i节点中的文件长度。这就使得每次写入的数据都追加到文件的当前尾端处</li>
+<li>若用<code>lseek</code>定位到文件当前的尾端，则文件表项的当前文件偏移量设置为i节点中的当前文件长度（注意，这与用<code>O_APPEND</code>标志打开文件是不同的，详见<a href="#%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C">原子操作</a>）</li>
+<li><code>lseek</code>函数只修改文件表项中的当前文件偏移量，不进行任何I&#x2F;O操作<br><a href="/itanium-1-1#inheritance-graph">对齐</a><br>注意：</li>
+<li>可能有多个文件描述符指向同一文件表项，请见<a href="#dup%E5%92%8Cdup2%E5%87%BD%E6%95%B0">dup函数</a>和<a href="/APUE-note-8#"></a></li>
+<li>文件描述符标志和文件状态标志是不同的，前者针对单个进程的单个文件描述符，后者则应用于所有持有该文件的任何进程的所有描述符</li>
+</ul>
+<h1 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h1><p>当一个进程要将数据追加到文件尾端时，早期UNIX不支持<code>O_APPEND</code>标志，所以需要</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (lseek(fd, OL, <span class="number">2</span>) &lt; <span class="number">0</span>)       <span class="comment">/*① position to EOF*/</span></span><br><span class="line">    err_sys(<span class="string">&quot;lseek error&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (write(fd, buf, <span class="number">100</span>) != <span class="number">100</span>) <span class="comment">/*② and write*/</span></span><br><span class="line">    err_sys(<span class="string">&quot;write error&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+<p>但是对于多个进程，如进程A和B同时打开同一个文件，每个进程有自己的文件表项，但是它们共享一个v节点表项。假设A进行了步骤①，文件当前偏移量被设置为1500，此时内核切换进程。进程B进行步骤①也将当前偏移量设置为1500，然后进行步骤②写入100字节，此时文件当前偏移量为1600。然后内核又切换到进程A，A进行步骤②，但是A是在其当前文件偏移量1500处写入数据，这样就覆盖了进程B写入的数据。</p>
+<p>究其原因就是步骤①和②是两个函数调用，不是原子操作。UNIX系统的解决方案就是提供了一种原子操作的方法，即设置<code>O_APPEND</code>标志，使得内核在每次写操作前都会将当前偏移量设置到文件末尾，这样在调用<code>write</code>之前就不需要调用<code>lseek</code>了。</p>
+<p>此外还有原子定位读写操作：</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回值同read</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">pread</span><span class="params">(<span class="type">int</span> fd,<span class="type">void</span>*buf,<span class="type">size_t</span> nbytes,<span class="type">off_t</span> offset)</span>;</span><br><span class="line"><span class="comment">// 返回值同write</span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">pwrite</span><span class="params">(<span class="type">int</span> fd,<span class="type">const</span> <span class="type">void</span>*buf,<span class="type">size_t</span> nbytes,<span class="type">off_t</span> offset)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：打开的文件描述符</li>
+<li><code>buf</code>：读出数据存放的缓冲区&#x2F;写到文件的数据的缓冲区</li>
+<li><code>nbytes</code>：期望读出&#x2F;写入文件的字节数</li>
+<li><code>offset</code>：指定的文件偏移量，从此值处开始读&#x2F;写</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><code>pread</code>和<code>pwrite</code>不更新当前文件偏移量</li>
+</ul>
+<h1 id="dup和dup2函数"><a href="#dup和dup2函数" class="headerlink" title="dup和dup2函数"></a>dup和dup2函数</h1><p><code>dup</code>和<code>dup2</code>函数用于复制一个现有的文件描述符</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回新文件描述符，失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">dup</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">dup2</span><span class="params">(<span class="type">int</span> fd,<span class="type">int</span> fd2)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：待复制的文件描述符</li>
+<li><code>fd2</code>：由用户指定的新文件描述符</li>
+</ul>
+<p>对于<code>dup</code>，返回的新文件描述符一定是当前可用的文件描述符中最小的<br>对于<code>dup2</code>，可以使用<code>fd2</code>指定新描述符的值；</p>
+<ul>
+<li>如果<code>fd2</code>已经是被打开的文件描述符且不等于<code>fd</code>，则先将其关闭，然后再打开（注意关闭再打开是一个原子操作）</li>
+<li>如果<code>fd2</code>等于<code>fd</code>，则直接返回<code>fd2</code>，而不作任何操作</li>
+</ul>
+<p>任何情况下，返回的文件描述符都与参数<code>fd</code>共享同一个文件表项（因此文件状态标志以及文件偏移量都会共享）。 </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/APUE-note-3/dup_file_descriptor.jfif"
+                     
+                ></p>
+<p><code>dup</code>和<code>dup2</code>不会复制文件描述符标志</p>
+<h1 id="sync、fsync和fdatasync函数"><a href="#sync、fsync和fdatasync函数" class="headerlink" title="sync、fsync和fdatasync函数"></a>sync、fsync和fdatasync函数</h1><p>UNIX操作系统在内核中设有缓冲区高速缓存或也高速缓存，大多数磁盘I&#x2F;O都通过缓冲区进行。当我们向文件写入数据时，内核通常先将数据复制到缓冲区中，然后排入队列，晚些时候再写入磁盘。这种方式称为延迟写(<code>delayed write</code>)。</p>
+<ul>
+<li>当内核需要重用缓冲区来存放其他数据时，它会把所有延迟写的数据块写入磁盘</li>
+<li>用户也可以调用下列函数来显式的将延迟写的数据块写入磁盘</li>
+</ul>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 无返回值</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">sync</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"><span class="comment">// 成功返回0；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fsync</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">fdatasync</span><span class="params">(<span class="type">int</span> fd)</span>;</span><br></pre></td></tr></table></figure></div>
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：指定的打开的文件描述符</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li><code>sync</code>：将所有修改过的块缓冲区排入写队列，然后返回，它并不等待时机写磁盘结束。（<code>update</code>系统守护进程会周期性调用<code>sync</code>函数；命令<code>sync</code>也会调用<code>sync</code>函数）</li>
+<li><code>fsync</code>：只对由fd指定的单个文件起作用，等待写磁盘操作结束才返回</li>
+<li><code>fdatasync</code>：类似<code>fsync</code>，但是它只影响文件的数据部分。<code>fsync</code>还会同步更新文件的属性</li>
+</ul>
+<h1 id="fcntl函数"><a href="#fcntl函数" class="headerlink" title="fcntl函数"></a>fcntl函数</h1><p><code>fcntl</code>函数可以改变已打开文件的属性</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="comment">// 成功，返回值依赖cmd；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fcntl</span><span class="params">(<span class="type">int</span> fd,<span class="type">int</span> cmd,...<span class="comment">/* int arg */</span>)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：已打开文件的描述符</li>
+<li><code>cmd</code>：<ul>
+<li><code>F_DUPFD</code>：复制文件描述符fd。新文件描述符作为函数值返回。返回值是尚未打开的文件描述符中大于或等于arg的最小值。新文件描述符与fd共享同一个文件表项，但是新描述符有自己的一套文件描述符标志，其中<code>FD_CLOEXEC</code>文件描述符标志不会被设置。</li>
+<li><code>F_DUPFD_CLOEXEC</code>：类似<code>FD_CLOEXEC</code>，只不过，无论原文件描述符是否设置<code>FD_CLOEXEC</code>，新文件描述符的<code>FD_CLOEXEC</code>都会被设置。</li>
+<li><code>F_GETFD</code>：获取文件描述符标志。函数返回文件描述符fd的文件描述符标志。</li>
+<li><code>F_SETFD</code>：设置fd的文件描述符标志为arg，也可以用于清除文件描述符标志（如arg为<code>~FD_CLOEXEC</code>），注意要先<code>F_GETFD</code>，然后在返回值的基础上设置新标志值，不能直接调用<code>F_SETFD</code>设置，这样会清除之前设置的其他标志</li>
+<li><code>F_GETFL</code>：获取文件描述符的状态标志。特别的，如何要获取文件访问模式标志，则需要将函数返回值与上<code>O_ACCMODE</code>，其余状态标志则不需要  <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd_flags = fcntl(fd, F_GETFL);</span><br><span class="line"><span class="keyword">if</span> (<span class="number">-1</span> == fd_flags) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 错误处理</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 检查访问模式标志</span></span><br><span class="line">    <span class="type">int</span> acc_mode = fd_flags &amp; O_ACCMODE;</span><br><span class="line">    <span class="keyword">if</span> (O_RDONLY == acc_mode)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (O_WRONLY == acc_mode)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查其他标志</span></span><br><span class="line">    <span class="keyword">if</span> (fd_flags &amp; O_NONBLOCK)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (fd_flags &amp; O_APPEND)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li><code>F_SETFL</code>：设置fd的文件状态标志为arg。不允许改变文件的访问模式标志，可以更改的标志是：<code>O_APPEND</code>、<code>O_NONBLOCK</code>、<code>O_SYNC</code>、<code>O_DSYNC</code>、<code>O_RSYNC</code>、<code>F_ASYNC</code>、<code>O_ASYNC</code>。类似<code>F_SETFD</code>，要在<code>F_GETFL</code>返回值基础上设置新标志值。  <div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> flags = fcntl(fd, F_GETFL, <span class="number">0</span>);  <span class="comment">// 获取当前的标志</span></span><br><span class="line"><span class="keyword">if</span> (flags == <span class="number">-1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 错误处理</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    flags |= O_NONBLOCK;  <span class="comment">// 添加非阻塞标志</span></span><br><span class="line">    flags |= O_APPEND;    <span class="comment">// 添加追加模式标志</span></span><br><span class="line">    <span class="keyword">if</span> (fcntl(fd, F_SETFL, flags) == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 错误处理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li><code>F_GETOWN</code>：获取当前接收<code>SIGIO</code>和<code>SIGURG</code>信号的进程ID或者进程组ID，返回正数则为进程ID，负数则其绝对值为进程组ID</li>
+<li><code>F_SETOWN</code>：设置当前接收<code>SIGIO</code>和<code>SIGURG</code>信号的进程ID或者进程组ID为arg。若arg是正值，则设定进程ID；若arg是个负值，则设定进程组ID</li>
+<li><code>F_GETLK</code>、<code>F_SETLK</code>、<code>F_SETLKW</code>：获取&#x2F;设置文件记录锁</li>
+</ul>
+</li>
+<li><code>arg</code>：依赖于具体命令</li>
+</ul>
+<h1 id="ioctl函数"><a href="#ioctl函数" class="headerlink" title="ioctl函数"></a>ioctl函数</h1><p><code>ioctl</code>函数用于设备特定的输入&#x2F;输出操作，它提供了一种操作设备文件（通常是设备驱动程序所代表的文件）的方法，这个操作无法使用上述系统调用（如<code>read</code>、<code>write</code>、<code>open</code>、<code>close</code>等）实现。</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span>     <span class="comment">/* System V */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/ioctl.h&gt;</span>  <span class="comment">/* BSD and Linux */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成功返回其他值；失败返回-1</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">ioctl</span><span class="params">(<span class="type">int</span> fd, <span class="type">int</span> request, ...)</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>参数：</p>
+<ul>
+<li><code>fd</code>：已打开文件的描述符</li>
+<li><code>request</code>：特定操作的编号，这个编号定义了<code>ioctl</code>要执行的具体任务。这些任务可以是从设备读取配置、向设备发送命令，或是执行设备的启动、停止、重置等操作。</li>
+<li><code>...</code>：取决于请求码，通常是指向数据的指针或值</li>
+</ul>
+<h1 id="dev-fd"><a href="#dev-fd" class="headerlink" title="&#x2F;dev&#x2F;fd"></a>&#x2F;dev&#x2F;fd</h1><p><code>/dev/fd</code>是一个目录，该目录下是名为0、1、2等的文件。打开文件<code>/dev/fd/n</code>等效于复制描述符（假定描述符n是打开的）</p>
+<p>对于<code>fd=open(&quot;/dev/fd/0&quot;, mode)</code></p>
+<ul>
+<li>fd和文件描述符0共享同一个文件表项</li>
+<li>大多数系统忽略<code>mode</code>参数，即使用已经打开的文件描述符的访问模式；另一些系统则要求<code>mode</code>必须是已经打开的文件描述符访问模式的子集<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 若文件描述符0先前以只读打开，那么即使下述调用成功，我们也不能对fd进行写操作</span></span><br><span class="line">fd = open(<span class="string">&quot;/dev/fd/0&quot;</span>, ORDWR);</span><br></pre></td></tr></table></figure></div></li>
+<li>也可以将<code>/dev/fd/n</code>作为参数调用<code>creat</code>，这与调用<code>open</code>时用<code>O_CREAT</code>作为参数效果相同</li>
+</ul>
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>Linux系统中<code>/dev/fd</code>是个例外，它把文件描述符映射为指向底层物理文件的符号链接。例如当打开<code>/dev/fd/0</code>时，实际上是在尝试以新的模式直接打开与标准输入关联的文件。因此，即便原始的文件描述符（比如标准输入）是以某种特定的模式打开的（比如只读），Linux中的<code>open(&quot;/dev/fd/0&quot;, ORDWR)</code>允许你尝试以不同的模式重新打开它。</p>
+<p>此外，由于上述原因，当将<code>/dev/fd/n</code>作为参数传入<code>creat</code>时，对应的文件会被截断，从而丢失所有已存在的数据。</p>
+
+    </div>
+  </div>
+
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>1.<a class="link"   target="_blank" rel="noopener" href="https://github.com/huaxz1986/APUE_notes" >《APUE_notes》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> UNIX环境高级编程（三）——文件I/O</li>
+        <li><strong>作者:</strong> paw5zx</li>
+        <li><strong>创建于
+                :</strong> 2025-01-09 00:23:24</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-02-09 09:50:22
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://paw5zx.github.io/APUE-note-3/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/IO-Multiplexing-select/" title="I/O多路复用学习（一）select" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="I/O多路复用学习（一）select" class="!max-w-none">
+  <span class="title">I/O多路复用学习（一）select</span>
+</a><a class="recommended-article-item" href="/UE-fmodel-usage/" title="使用FModel提取UE4/5游戏资产" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="使用FModel提取UE4/5游戏资产" class="!max-w-none">
+  <span class="title">使用FModel提取UE4/5游戏资产</span>
+</a><a class="recommended-article-item" href="/IO-Multiplexing-do-select/" title="I/O多路复用学习（二）do_select分析" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="I/O多路复用学习（二）do_select分析" class="!max-w-none">
+  <span class="title">I/O多路复用学习（二）do_select分析</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/IO-Multiplexing-select/" title="I/O多路复用学习（一）select" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="I/O多路复用学习（一）select" class="!max-w-none">
+  <span class="title">I/O多路复用学习（一）select</span>
+</a><a class="recommended-article-item" href="/UE-fmodel-usage/" title="使用FModel提取UE4/5游戏资产" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="使用FModel提取UE4/5游戏资产" class="!max-w-none">
+  <span class="title">使用FModel提取UE4/5游戏资产</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/rust-common-concepts-1/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Rust基础学习（一）——变量和数据类型</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/GObject-tutorial-beginner-04/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">GObject学习笔记（四）信号</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'paw5zx/Blog-discussion',
+                'data-repo-id': 'R_kgDOMnAVmg',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMnAVms4Ch3WS',
+                'data-mapping': 'pathname',
+                'data-strict': '1',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">UNIX环境高级编程（三）——文件I/O</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#open%E5%92%8Copenat%E5%87%BD%E6%95%B0"><span class="nav-text">open和openat函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#creat%E5%87%BD%E6%95%B0"><span class="nav-text">creat函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#close%E5%87%BD%E6%95%B0"><span class="nav-text">close函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-text">文件偏移量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lseek%E5%87%BD%E6%95%B0"><span class="nav-text">lseek函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#read%E5%87%BD%E6%95%B0"><span class="nav-text">read函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#write%E5%87%BD%E6%95%B0"><span class="nav-text">write函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="nav-text">文件共享</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C"><span class="nav-text">原子操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dup%E5%92%8Cdup2%E5%87%BD%E6%95%B0"><span class="nav-text">dup和dup2函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sync%E3%80%81fsync%E5%92%8Cfdatasync%E5%87%BD%E6%95%B0"><span class="nav-text">sync、fsync和fdatasync函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fcntl%E5%87%BD%E6%95%B0"><span class="nav-text">fcntl函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ioctl%E5%87%BD%E6%95%B0"><span class="nav-text">ioctl函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dev-fd"><span class="nav-text">&#x2F;dev&#x2F;fd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-text">参考文章</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.8; --fa-beat-fade-scale: 1.00;"></i>&nbsp;&nbsp;<a href="/">paw5zx</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 50 篇文章
+                    </span>
+                    
+                        <span>
+                            共 101.2k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="paw5zx">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://paw5zx.github.io/rust-common-concepts-1/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="拥抱Rust了属于是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust基础学习（一）——变量和数据类型">
+<meta property="og:url" content="http://paw5zx.github.io/rust-common-concepts-1/index.html">
+<meta property="og:site_name" content="Paw5zx">
+<meta property="og:description" content="拥抱Rust了属于是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-15T07:56:40.000Z">
+<meta property="article:modified_time" content="2025-02-09T05:55:34.143Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/logos/O7_allmode.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/O7_allmode.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/logos/O7_allmode.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Rust基础学习（一）——变量和数据类型 | Paw5zx
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"paw5zx.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":4,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]},"pangu_js":false},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":"WenQuanYi Zen Hei Mono","url":"https://example.com/path/to/your/font.css"},"english":{"enable":false,"family":"Cutive Mono","url":"https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Paw5zx's Blog"},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Paw5zx's Blog","subtitle":{"text":["C++爱好者","APEX低手","精通中华田园敏捷开发"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/paw5zx","instagram":null,"zhihu":null,"twitter":null,"email":null,"bilibili":"https://space.bilibili.com/11411875"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"icon":"fa-regular fa-link","submenus":{"Itanium C++ ABI":"https://itanium-cxx-abi.github.io/cxx-abi/","C++ Standard Draft":"https://eel.is/c++draft/","Compiler Explorer":"https://gcc.godbolt.org/"}},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":4,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/11 23:23:23"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Paw5zx&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Paw5zx
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">
+                                                    ITANIUM C++ ABI
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://eel.is/c++draft/">
+                                                    C++ STANDARD DRAFT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://gcc.godbolt.org/">
+                                                    COMPILER EXPLORER
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">ITANIUM C++ ABI</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://eel.is/c++draft/">C++ STANDARD DRAFT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://gcc.godbolt.org/">COMPILER EXPLORER</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">50</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Rust基础学习（一）——变量和数据类型</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/logos/O7_allmode.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">paw5zx</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-15 15:56:40</span>
+        <span class="mobile">2025-01-15 15:56:40</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-02-09 13:55:34</span>
+            <span class="mobile">2025-02-09 13:55:34</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Rust/">Rust</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>19 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>需要遵循<a class="link"   target="_blank" rel="noopener" href="https://course.rs/practice/naming.html" >Rust命名规范 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="变量绑定"><a href="#变量绑定" class="headerlink" title="变量绑定"></a>变量绑定</h2><p>在其他语言中我们可以这么给变量a赋值：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::string a = <span class="string">&quot;hello world&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>而在Rust中，我们这样写:</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = <span class="string">&quot;hello world&quot;</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们称这个操作为变量绑定(<code>bind</code>)。称之为绑定而不是赋值的原因，涉及到Rust最核心的原则——所有权。简单来讲，任何内存对象都有一个明确的所有者，该所有者负责管理该对象的生命周期</p>
+<h2 id="变量可变性"><a href="#变量可变性" class="headerlink" title="变量可变性"></a>变量可变性</h2><p>Rust变量默认是不可变的，一旦为变量绑定值，就不能再修改这个变量：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">    x = <span class="number">6</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>会报错：</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">error[E0384]: cannot assign twice to immutable variable `x`</span><br><span class="line"> --&gt; src/main.rs:5:5</span><br><span class="line">  |</span><br><span class="line">3 |     let x = 5;</span><br><span class="line">  |         - first assignment to `x`</span><br><span class="line">4 |     println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">5 |     x = 6;</span><br><span class="line">  |     ^^^^^ cannot assign twice to immutable variable</span><br><span class="line">  |</span><br><span class="line">help: consider making this binding mutable</span><br><span class="line">  |</span><br><span class="line">3 |     let mut x = 5;</span><br><span class="line">  |         +++</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>这是因为我们想为不可变的变量x再次赋值。</p>
+<p>若想创建一个可变变量，在变量名前加一个<code>mut</code>即可：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">    x = <span class="number">6</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="忽略变量"><a href="#忽略变量" class="headerlink" title="忽略变量"></a>忽略变量</h2><p>如果创建了一个变量却从未使用，Rust编译器通常会给出一个警告，因为这可能意味着程序中存在潜在的错误或冗余代码。这种警告有助于提升代码的质量和效率。</p>
+<p>如果想告诉编译器不要警告未使用的变量，可以在变量名称前加上下划线：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 变量x和y都只有声明，没有使用。</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">_x</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>会有以下警告：</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">warning: unused variable: `y`</span><br><span class="line"> --&gt; src/main.rs:4:9</span><br><span class="line">  |</span><br><span class="line">4 |     let y = 10;</span><br><span class="line">  |         ^ help: if this is intentional, prefix it with an underscore: `_y`</span><br><span class="line">  |</span><br><span class="line">  = note: `#[warn(unused_variables)]` on by default</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="变量解构"><a href="#变量解构" class="headerlink" title="变量解构"></a>变量解构</h2><p><code>let</code>表达式不仅仅用于变量的绑定，还能进行复杂变量的解构：从一个相对复杂的变量中，匹配出该变量的一部分内容：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// a = true,不可变; b = false，可变</span></span><br><span class="line">    <span class="keyword">let</span> (a, <span class="keyword">mut</span> b): (<span class="type">bool</span>,<span class="type">bool</span>) = (<span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;a = &#123;:?&#125;, b = &#123;:?&#125;&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">    b = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">assert_eq!</span>(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在Rust 1.59版本后，我们可以在赋值语句的左式中使用元组、切片和结构体模式:</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Struct</span></span><br><span class="line">&#123;</span><br><span class="line">    e: <span class="type">i32</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 声明变量</span></span><br><span class="line">    <span class="keyword">let</span> (a, b, c, d, e);</span><br><span class="line">    <span class="comment">// 元组解构</span></span><br><span class="line">    (a, b) = (<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 数组解构，..表示忽略中间的值；_是一个占位符，用于匹配数组最后一个元素5，但不将其存储到任何变量中</span></span><br><span class="line">    <span class="comment">// c被赋值为第一个元素1，d赋值为倒数第二个元素4</span></span><br><span class="line">    [c, .., d, _] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="comment">// 结构体解构</span></span><br><span class="line">    Struct &#123; e, .. &#125; = Struct &#123; e: <span class="number">5</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">assert_eq!</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>], [a, b, c, d, e]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>详情见<a href="">模式匹配</a></p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>与不可变变量一样，常量(<code>constants</code>)是绑定到名称并且不允许更改的值，但是常量和变量之间存在一些区别。</p>
+<ul>
+<li>常量不允许使用<code>mut</code>关键字。常量不仅仅默认不可变，而且自始至终不可变，因为常量在编译完成后，就已经确定它的值</li>
+<li>常量使用<code>const</code>关键字而不是<code>let</code>关键字来声明，并且必须对值的类型进行标注(<code>annotate</code>)</li>
+</ul>
+<p>常量可以在任何作用域中声明，包括全局作用域。常量在程序整个运行期间有效，在声明它们的作用域内有效。对于需要在多处代码共享一个不可变的值时非常有用。在实际使用中，最好将程序中用到的硬编码值都声明为常量，对于代码后续的维护有莫大的帮助。如果将来需要更改硬编码的值，你也只需要在代码中更改一处即可。</p>
+<p>下面是一个常量声明的两个例子</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MAX_POINTS: <span class="type">u32</span> = <span class="number">100_000</span>;</span><br><span class="line"><span class="keyword">const</span> THREE_HOURS_IN_SECONDS: <span class="type">u32</span> = <span class="number">60</span> * <span class="number">60</span> * <span class="number">3</span>;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>①常量名为<code>MAX_POINTS</code>，值设置为100000。（Rust常量的命名约定是全部字母都使用大写，并使用下划线分隔单词；对数字字面量可插入下划线以提高可读性）</li>
+<li>②常量名为<code>THREE_HOURS_IN_SECONDS</code>，它的值被设置为60（一分钟内的秒数）乘60（一小时内的分钟数）乘3（我们想在这个程序中计算的小时数）的结果。编译器能够在编译时计算一组有限的操作，这让我们可以选择以一种更容易理解和验证的方式写出这个值，而不是将这个常数直接设置为10800。</li>
+</ul>
+<h2 id="变量遮蔽"><a href="#变量遮蔽" class="headerlink" title="变量遮蔽"></a>变量遮蔽</h2><p>Rust允许声明一个与之前变量同名的新变量，在后面声明的变量会遮蔽(<code>shadow</code>)掉前面声明的，这意味着当使用变量名时，编译期将看到后面的变量，直到这个后面的变量被遮蔽或出作用域，如下所示：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">// 在main函数的作用域内对之前的x进行遮蔽</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = x + <span class="number">1</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 在当前的花括号作用域内，对之前的x进行遮蔽</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">x</span> = x * <span class="number">2</span>;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;The value of x in the inner scope is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个程序首先将数值5绑定到<code>x</code>，然后通过重复使用<code>let x =</code>来创建一个新的变量<code>x</code>，并取原来的值加上1，所以<code>x</code>的值变成了6。然后在用花括号创建的内部作用域中，第三个<code>let</code>语句同样创建一个新的变量<code>x</code>并遮蔽前面的<code>x</code>，取之前的值并乘上2，得到的<code>x</code>最终值为 12。当出花括号作用域后，内部遮蔽结束，<code>x</code>的值还是6</p>
+<p>当运行这个程序时，它将输出如下内容：</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   Compiling world_hello v0.1.0 (/setup/rust-code/world_hello)</span><br><span class="line">    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s</span><br><span class="line">     Running `target/debug/world_hello`</span><br><span class="line">The value of x in the inner scope is: 12</span><br><span class="line">The value of x is: 6</span><br></pre></td></tr></table></figure></div>
+
+<p>注意，遮蔽不同于将变量标记为<code>mut</code>，虽然他们都涉及到变量的修改：</p>
+<ul>
+<li>当使用<code>mut</code>关键字声明一个变量时，将标记这个变量为可变的，这意味着可以在同一个内存地址上修改这个变量的值。由于没有发生变量的重新声明或内存重新分配，性能开销较低。</li>
+<li>当使用变量遮蔽时，尽管变量名相同，但实际上是创建了一个全新的变量（所以我们可以改变值的类型）。这个新的变量将有自己的内存分配，与原始变量完全独立。每次遮蔽都可能涉及到内存的重新分配（取决于遮蔽的变量类型和上下文）（作为使用者可以这么理解，实际上编译器可能出于优化目的在物理上重用相同的内存位置），这可能会比简单修改现有变量的值有更多的性能开销。</li>
+</ul>
+<p>示例：<br>遮蔽过程中，<code>spaces</code>变量的类型从<code>&amp;str</code>更改为<code>usize</code></p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">spaces</span> = <span class="string">&quot;   &quot;</span>;</span><br><span class="line"><span class="comment">// usize数值类型</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">spaces</span> = spaces.<span class="title function_ invoke__">len</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>当然如果你将上述代码修改为：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">spaces</span> = <span class="string">&quot;   &quot;</span>;</span><br><span class="line">spaces = spaces.<span class="title function_ invoke__">len</span>();</span><br></pre></td></tr></table></figure></div>
+
+<p>显然是不对的，因为Rust对类型的要求很严格，不允许将<code>usize</code>赋值给<code>&amp;str</code>类型变量。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>Rust是一门静态类型语言，也就是说编译器必须在编译期知道所有变量的类型。编译器通常可以根据值和使用方式自动推导出变量的类型。但是在某些情况下，它却无法推导出变量类型，需要手动去给予一个类型标注：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">guess</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Not a number!&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>这段代码的目的是将字符串”42”进行解析，而编译器在这里无法推导出我们想要的类型：整数？浮点数？字符串？因此编译器会报错：</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">error[E0284]: type annotations needed</span><br><span class="line"> --&gt; src/main.rs:3:9</span><br><span class="line">  |</span><br><span class="line">3 |     let guess = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);</span><br><span class="line">  |         ^^^^^        ----- type must be known at this point</span><br><span class="line">  |</span><br><span class="line">  = note: cannot satisfy `&lt;_ as FromStr&gt;::Err == _`</span><br><span class="line">help: consider giving `guess` an explicit type</span><br><span class="line">  |</span><br><span class="line">3 |     let guess: /* Type */ = &quot;42&quot;.parse().expect(&quot;Not a number!&quot;);</span><br><span class="line">  |              ++++++++++++</span><br></pre></td></tr></table></figure></div>
+
+<p>因此我们需要提供给编译器更多的信息，例如给<code>guess</code>变量一个显式的类型标注：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">guess</span>: <span class="type">u32</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Not a number!&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+
+
+<h2 id="标量类型-Scalar-Types"><a href="#标量类型-Scalar-Types" class="headerlink" title="标量类型(Scalar Types)"></a>标量类型(Scalar Types)</h2><p>标量类型指的是那些能够表示单一数据值的基本类型。Rust有四种主要的标量类型：整数、浮点数、布尔数和字符。</p>
+<h3 id="整形-Integer-Types"><a href="#整形-Integer-Types" class="headerlink" title="整形(Integer Types)"></a>整形(Integer Types)</h3><p>整数是没有小数部分的数字。<code>u32</code>类型，表示无符号32位整数（u是英文单词unsigned的首字母，与之相反的是i，是英文单词integer的首字母，代表有符号类型）。下表显示了Rust中的内置的整数类型：</p>
+<table style="width: 50%; margin-left: auto; margin-right: auto;">
+    <tr>
+        <th style="text-align: center;">长度</th>
+        <th style="text-align: center;">有符号类型</th>
+        <th style="text-align: center;">无符号类型</th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">8-bit</td>
+        <td style="text-align: center;">i8</td>
+        <td style="text-align: center;">u8</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">16-bit</td>
+        <td style="text-align: center;">i16</td>
+        <td style="text-align: center;">u8</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">32-bit</td>
+        <td style="text-align: center;">i32</td>
+        <td style="text-align: center;">u8</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">64-bit</td>
+        <td style="text-align: center;">i64</td>
+        <td style="text-align: center;">u8</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">128-bit</td>
+        <td style="text-align: center;">i128</td>
+        <td style="text-align: center;">u8</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">视架构而定</td>
+        <td style="text-align: center;">isize</td>
+        <td style="text-align: center;">usize</td>
+    </tr>
+</table>
+
+
+<p>有符号数使用二进制补码表示方式存储，每个有符号类型存储的数字范围是-(2<sup>n-1</sup>) ~ (2<sup>n-1</sup> - 1)，无符号类型可以存储的数字范围是0 ~ (2<sup>n</sup> - 1)。例如<code>i8</code>可以存储的数字范围是-(2<sup>7</sup>) ~ (2<sup>7</sup> - 1)，<code>u8</code>是0 ~ (2<sup>8</sup> - 1)。</p>
+<p>此外，<code>isize</code>和<code>usize</code>类型取决于程序运行的计算机的体系结构，在表中表示为“arch”：如果使用64位体系结构，则为64位；如果使用32位体系结构，则为32位。</p>
+<p>可以使用下表所示的任何形式来书写整形字面量。</p>
+<table style="width: 50%; margin-left: auto; margin-right: auto;">
+    <tr>
+        <th style="text-align: center;">数值字面量</th>
+        <th style="text-align: center;">示例</th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">字节（仅限于u8）</td>
+        <td style="text-align: center;">b'A'</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">二进制</td>
+        <td style="text-align: center;">0b1111_0000</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">八进制</td>
+        <td style="text-align: center;">0o77</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">十进制</td>
+        <td style="text-align: center;">98_222</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">十六进制</td>
+        <td style="text-align: center;">0xff</td>
+    </tr>
+</table>
+
+
+<p>请注意，可以是多个数字类型的数字字面量允许使用类型后缀（如<code>57u8</code>）来指定类型。数字字面量也可以使用<code>_</code>作为可视分隔符，使数字更易于阅读。例如1_000，等价于1000。</p>
+<p>Rust的整形默认使用<code>i32</code>。<code>isize</code>或<code>usize</code>的主要应用场景是用作集合的索引。</p>
+<blockquote>
+<p>整形溢出(<code>Integer Overflow</code>)</p>
+<p>假设有一个<code>u8</code>类型的变量，它可以存放的值为0到255。如果尝试将变量更改为该范围以外的值，如256，则会发生整型溢出。这可能导致以下两种行为之一： </p>
+<ul>
+<li>对于在Debug模式下编译的可执行文件，在运行时Rust会进行整形溢出检查，若存在这个问题，则程序在运行时panic（崩溃,Rust使用这个术语来表明程序因错误而退出）</li>
+<li>对于在Release模式下编译的可执行文件，在运行时Rust不会进行整形溢出的检查。如果发生溢出，会进行二进制补码回绕(<code>two&#39;s complement wrapping</code>)，即大于该类型所能容纳的最大值的值将“绕到”（被补码转换成）该类型所能支持的对应数字的最小值。例如尝试对一个<code>u8</code>类型的变量赋值256，运行时Rust会自动将这个值回绕至0，257回绕至1，以此类推。这样，虽然程序继续运行，不会出现中断，但变量的值可能并不是期望的值。依赖这种默认行为的代码都应该被认为是错误的代码。<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() </span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">num</span>: <span class="type">u8</span> = <span class="number">255</span>; <span class="comment">// 设置初始值为255</span></span><br><span class="line">   <span class="built_in">println!</span>(<span class="string">&quot;初始值: &#123;&#125;&quot;</span>, num);</span><br><span class="line">   num = num + <span class="number">1</span>; <span class="comment">// 直接加1，这里将会在编译时通过，但在运行时panic（如果在debug模式下）;release模式下打印0</span></span><br><span class="line">   <span class="built_in">println!</span>(<span class="string">&quot;尝试加1后的值: &#123;&#125;&quot;</span>, num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<p>要显式处理可能的溢出，可以使用标准库针对基本数字类型提供的这些方法族：</p>
+<ul>
+<li>使用<code>wrapping_*</code>方法在所有模式下都按二进制补码回绕处理，例如<code>wrapping_add</code><div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">a</span>: <span class="type">u8</span> = <span class="number">255</span>;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">b</span> = a.<span class="title function_ invoke__">wrapping_add</span>(<span class="number">1</span>);  <span class="comment">// 结果会回绕到0</span></span><br><span class="line">   <span class="built_in">println!</span>(<span class="string">&quot;wrapping_add: &#123;&#125;&quot;</span>, b); <span class="comment">// 输出: wrapping_add: 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>使用<code>checked_*</code>方法检查是否溢出，溢出则返回<code>None</code>值<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">a</span>: <span class="type">u8</span> = <span class="number">255</span>;</span><br><span class="line">   <span class="keyword">match</span> a.<span class="title function_ invoke__">checked_add</span>(<span class="number">1</span>)</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="title function_ invoke__">Some</span>(value) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;checked_add: &#123;&#125;&quot;</span>, value),</span><br><span class="line">       <span class="literal">None</span> =&gt; <span class="built_in">println!</span>(<span class="string">&quot;checked_add: overflow occurred&quot;</span>),  <span class="comment">// 溢出时处理</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>使用<code>overflowing_*</code>方法返回值和一个表示是否溢出的布尔值。<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">a</span>: <span class="type">u8</span> = <span class="number">255</span>;</span><br><span class="line">   <span class="keyword">let</span> (value, overflowed) = a.<span class="title function_ invoke__">overflowing_add</span>(<span class="number">1</span>);</span><br><span class="line">   <span class="built_in">println!</span>(<span class="string">&quot;overflowing_add: &#123;&#125;, overflowed: &#123;&#125;&quot;</span>, value, overflowed);</span><br><span class="line">   <span class="comment">// 输出: overflowing_add: 0, overflowed: true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>使用<code>saturating_*</code>方法使超出类型表示范围的值”饱和”至类型最小值或最大值，而不是回绕。<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">a</span>: <span class="type">u8</span> = <span class="number">255</span>;</span><br><span class="line">   <span class="keyword">let</span> <span class="variable">b</span> = a.<span class="title function_ invoke__">saturating_add</span>(<span class="number">23</span>);  <span class="comment">// 结果会饱和在255</span></span><br><span class="line">   <span class="built_in">println!</span>(<span class="string">&quot;saturating_add: &#123;&#125;&quot;</span>, b); <span class="comment">// 输出: saturating_add: 255</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+</blockquote>
+<h3 id="浮点型-Floating-Point-Types"><a href="#浮点型-Floating-Point-Types" class="headerlink" title="浮点型(Floating-Point Types)"></a>浮点型(Floating-Point Types)</h3><p>浮点类型数字是带有小数点的数字，在Rust中浮点类型有两种基本类型：<code>f32</code>和<code>f64</code>，大小分别为32位和64位。默认浮点类型是<code>f64</code>，因为在现代CPU上，它的速度与<code>f32</code>几乎相同，但精度更高。所有的浮点类型都是有符号的。</p>
+<p>下面是一个演示浮点数的示例：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = <span class="number">2.0</span>; <span class="comment">// f64</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span>: <span class="type">f32</span> = <span class="number">3.0</span>; <span class="comment">// f32</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>浮点数根据IEEE-754标准实现。<code>f32</code>是单精度浮点型，<code>f64</code>为双精度浮点型。</p>
+<blockquote>
+<p>浮点数陷阱</p>
+<p>待补充<a href=""></a></p>
+</blockquote>
+<h3 id="布尔型-The-Boolean-Type"><a href="#布尔型-The-Boolean-Type" class="headerlink" title="布尔型(The Boolean Type)"></a>布尔型(The Boolean Type)</h3><p>与大多数其他编程语言一样，Rust中的布尔类型有两个可能的值：true和false。布尔值的大小是一个字节。</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">t</span> = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">f</span>: <span class="type">bool</span> = <span class="literal">false</span>; <span class="comment">// 使用类型标注,显式指定f的类型</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> f &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;这是段毫无意义的代码&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>使用布尔类型的场景主要在于流程控制，例如上述代码的中的if表达式就是其中之一。</p>
+<h3 id="字符型-The-Character-Type"><a href="#字符型-The-Character-Type" class="headerlink" title="字符型(The Character Type)"></a>字符型(The Character Type)</h3><p>Rust的char类型是该语言最原始的字母类型，下面的代码展示了几个颇具异域风情的字符：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">c</span> = <span class="string">&#x27;z&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">z</span> = <span class="string">&#x27;ℤ&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">g</span> = <span class="string">&#x27;国&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">heart_eyed_cat</span> = &#x27;😻&#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意，我们使用单引号指定char字面量，这与使用双引号的字符串字面量不同。Rust的char类型大小为4字节，表示一个Unicode标量值（因为Unicode都是4个字节编码，因此字符类型也是占用4个字节），这意味着它可以表示的不仅仅是ASCII。带重音的字母；中文、日文、韩文字符；表情符号以及零宽度空格都是Rust中有效的char值。Unicode标量值的范围从U+0000到U+D7FF和U+E000到U+10FFFF（包括边界）。</p>
+<h2 id="复合类型-Compound-Types"><a href="#复合类型-Compound-Types" class="headerlink" title="复合类型(Compound Types)"></a>复合类型(Compound Types)</h2><p>复合类型可以将多个值分组到一个类型中。Rust有两种基本复合类型：元组(<code>tuple</code>)和数组(<code>array</code>)。</p>
+<h3 id="元组类型-The-Tuple-Type"><a href="#元组类型-The-Tuple-Type" class="headerlink" title="元组类型(The Tuple Type)"></a>元组类型(The Tuple Type)</h3><p>元组是一个具有固定长度（声明后长度不可变）的复合类型，它用于存储不必具有相同类型的若干值</p>
+<p>可以通过在括号内编写逗号分隔的值列表来创建元组。元组中的每个位置都有一个类型，不同值的类型可以不同：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">tup</span>: (<span class="type">i32</span>, <span class="type">f64</span>, <span class="type">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>变量<code>tup</code>绑定到一个元组，类型是<code>(i32, f64, u8)</code>，值是<code>(500, 6.4, 1)</code>。可以使用模式匹配(<code>pattern matching</code>)来解构(<code>destructuring</code>) 元组值，从元组中获取单个值：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">tup</span> = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> (x, y, z) = tup;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of y is: &#123;y&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上述代码创建了一个元组，然后将其绑定到变<code>tup</code>上，接着使用<code>let (x, y, z) = tup</code>将<code>tup</code>分解成三个独立的变量x，y和z，这叫做解构</p>
+<p>也可以直接访问元组元素，方法是使用句号<code>.</code>，后面跟着要访问的值的索引：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: (<span class="type">i32</span>, <span class="type">f64</span>, <span class="type">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">five_hundred</span> = x.<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six_point_four</span> = x.<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">one</span> = x.<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上述代码创建了一个元组<code>x</code>，然后使用索引访问元组中的每个元素。与大多数编程语言一样，元组中的第一个索引是0。</p>
+<h4 id="单元-Unit"><a href="#单元-Unit" class="headerlink" title="单元(Unit)"></a>单元(Unit)</h4><p>没有任何值的元组有一个特殊的名称，叫做单元(<code>unit</code>)。这个值及其对应的类型都写作<code>()</code>，代表一个空值或一个空返回类型。如果表达式不返回任何其他值，则它们隐式返回单元值。</p>
+<h3 id="数组类型-The-Array-Type"><a href="#数组类型-The-Array-Type" class="headerlink" title="数组类型(The Array Type)"></a>数组类型(The Array Type)</h3><p>与元组不同，数组的每个元素必须具有相同的类型。Rust中的数组具有固定长度。</p>
+<h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><p>我们将数组中的值写成方括号内的逗号分隔的列表：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当希望数据分配在栈上，而不是堆上时；或者确保总是有固定数量的元素时，数组非常有用。例如，如果在程序中使用月份的名称，你可能会使用数组而不是向量(<code>vector</code>)，因为它总是包含12个固定的元素：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">months</span> = [<span class="string">&quot;January&quot;</span>, <span class="string">&quot;February&quot;</span>, <span class="string">&quot;March&quot;</span>, <span class="string">&quot;April&quot;</span>, <span class="string">&quot;May&quot;</span>, <span class="string">&quot;June&quot;</span>, <span class="string">&quot;July&quot;</span>,</span><br><span class="line">              <span class="string">&quot;August&quot;</span>, <span class="string">&quot;September&quot;</span>, <span class="string">&quot;October&quot;</span>, <span class="string">&quot;November&quot;</span>, <span class="string">&quot;December&quot;</span>];</span><br></pre></td></tr></table></figure></div>
+
+<p>可以显式指定数组类型：方括号内部写上每个元素的类型、一个分号，然后是数组中元素的数量，如下所示：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span>: [<span class="type">i32</span>; <span class="number">5</span>] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure></div>
+
+<p>也可以通过指定初始值、后面加上分号，然后在方括号中写出数组长度的方式，初始化一个每个元素都是相同值的数组，如下所示：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">3</span>; <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]; </span><br></pre></td></tr></table></figure></div>
+
+
+<h4 id="访问数组元素"><a href="#访问数组元素" class="headerlink" title="访问数组元素"></a>访问数组元素</h4><p>数组是一块已知的大小固定的单一内存块，可以在栈上分配。你可以使用索引来访问数组中的元素，像这样：</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">first</span> = a[<span class="number">0</span>];   <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">second</span> = a[<span class="number">1</span>];  <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>访问越界：使用超出数组范围的索引值访问数组元素</p>
+<div class="highlight-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Please enter an array index.&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">index</span> = <span class="type">String</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line"></span><br><span class="line">    io::<span class="title function_ invoke__">stdin</span>()</span><br><span class="line">        .<span class="title function_ invoke__">read_line</span>(&amp;<span class="keyword">mut</span> index)</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">index</span>: <span class="type">usize</span> = index</span><br><span class="line">        .<span class="title function_ invoke__">trim</span>()</span><br><span class="line">        .<span class="title function_ invoke__">parse</span>()</span><br><span class="line">        .<span class="title function_ invoke__">expect</span>(<span class="string">&quot;Index entered was not a number&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">element</span> = a[index];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of the element at index &#123;index&#125; is: &#123;element&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上述代码可以成功编译，但在运行时，如果输入一个超出数组范围的数字，如6,则会报错：</p>
+<div class="highlight-container" data-rel="Text"><figure class="iseeu highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thread &#x27;main&#x27; panicked at src/main.rs:27:19:</span><br><span class="line">index out of bounds: the len is 5 but the index is 6</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure></div>
+
+<p>当尝试使用索引访问元素时，Rust在运行时会检查指定的索引是否小于数组长度。如果索引大于或等于长度，将会panic。</p>
+<p>这种就是Rust的安全特性之一。在很多系统编程语言中，并不会检查数组越界问题，你会访问到无效的内存地址获取到一个意料之外的值，最终导致在程序逻辑上出现大问题，而且这种问题会非常难以检查。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>1.<a class="link"   target="_blank" rel="noopener" href="https://course.rs/" >《Rust语言圣经》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>2.<a class="link"   target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/" >《The Rust Programming Language》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> Rust基础学习（一）——变量和数据类型</li>
+        <li><strong>作者:</strong> paw5zx</li>
+        <li><strong>创建于
+                :</strong> 2025-01-15 15:56:40</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-02-09 13:55:34
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://paw5zx.github.io/rust-common-concepts-1/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="GVCP数据包" class="!max-w-none">
+  <span class="title">GVCP数据包</span>
+</a><a class="recommended-article-item" href="/rust-common-concepts-2/" title="Rust基础学习（二）——函数" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Rust基础学习（二）——函数" class="!max-w-none">
+  <span class="title">Rust基础学习（二）——函数</span>
+</a><a class="recommended-article-item" href="/rust-common-concepts-3/" title="Rust基础学习（三）——控制流" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Rust基础学习（三）——控制流" class="!max-w-none">
+  <span class="title">Rust基础学习（三）——控制流</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="GVCP数据包" class="!max-w-none">
+  <span class="title">GVCP数据包</span>
+</a><a class="recommended-article-item" href="/rust-common-concepts-2/" title="Rust基础学习（二）——函数" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Rust基础学习（二）——函数" class="!max-w-none">
+  <span class="title">Rust基础学习（二）——函数</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/rust-common-concepts-2/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Rust基础学习（二）——函数</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/APUE-note-3/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">UNIX环境高级编程（三）——文件I/O</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'paw5zx/Blog-discussion',
+                'data-repo-id': 'R_kgDOMnAVmg',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMnAVms4Ch3WS',
+                'data-mapping': 'pathname',
+                'data-strict': '1',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">Rust基础学习（一）——变量和数据类型</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%91%BD%E5%90%8D"><span class="nav-text">变量命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%BB%91%E5%AE%9A"><span class="nav-text">变量绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E5%8F%AF%E5%8F%98%E6%80%A7"><span class="nav-text">变量可变性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5%E5%8F%98%E9%87%8F"><span class="nav-text">忽略变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E8%A7%A3%E6%9E%84"><span class="nav-text">变量解构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E9%81%AE%E8%94%BD"><span class="nav-text">变量遮蔽</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%87%8F%E7%B1%BB%E5%9E%8B-Scalar-Types"><span class="nav-text">标量类型(Scalar Types)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%BD%A2-Integer-Types"><span class="nav-text">整形(Integer Types)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B-Floating-Point-Types"><span class="nav-text">浮点型(Floating-Point Types)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E5%9E%8B-The-Boolean-Type"><span class="nav-text">布尔型(The Boolean Type)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%9E%8B-The-Character-Type"><span class="nav-text">字符型(The Character Type)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B-Compound-Types"><span class="nav-text">复合类型(Compound Types)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B-The-Tuple-Type"><span class="nav-text">元组类型(The Tuple Type)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83-Unit"><span class="nav-text">单元(Unit)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B-The-Array-Type"><span class="nav-text">数组类型(The Array Type)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0"><span class="nav-text">访问数组元素</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-text">参考文章</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.8; --fa-beat-fade-scale: 1.00;"></i>&nbsp;&nbsp;<a href="/">paw5zx</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 50 篇文章
+                    </span>
+                    
+                        <span>
+                            共 101.2k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
