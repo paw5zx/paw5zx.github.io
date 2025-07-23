@@ -26,7 +26,7 @@
 <meta property="og:description" content="Pylon API配置事件机制允许用户在相机状态变更过程前后（如打开、关闭、开始采集等）注入自定义逻辑，但Pylon不是开源的，因此本文尝试实现此机制">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-15T05:53:16.000Z">
-<meta property="article:modified_time" content="2025-05-12T07:49:46.970Z">
+<meta property="article:modified_time" content="2025-07-23T14:56:44.910Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -517,11 +517,11 @@
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">27</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">53</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -575,8 +575,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-12 15:49:46</span>
-            <span class="mobile">2025-05-12 15:49:46</span>
+            <span class="desktop">2025-07-23 22:56:44</span>
+            <span class="mobile">2025-07-23 22:56:44</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -613,7 +613,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.6k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.7k 字</span>
         </span>
     
     
@@ -792,6 +792,17 @@
 <p>可以参考下面代码注册：</p>
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">RegisterConfiguration</span>(<span class="keyword">new</span> <span class="built_in">ReconnectHandler</span>(), RegistrationMode_Append, Cleanup_Delete);</span><br></pre></td></tr></table></figure></div>
 
+
+  <div class="note-large purple">
+    <div class="notel-title rounded-t-lg p-3 font-bold text-lg flex flex-row gap-2 items-center">
+      <p>Paw5zx注：</p>
+
+    </div>
+    <div class="notel-content">
+      <p>断线重连中的<code>StartHealthCheckThread()</code>设计的有瑕疵，问题的分析与解决方案详见<a href="/issue-and-solution-01-cpp-thread-crash">《joinable的线程对象重新赋值引发的崩溃分析》</a></p>
+
+    </div>
+  </div>
         </div>
 
         
@@ -805,7 +816,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-05-12 15:49:46
+                    :</strong> 2025-07-23 22:56:44
             </li>
         
         <li>
@@ -835,27 +846,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/issue-and-solution-01-cpp-thread-crash/" title="joinable的线程对象重新赋值引发的崩溃分析" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="joinable的线程对象重新赋值引发的崩溃分析" class="!max-w-none">
+  <span class="title">joinable的线程对象重新赋值引发的崩溃分析</span>
+</a><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="GVCP数据包" class="!max-w-none">
   <span class="title">GVCP数据包</span>
 </a><a class="recommended-article-item" href="/GenTL-learning-01/" title="GenTL学习——缓冲区状态流转" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="GenTL学习——缓冲区状态流转" class="!max-w-none">
   <span class="title">GenTL学习——缓冲区状态流转</span>
-</a><a class="recommended-article-item" href="/pylon-cpp-programmer-guide/" title="Pylon C++ Programmer's Guide" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon C++ Programmer's Guide" class="!max-w-none">
-  <span class="title">Pylon C++ Programmer's Guide</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/issue-and-solution-01-cpp-thread-crash/" title="joinable的线程对象重新赋值引发的崩溃分析" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="joinable的线程对象重新赋值引发的崩溃分析" class="!max-w-none">
+  <span class="title">joinable的线程对象重新赋值引发的崩溃分析</span>
+</a><a class="recommended-article-item" href="/aravis-GVCP-packets/" title="GVCP数据包" rel="bookmark">
   <img src="/images/wallhaven-wqery6-light.webp" alt="GVCP数据包" class="!max-w-none">
   <span class="title">GVCP数据包</span>
-</a><a class="recommended-article-item" href="/GenTL-learning-01/" title="GenTL学习——缓冲区状态流转" rel="bookmark">
-  <img src="/images/wallhaven-wqery6-light.webp" alt="GenTL学习——缓冲区状态流转" class="!max-w-none">
-  <span class="title">GenTL学习——缓冲区状态流转</span>
 </a></div>
    </div>
   </div>
@@ -994,11 +1005,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 53 篇文章
+                        共撰写了 54 篇文章
                     </span>
                     
                         <span>
-                            共 109.8k 字
+                            共 111.5k 字
                         </span>
                     
                 </p>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="paw5zx">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="记录编码时遇到的多线程相关问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="joinable的线程对象重新赋值引发的崩溃分析">
+<meta property="og:url" content="http://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/index.html">
+<meta property="og:site_name" content="Paw5zx">
+<meta property="og:description" content="记录编码时遇到的多线程相关问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/reconnection_sequence_diagram_with_error.svg">
+<meta property="og:image" content="http://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/reconnection_sequence_diagram.svg">
+<meta property="article:published_time" content="2025-07-23T07:12:19.000Z">
+<meta property="article:modified_time" content="2025-07-23T15:01:54.532Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/reconnection_sequence_diagram_with_error.svg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/logos/O7_allmode.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/logos/O7_allmode.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/logos/O7_allmode.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            joinable的线程对象重新赋值引发的崩溃分析 | Paw5zx
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"paw5zx.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":4,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]},"pangu_js":false},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"dark"},"global":{"fonts":{"chinese":{"enable":false,"family":"WenQuanYi Zen Hei Mono","url":"https://example.com/path/to/your/font.css"},"english":{"enable":false,"family":"Cutive Mono","url":"https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":true,"custom_message":"Paw5zx's Blog"},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Paw5zx's Blog","subtitle":{"text":["C++爱好者","APEX低手","精通中华田园敏捷开发"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/paw5zx","instagram":null,"zhihu":null,"twitter":null,"email":null,"bilibili":"https://space.bilibili.com/11411875"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"Links":{"icon":"fa-regular fa-link","submenus":{"Itanium C++ ABI":"https://itanium-cxx-abi.github.io/cxx-abi/","C++ Standard Draft":"https://eel.is/c++draft/","Compiler Explorer":"https://gcc.godbolt.org/"}},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":4,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/11 23:23:23"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Paw5zx&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Paw5zx
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    链接
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">
+                                                    ITANIUM C++ ABI
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://eel.is/c++draft/">
+                                                    C++ STANDARD DRAFT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://gcc.godbolt.org/">
+                                                    COMPILER EXPLORER
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Links"
+                        >
+                            <span>
+                                链接
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Links">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://itanium-cxx-abi.github.io/cxx-abi/">ITANIUM C++ ABI</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://eel.is/c++draft/">C++ STANDARD DRAFT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://gcc.godbolt.org/">COMPILER EXPLORER</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">joinable的线程对象重新赋值引发的崩溃分析</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/logos/O7_allmode.png">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">paw5zx</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-07-23 15:12:19</span>
+        <span class="mobile">2025-07-23 15:12:19</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-07-23 23:01:54</span>
+            <span class="mobile">2025-07-23 23:01:54</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/">问题分析记录</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<a href="/pylon-configuration-events-handling/#%E6%96%AD%E7%BA%BF%E9%87%8D%E8%BF%9E">相机断线重连的设计</a>中，因为<code>CameraDevice::StartHealthCheckThread()</code>和<code>CameraDevice::StopHealthCheckThread()</code>设计的不好，在相机重连成功的时候，程序会崩溃，并报出：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2025-06-20 00:51:40,939](ERROR)&lt;13169terminate called after throwing an instance of &#x27;std::runtime_error&#x27;</span><br><span class="line">  what():  camera [0] disconnected!</span><br></pre></td></tr></table></figure></div>
+
+<p>光从报错来看，好像是因为抛出的异常没被catch导致程序被<code>std::terminate()</code>杀掉，但实际不是这样。</p>
+<h1 id="错误设计"><a href="#错误设计" class="headerlink" title="错误设计"></a>错误设计</h1><p>先来看看旧的设计（仅展示直接导致错误的几个相关函数）<br>首先是断线重连事件处理器：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ReconnectHandler</span> : <span class="keyword">public</span> ConfigurationEventHandler</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnCameraDeviceRemoved</span><span class="params">(CameraDevice&amp; camera)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        camera.<span class="built_in">StopGrabbing</span>();</span><br><span class="line">        camera.<span class="built_in">CloseDevice</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 重连实现细节不展示，本质就是循环Open相机</span></span><br><span class="line">        camera.<span class="built_in">OpenDevice</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 在相机打开成功后被同步调用</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnOpened</span><span class="params">(CameraDevice&amp; camera)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">        camera.<span class="built_in">StartHealthCheckThread</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在相机关闭动作开始前被同步调用</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnClose</span><span class="params">(CameraDevice&amp; camera)</span> <span class="keyword">override</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">        camera.<span class="built_in">StopHealthCheckThread</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+<p>然后是<code>StartHealthCheckThread()</code>和<code>StopHealthCheckThread()</code></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">CameraDevice::StartHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 状态检查</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 心跳线程</span></span><br><span class="line">    health_check_thread_ = std::<span class="built_in">thread</span>([<span class="keyword">this</span>]()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(is_health_check_thread_running_)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 相机断连后SendHeartBeat()会抛出runtime_error：&quot;camera [x] disconnected!&quot;</span></span><br><span class="line">                <span class="built_in">SendHeartBeat</span>();</span><br><span class="line">                std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span>(<span class="type">const</span> std::exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 状态重置</span></span><br><span class="line">            ...</span><br><span class="line"></span><br><span class="line">            <span class="built_in">NotifyEventHandeler</span>(ConfigurationEvent::OnCameraDeviceRemoved);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CameraDevice::StopHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 状态重置</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">wait_thread</span><span class="params">([<span class="keyword">this</span>]() </span></span></span><br><span class="line"><span class="params"><span class="function">    &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">if</span> (health_check_thread_.joinable()) </span></span></span><br><span class="line"><span class="params"><span class="function">        &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">            health_check_thread_.join();</span></span></span><br><span class="line"><span class="params"><span class="function">        &#125;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line">    wait_thread.<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><p>画了一个简单的时序图描述线程间的关系：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/issue-and-solution-01-cpp-thread-crash/reconnection_sequence_diagram_with_error.svg"
+                     
+                ></p>
+<p>根本原因是当相机重连成功后（即<code>OnOpened()</code>被调用），就会串行调用了<code>StartHealthCheckThread()</code>，这就导致了在旧线程未回收的情况下，赋予<code>health_check_thread_</code>一个新线程资源，程序就会立即崩溃。</p>
+<p>为了进一步确认原因，我将流程简化为一段测试代码：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;atomic&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StartHealthCheckThread</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StopHealthCheckThread</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">std::atomic&lt;<span class="type">bool</span>&gt; <span class="title">is_health_check_thread_running_</span><span class="params">(<span class="literal">false</span>)</span></span>;</span><br><span class="line">std::thread health_check_thread_;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SendHeartBeat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    count++;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Sending heartbeat... Count: &quot;</span> &lt;&lt; count &lt;&lt; std::endl;</span><br><span class="line">    <span class="comment">// if(count &gt; 5)</span></span><br><span class="line">    <span class="comment">// 使用count==6是确保重连后调用SendHeartBeat不会主动抛出异常</span></span><br><span class="line">    <span class="keyword">if</span>(count == <span class="number">6</span>) <span class="comment">// Simulate an error after 5 heartbeats</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Simulated heartbeat failure&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">OnCameraDeviceRemoved</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">StopHealthCheckThread</span>();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模拟重连过程的耗时</span></span><br><span class="line">    std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">5</span>)); </span><br><span class="line"></span><br><span class="line">    <span class="built_in">StartHealthCheckThread</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StopHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;CameraDevice::StopHealthCheckThread&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    is_health_check_thread_running_ = <span class="literal">false</span>;</span><br><span class="line">    <span class="function">std::thread <span class="title">wait_thread</span><span class="params">([]() </span></span></span><br><span class="line"><span class="params"><span class="function">    &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">if</span> (health_check_thread_.joinable()) </span></span></span><br><span class="line"><span class="params"><span class="function">        &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">            health_check_thread_.join();</span></span></span><br><span class="line"><span class="params"><span class="function">        &#125;</span></span></span><br><span class="line"><span class="params"><span class="function"></span></span></span><br><span class="line"><span class="params"><span class="function">        std::cout &lt;&lt; <span class="string">&quot;CameraDevice::StopHealthCheckThread thread stopped&quot;</span> &lt;&lt; std::endl;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line"></span><br><span class="line">    wait_thread.<span class="built_in">detach</span>(); <span class="comment">// 非阻塞回收</span></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;CameraDevice::StopHealthCheckThread thread detached&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">StartHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;CameraDevice::StartHealthCheckThread&quot;</span> &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(is_health_check_thread_running_)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    is_health_check_thread_running_ = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//心跳线程</span></span><br><span class="line">    health_check_thread_ = std::<span class="built_in">thread</span>([]()</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;entering health check thread...&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(is_health_check_thread_running_)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// CRRC_INFO(&quot;this is thread 2&quot;);</span></span><br><span class="line">                <span class="built_in">SendHeartBeat</span>();</span><br><span class="line">                std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span>(<span class="type">const</span> std::exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cerr &lt;&lt; <span class="string">&quot;CameraDevice::StartHealthCheckThread exception: &quot;</span> &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; std::endl;</span><br><span class="line">            is_health_check_thread_running_ = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">OnCameraDeviceRemoved</span>();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">StartHealthCheckThread</span>();</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后使用gdb调试，运行结果为：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[Thread debugging using libthread_db enabled]</span><br><span class="line">Using host libthread_db library &quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;.</span><br><span class="line">CameraDevice::StartHealthCheckThread</span><br><span class="line">[New Thread 0x7ffff798c700 (LWP 1305860)]</span><br><span class="line">entering health check thread...</span><br><span class="line">Sending heartbeat... Count: 1</span><br><span class="line">Sending heartbeat... Count: 2</span><br><span class="line">Sending heartbeat... Count: 3</span><br><span class="line">Sending heartbeat... Count: 4</span><br><span class="line">Sending heartbeat... Count: 5</span><br><span class="line">Sending heartbeat... Count: 6</span><br><span class="line">CameraDevice::StartHealthCheckThread exception: Simulated heartbeat failure</span><br><span class="line">CameraDevice::StopHealthCheckThread</span><br><span class="line">[New Thread 0x7ffff718b700 (LWP 1305862)]</span><br><span class="line">CameraDevice::StopHealthCheckThread thread detached</span><br><span class="line">CameraDevice::StartHealthCheckThread</span><br><span class="line">[New Thread 0x7ffff698a700 (LWP 1305866)]</span><br><span class="line">entering health check thread...</span><br><span class="line">Sending heartbeat... Count: 7</span><br><span class="line">terminate called after throwing an instance of &#x27;std::runtime_error&#x27;</span><br><span class="line">  what():  Simulated heartbeat failure</span><br><span class="line"></span><br><span class="line">Thread 2 &quot;test.out&quot; received signal SIGABRT, Aborted.</span><br><span class="line">[Switching to Thread 0x7ffff798c700 (LWP 1305860)]</span><br><span class="line">__GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50</span><br></pre></td></tr></table></figure></div>
+
+<p>使用bt命令查看函数调用栈</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">0  __GI_raise (sig=sig@entry=6) at ../sysdeps/unix/sysv/linux/raise.c:50</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1  0x00007ffff7b03859 <span class="keyword">in</span> __GI_abort () at abort.c:79</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2  0x00007ffff7d9cee6 <span class="keyword">in</span> ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3  0x00007ffff7daef8c <span class="keyword">in</span> ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">4  0x00007ffff7daeff7 <span class="keyword">in</span> std::terminate() () from /lib/x86_64-linux-gnu/libstdc++.so.6</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">5  0x00005555555571a3 <span class="keyword">in</span> std::thread::operator= (this=0x55555555b280 &lt;health_check_thread_&gt;, __t=...)</span></span><br><span class="line">    at /usr/include/c++/11/bits/std_thread.h:165</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">6  0x0000555555556834 <span class="keyword">in</span> StartHealthCheckThread () at test.cpp:87</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">7  0x00005555555564f3 <span class="keyword">in</span> OnCameraDeviceRemoved () at test.cpp:34</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">8  0x0000555555556765 <span class="keyword">in</span> operator() (__closure=0x55555556e6c8) at test.cpp:84</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">9  0x0000555555556fe5 <span class="keyword">in</span> std::__invoke_impl&lt;void, StartHealthCheckThread()::&lt;lambda()&gt; &gt;(std::__invoke_other, struct &#123;...&#125; &amp;&amp;) (</span></span><br><span class="line">    __f=...) at /usr/include/c++/11/bits/invoke.h:61</span><br></pre></td></tr></table></figure></div>
+
+<p>其中：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">5  0x00005555555571a3 <span class="keyword">in</span> std::thread::operator= (this=0x55555555b280 &lt;health_check_thread_&gt;, __t=...)</span></span><br><span class="line">    at /usr/include/c++/11/bits/std_thread.h:165</span><br></pre></td></tr></table></figure></div>
+<p>表明当前执行的函数是<code>std::thread::operator=</code>，也就是<code>std::thread</code>的赋值运算符，正在给<code>health_check_thread_</code>赋予一个新的<code>std::thread</code>对象</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">4  0x00007ffff7daeff7 <span class="keyword">in</span> std::terminate() () from /lib/x86_64-linux-gnu/libstdc++.so.6</span></span><br></pre></td></tr></table></figure></div>
+<p>表明在赋值内部发现<code>health_check_thread_</code>管理着一个joinable的线程资源，因此赋值运算符内部就直接调用<code>std::terminate()</code>结束程序了。</p>
+<h1 id="问题延伸"><a href="#问题延伸" class="headerlink" title="问题延伸"></a>问题延伸</h1><p>现在程序崩溃的原因找到了，但是还有一个问题，既然是通过<code>std::terminate()</code>结束的程序，为什么最后的打印是在<code>SendHeartBeat</code>抛出的<code>std::runtime_error</code>？</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">terminate called after throwing an instance of &#x27;std::runtime_error&#x27;</span><br><span class="line">  what():  Simulated heartbeat failure</span><br></pre></td></tr></table></figure></div>
+
+<p>这涉及到异常对象生命周期的问题：catch块的代码执行完毕后, 在最后一个大括号结尾, 会将异常对象析构掉。但是此例中，catch块没有执行完毕就触发了<code>std::terminate()</code>，也就是说异常对象仍处于活动状态。C++ runtime检测到此时仍然存在一个活动异常（<code>std::terminate()</code>内部会检查当前是否有活动异常，并决定打印哪个信息）——也就是之前抛出的<code>std::runtime_error</code>，于是就会打印包含异常类型和<code>what()</code>信息的输出：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">terminate called after throwing an instance of &#x27;std::runtime_error&#x27;</span><br><span class="line">  what():  Simulated heartbeat failure</span><br></pre></td></tr></table></figure></div>
+
+<p>我们可以编写一个简单的示例来验证：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">TerminateFunc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::<span class="built_in">terminate</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">TryFunc</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> std::<span class="built_in">runtime_error</span>(<span class="string">&quot;Simulated error in main function&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">catch</span>(<span class="type">const</span> std::exception&amp; e)</span><br><span class="line">    &#123;</span><br><span class="line">        std::<span class="built_in">terminate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// TerminateFunc();</span></span><br><span class="line">    <span class="built_in">TryFunc</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>当运行<code>TryFunc()</code>，就会打印</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">terminate called after throwing an instance of &#x27;std::runtime_error&#x27;</span><br><span class="line">  what():  Simulated error in main function</span><br></pre></td></tr></table></figure></div>
+
+<p>当运行<code>TerminateFunc()</code>，会打印</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terminate called without an active exception</span><br></pre></td></tr></table></figure></div>
+
+<p>符合期望的结果</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>要解决的根本问题就是要确保旧线程已被安全回收的情况下，再给<code>std::thread</code>重新赋值。</p>
+<p>所以要改的地方有两点：</p>
+<ul>
+<li>异步通知OnCameraDeviceRemoved，这确保了旧心跳检测线程的及时结束</li>
+<li>创建新心跳线程前，要判断<code>health_check_thread_.joinable()</code></li>
+</ul>
+<p>因此<code>StartHealthCheckThread()</code>和<code>StopHealthCheckThread()</code>修改为：</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">CameraDevice::StartHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 状态检查</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 防止double join</span></span><br><span class="line">        <span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">lock</span><span class="params">(health_check_mutex_)</span></span>;</span><br><span class="line">        <span class="keyword">if</span>(health_check_thread_.<span class="built_in">joinable</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            health_check_thread_.<span class="built_in">join</span>();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 心跳线程</span></span><br><span class="line">    health_check_thread_ = std::<span class="built_in">thread</span>([<span class="keyword">this</span>]()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(is_health_check_thread_running_)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 相机断连后SendHeartBeat()会抛出runtime_error：&quot;camera [x] disconnected!&quot;</span></span><br><span class="line">                <span class="built_in">SendHeartBeat</span>();</span><br><span class="line">                std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span>(<span class="type">const</span> std::exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 状态重置</span></span><br><span class="line">            ...</span><br><span class="line"></span><br><span class="line">            std::<span class="built_in">thread</span>([<span class="keyword">this</span>]()&#123;</span><br><span class="line">                <span class="built_in">NotifyEventHandeler</span>(ConfigurationEvent::OnCameraDeviceRemoved);</span><br><span class="line">            &#125;).<span class="built_in">detach</span>(); <span class="comment">// 异步通知，避免阻塞当前线程</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CameraDevice::StopHealthCheckThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 状态重置</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="function">std::thread <span class="title">wait_thread</span><span class="params">([<span class="keyword">this</span>]() </span></span></span><br><span class="line"><span class="params"><span class="function">    &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="comment">// 防止double join</span></span></span></span><br><span class="line"><span class="params"><span class="function">        std::lock_guard&lt;std::mutex&gt; lock(health_check_mutex_);</span></span></span><br><span class="line"><span class="params"><span class="function">        <span class="keyword">if</span> (health_check_thread_.joinable()) </span></span></span><br><span class="line"><span class="params"><span class="function">        &#123;</span></span></span><br><span class="line"><span class="params"><span class="function">            health_check_thread_.join();</span></span></span><br><span class="line"><span class="params"><span class="function">        &#125;</span></span></span><br><span class="line"><span class="params"><span class="function">    &#125;)</span></span>;</span><br><span class="line">    wait_thread.<span class="built_in">detach</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>针对修改完的设计，我也绘制了一个简单的时序图<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/issue-and-solution-01-cpp-thread-crash/reconnection_sequence_diagram.svg"
+                     
+                ></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> joinable的线程对象重新赋值引发的崩溃分析</li>
+        <li><strong>作者:</strong> paw5zx</li>
+        <li><strong>创建于
+                :</strong> 2025-07-23 15:12:19</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-07-23 23:01:54
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://paw5zx.github.io/issue-and-solution-01-cpp-thread-crash/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-configuration-events-handling/" title="Pylon配置事件机制的实现" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon配置事件机制的实现" class="!max-w-none">
+  <span class="title">Pylon配置事件机制的实现</span>
+</a><a class="recommended-article-item" href="/cpp-development-components-threadsafe-queue/" title="C++自用小轮子——线程安全队列" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="C++自用小轮子——线程安全队列" class="!max-w-none">
+  <span class="title">C++自用小轮子——线程安全队列</span>
+</a><a class="recommended-article-item" href="/singleton/" title="设计模式学习（一）单例模式的几种实现方式" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="设计模式学习（一）单例模式的几种实现方式" class="!max-w-none">
+  <span class="title">设计模式学习（一）单例模式的几种实现方式</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/pylon-configuration-events-handling/" title="Pylon配置事件机制的实现" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="Pylon配置事件机制的实现" class="!max-w-none">
+  <span class="title">Pylon配置事件机制的实现</span>
+</a><a class="recommended-article-item" href="/cpp-development-components-threadsafe-queue/" title="C++自用小轮子——线程安全队列" rel="bookmark">
+  <img src="/images/wallhaven-wqery6-light.webp" alt="C++自用小轮子——线程安全队列" class="!max-w-none">
+  <span class="title">C++自用小轮子——线程安全队列</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/UE-fmodel-StellarBlade/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">使用FModel提取《剑星》的资产</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'paw5zx/Blog-discussion',
+                'data-repo-id': 'R_kgDOMnAVmg',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMnAVms4Ch3WS',
+                'data-mapping': 'pathname',
+                'data-strict': '1',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">目录</div>
+        <div class="page-title">joinable的线程对象重新赋值引发的崩溃分析</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E8%AE%BE%E8%AE%A1"><span class="nav-text">错误设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%BB%B6%E4%BC%B8"><span class="nav-text">问题延伸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.8; --fa-beat-fade-scale: 1.00;"></i>&nbsp;&nbsp;<a href="/">paw5zx</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 54 篇文章
+                    </span>
+                    
+                        <span>
+                            共 111.5k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="站内搜索您需要的内容..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

@@ -26,7 +26,7 @@
 <meta property="og:description" content="GObject基础使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-02T11:49:38.000Z">
-<meta property="article:modified_time" content="2025-01-08T12:18:43.968Z">
+<meta property="article:modified_time" content="2025-06-17T03:59:03.899Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -517,11 +517,11 @@
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">27</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">28</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">53</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">54</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -575,8 +575,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-01-08 20:18:43</span>
-            <span class="mobile">2025-01-08 20:18:43</span>
+            <span class="desktop">2025-06-17 11:59:03</span>
+            <span class="mobile">2025-06-17 11:59:03</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -730,7 +730,7 @@
 <p>上述初始化过程在第一次调用<code>g_object_new</code>函数时执行。在第二次及后续调用<code>g_object_new</code>时，它只执行两个过程：①为GObject结构分配内存②初始化内存。</p>
 <h2 id="析构"><a href="#析构" class="headerlink" title="析构"></a>析构</h2><p>1.销毁GObject实例。释放实例的内存</p>
 <p>GObject变量类型是静态类型。静态类型永远不会破坏它的类。因此，即使被销毁的实例变量是最后一个，类变量仍然存在，直到程序终止。</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>1.<a class="link"   target="_blank" rel="noopener" href="https://toshiocp.github.io/Gobject-tutorial/" >GObject Tutorial for beginners <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>1.<a class="link"   target="_blank" rel="noopener" href="https://toshiocp.github.io/Gobject-tutorial/" >GObject Tutorial for beginners <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
         </div>
 
@@ -745,7 +745,7 @@
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-01-08 20:18:43
+                    :</strong> 2025-06-17 11:59:03
             </li>
         
         <li>
@@ -901,7 +901,7 @@
     <div class="post-toc">
         <div class="toc-title">目录</div>
         <div class="page-title">GObject学习笔记（一）类和实例</div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BE%8B"><span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%9E%90%E6%9E%84%E8%BF%87%E7%A8%8B"><span class="nav-text">初始化和析构过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84"><span class="nav-text">析构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-text">参考文章</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BE%8B"><span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E6%9E%90%E6%9E%84%E8%BF%87%E7%A8%8B"><span class="nav-text">初始化和析构过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84"><span class="nav-text">析构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-text">参考文章</span></a></li></ol>
 
     </div>
 </div>
@@ -934,11 +934,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 53 篇文章
+                        共撰写了 54 篇文章
                     </span>
                     
                         <span>
-                            共 109.8k 字
+                            共 111.5k 字
                         </span>
                     
                 </p>
